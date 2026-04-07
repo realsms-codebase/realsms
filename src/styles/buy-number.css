@@ -435,6 +435,19 @@
   cursor: not-allowed;
 }
 
+.details-block {
+  white-space: pre-wrap;       /* ✅ allows wrapping */
+  word-break: break-word;      /* ✅ breaks long strings */
+  overflow-wrap: break-word;   /* ✅ extra safety */
+
+  max-width: 100%;
+  overflow-x: auto;            /* ✅ adds scroll if needed */
+  
+  background: rgba(0,0,0,0.05);
+  padding: 10px;
+  border-radius: 6px;
+}
+
 /* =====================
    MOBILE VIEW
 ===================== */
