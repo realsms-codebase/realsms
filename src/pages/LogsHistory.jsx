@@ -710,7 +710,8 @@
 // export default LogsHistory;
 
 import React, { useEffect, useState, useMemo } from "react";
-import "../styles/order-history.css"; 
+import axios from "axios";
+import "../styles/order-history.css";
 
 const ORDERS_PER_PAGE = 10;
 
@@ -729,36 +730,33 @@ const LogsHistory = ({ darkMode }) => {
     document.title = "Logs History - RealSMS";
 
     const fetchLogs = async () => {
+      const token = localStorage.getItem("token"); // ✅ correct key
+      if (!token) {
+        console.error("No user token found. Please log in.");
+        setLogs([]);
+        setLoadingPage(false);
+        return;
+      }
+
       try {
         setLoadingPage(true);
+        // Set Axios default Authorization header
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-        const token = localStorage.getItem("userToken"); // <-- user token
-        if (!token) {
-          console.error("No user token found. Please log in.");
-          setLogs([]);
-          return;
-        }
+        const res = await axios.get(`${API_URL}/api/logs/orders`);
 
-        const res = await fetch(`${API_URL}/api/logs/orders`, { // <-- updated path
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (res.status === 401) {
-          console.error("Unauthorized request. Please log in again.");
-          setLogs([]);
-          return;
-        }
-
-        const data = await res.json();
-        if (data.data) {
-          setLogs(data.data);
+        if (res.data?.data) {
+          setLogs(res.data.data);
         } else {
-          console.error("Failed to fetch logs:", data);
+          console.error("Failed to fetch logs:", res.data);
         }
       } catch (err) {
-        console.error("Error fetching logs:", err);
+        if (err.response?.status === 401) {
+          console.error("Unauthorized request. Please log in again.");
+        } else {
+          console.error("Error fetching logs:", err);
+        }
+        setLogs([]);
       } finally {
         setLoadingPage(false);
       }
@@ -770,8 +768,7 @@ const LogsHistory = ({ darkMode }) => {
   /* ================================
      NORMALIZE STRING
   ================================ */
-  const normalize = (str) =>
-    str?.toLowerCase().replace(/\s+/g, "");
+  const normalize = (str) => str?.toLowerCase().replace(/\s+/g, "");
 
   /* ================================
      FILTER LOGS
@@ -802,10 +799,7 @@ const LogsHistory = ({ darkMode }) => {
   /* ================================
      FORMAT DATE
   ================================ */
-  const formatDate = (date) => {
-    if (!date) return "-";
-    return new Date(date).toLocaleString();
-  };
+  const formatDate = (date) => (date ? new Date(date).toLocaleString() : "-");
 
   /* ================================
      TRUNCATE DETAILS
@@ -814,15 +808,11 @@ const LogsHistory = ({ darkMode }) => {
     if (!text) return "-";
 
     const lines = text.split("\n");
-
-    const truncated = lines.slice(0, maxLines).map((line) => {
-      return line.length > maxCharsPerLine
-        ? line.slice(0, maxCharsPerLine) + "..."
-        : line;
-    });
+    const truncated = lines.slice(0, maxLines).map((line) =>
+      line.length > maxCharsPerLine ? line.slice(0, maxCharsPerLine) + "..." : line
+    );
 
     if (lines.length > maxLines) truncated.push("...");
-
     return truncated.join("\n");
   };
 
@@ -894,9 +884,7 @@ const LogsHistory = ({ darkMode }) => {
                       <td data-label="Quantity">{log.quantity || "-"}</td>
                       <td data-label="Details">
                         <div className="details-box">
-                          <pre className="details-text">
-                            {truncateLines(log.details)}
-                          </pre>
+                          <pre className="details-text">{truncateLines(log.details)}</pre>
                           <button
                             className="copy-btn"
                             onClick={() => copyToClipboard(log.details)}
