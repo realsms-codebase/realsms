@@ -336,7 +336,8 @@
 /* BODY PADDING */
 /* ======================= */
 body {
-  padding-top: 65px;
+  padding-top: 72px;
+  margin: 0;
 
   background: var(--bg-color);
   color: var(--text-color);
