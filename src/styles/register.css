@@ -241,6 +241,18 @@
   text-decoration: none;
 }
 
+/* MOBILE LOGO */
+.register-mobile-logo {
+  display: none;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.register-mobile-logo img {
+  width: 140px;
+  height: auto;
+}
+
 /* =====================
    MOBILE
 ===================== */
