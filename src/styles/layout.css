@@ -33,8 +33,11 @@
 
 /* Mobile */
 @media (max-width: 768px) {
+.main-content {
+   margin-top: 300px;
+}
+  
   .page-content {
-    margin-top: 300px;
     padding: 12px;
   }
 }
