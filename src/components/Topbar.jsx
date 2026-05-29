@@ -391,7 +391,7 @@ const Topbar = ({ toggleSidebar }) => {
       const token = localStorage.getItem("token");
 
       await fetch(
-        `${process.env.REACT_APP_API_URL}/api/support/user/read`,
+        `${process.env.REACT_APP_API_URL}/api/support/notifications`,
         {
           method: "PUT",
           headers: {
