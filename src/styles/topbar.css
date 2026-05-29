@@ -223,6 +223,90 @@
 }
 
 
+/* =========================
+   MOBILE STYLING
+========================= */
+
+@media (max-width: 768px) {
+  .topbar-right {
+    gap: 10px;
+  }
+
+  /* Theme Toggle */
+  .theme-toggle {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+  }
+
+  .theme-toggle svg {
+    font-size: 15px;
+  }
+
+  /* Notification Icon */
+  .notification-icon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 12px;
+  }
+
+  .notification-icon svg {
+    font-size: 15px;
+  }
+
+  .notification-badge {
+    top: -2px;
+    right: -2px;
+
+    min-width: 14px;
+    height: 14px;
+
+    padding: 0 3px;
+
+    font-size: 8px;
+
+    border-width: 1.5px;
+  }
+
+  /* Reduce hover effects on mobile */
+  .theme-toggle:hover,
+  .notification-icon:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .notification-icon:hover svg {
+    transform: none;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+  .topbar-right {
+    gap: 8px;
+  }
+
+  .theme-toggle,
+  .notification-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .theme-toggle svg,
+  .notification-icon svg {
+    font-size: 14px;
+  }
+
+  .notification-badge {
+    min-width: 13px;
+    height: 13px;
+
+    font-size: 7px;
+  }
+}
+
 /* ======================= */
 /* PROFILE & DROPDOWN */
 /* ======================= */
