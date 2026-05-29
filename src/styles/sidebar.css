@@ -138,27 +138,23 @@
    BADGE
 ======================= */
 .nav-with-badge {
-  position: relative;
-
   display: flex;
   align-items: center;
+  gap: 12px;
 }
 
 .badge {
-  position: absolute;
-
-  top: 50%;
-  right: 8px;
-
-  transform: translateY(-50%);
+  position: static;
 
   min-width: 18px;
   height: 18px;
 
-  padding: 0 5px;
+  padding: 0 6px;
+
+  margin-left: auto;
 
   background: #ef4444;
-  color: #ffffff;
+  color: #fff;
 
   font-size: 10px;
   font-weight: 500;
