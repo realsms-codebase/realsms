@@ -452,18 +452,6 @@
     gap: 10px;
   }
 
-  .balance {
-    padding: 6px 10px;
-  }
-
-  .balance-text span {
-    font-size: 10px;
-  }
-
-  .balance-text strong {
-    font-size: 13px;
-  }
-
   /* Hide username text on mobile */
   .username-text {
     display: none;
@@ -473,10 +461,19 @@
     right: 0;
     width: 150px;
   }
+}
 
-  .theme-toggle {
-    width: 35px;
-    height: 35px;
+@media (max-width: 768px) {
+  .profile {
+    gap: 4px;
+  }
+
+  .profile img {
+    margin-right: 4px !important;
+  }
+
+  .username-arrow {
+    margin-left: 2px !important;
   }
 }
 
@@ -490,19 +487,6 @@
 
   .topbar-right {
     gap: 8px;
-  }
-
-  .balance {
-    padding: 5px 9px;
-    gap: 6px;
-  }
-
-  .balance-icon {
-    font-size: 16px;
-  }
-
-  .balance-text strong {
-    font-size: 12px;
   }
 
   .theme-toggle {
