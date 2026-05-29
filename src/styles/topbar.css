@@ -86,6 +86,37 @@
    MODERN NOTIFICATION ICON
 ========================= */
 
+.notification-icon {
+  position: relative;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 16px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(10px);
+
+  color: var(--text-color);
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition: all 0.35s ease;
+}
+
 /* Glow effect */
 .notification-icon::before {
   content: "";
@@ -187,7 +218,6 @@
     box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
   }
 }
-
 /* ======================= */
 /* PROFILE & DROPDOWN */
 /* ======================= */
