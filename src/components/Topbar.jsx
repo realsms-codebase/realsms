@@ -349,6 +349,9 @@ const Topbar = ({ toggleSidebar }) => {
             <FiChevronDown
               size={16}
               style={{
+                position: "relative",
+                top: "2px",
+                transition: "transform 0.3s",
                 transform: dropdownOpen
                   ? "rotate(180deg)"
                   : "rotate(0deg)",
