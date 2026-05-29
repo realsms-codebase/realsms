@@ -300,7 +300,7 @@ const Topbar = ({ toggleSidebar }) => {
     setNotifOpen(false);
 
     // Optional navigation logic
-    if (section === "activity") navigate("/transactions");
+    if (section === "activity") navigate("/transaction-history");
     if (section === "support") navigate("/support");
     if (section === "admin") navigate("/announcements");
   };
