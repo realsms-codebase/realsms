@@ -188,6 +188,42 @@
   display: none;
 }
 
+/* =======================
+   USER INFO CARD (NEW)
+======================= */
+.sidebar-user-card {
+  margin: 15px 0 20px;
+  padding: 14px;
+
+  background: linear-gradient(135deg, #111, #1a1a1a);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar-user-card .user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.sidebar-user-card .user-balance {
+  font-size: 13px;
+  color: var(--secondary-text);
+}
+
+.sidebar-user-card .user-balance span {
+  color: #22c55e; /* green balance like fintech apps */
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   .sidebar-overlay {
     display: block;
