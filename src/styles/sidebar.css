@@ -246,7 +246,7 @@
 ========================= */
 @media (max-width: 768px) {
   .sidebar-user-card {
-    margin: 10px 0; /* remove negative margin */
+    margin: 10px 0 20px; /* remove negative margin */
     padding: 12px;
 
     border-radius: 10px;
