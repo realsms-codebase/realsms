@@ -359,7 +359,7 @@ const Topbar = ({ toggleSidebar }) => {
         const token = localStorage.getItem("token");
 
         const res = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/support/user/notifications/support`,
+          `${process.env.REACT_APP_API_URL}/api/support/user/notifications`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
