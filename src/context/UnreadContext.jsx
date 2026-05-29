@@ -30,7 +30,7 @@ export const UnreadProvider = ({ children }) => {
       setUnreadMessages(res.data.count);
     } catch (err) {
       console.error("Failed to fetch unread count");
-    }
+    } 
   };
 
   useEffect(() => {
