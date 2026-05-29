@@ -310,6 +310,26 @@
   white-space: nowrap;
 }
 
+.notif-item.unread {
+  background: rgba(0, 123, 255, 0.08);
+  border-left: 3px solid #007bff;
+}
+
+.notif-item {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.notif-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.notif-empty {
+  padding: 20px;
+  text-align: center;
+  color: gray;
+}
+
 /* =========================
    MOBILE STYLING
 ========================= */
