@@ -147,7 +147,7 @@ const Dashboard = ({ darkMode }) => {
              Kindly contact the support team for any transaction or log-related issues. Also note that any issue not reported within 24 hours will not be attended to.
             </p>
 
-            <p>You can fund your wallet using Flutterwave.</p>
+            <p>You can fund your wallet using Flutterwave & Korapay.</p>
 
             <p>
               Thank you — <strong>realsms.store</strong>
