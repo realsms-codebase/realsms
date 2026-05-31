@@ -123,7 +123,6 @@ const KorapayFund = () => {
             {QUICK_AMOUNTS.map((amt) => (
               <button
                 key={amt}
-                {/* className={numericAmount === amt ? "active" : ""} */}
                   className={`quick-btn ${
         numericAmount === amt ? "active" : ""
       }`}
