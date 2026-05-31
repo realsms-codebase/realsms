@@ -236,7 +236,7 @@ const Topbar = ({ toggleSidebar }) => {
 
     setNotifOpen(false);
 
-    navigate("/wallet");
+    navigate("/transaction-history");
   };
 
   // =========================
