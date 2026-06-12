@@ -440,8 +440,13 @@ const Topbar = ({ toggleSidebar }) => {
 
   const navigate = useNavigate();
   const notifRef = useRef(null);
-
   const { balance } = useBalance();
+
+  const [notifications, setNotifications] = useState({
+    support: [],
+    activity: [],
+    admin: [],
+  });
 
   const formatBalance = (value) => {
     return Number(value || 0).toLocaleString(undefined, {
@@ -468,12 +473,6 @@ const Topbar = ({ toggleSidebar }) => {
     return `${datePart}, ${timePart}`;
   };
 
-  const [notifications, setNotifications] = useState({
-    support: [],
-    activity: [],
-    admin: [],
-  });
-
   const unreadCount =
     notifications.support.filter((n) => !n.read).length +
     notifications.activity.filter((n) => !n.read).length +
@@ -488,6 +487,7 @@ const Topbar = ({ toggleSidebar }) => {
     navigate("/");
   };
 
+  // Fetch user
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -514,13 +514,52 @@ const Topbar = ({ toggleSidebar }) => {
           );
         }
       } catch (err) {
-        console.error(err);
+        console.error("User fetch error:", err);
       }
     };
 
     fetchUser();
   }, []);
 
+  // Fetch notifications (restores setNotifications usage)
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        const [supportRes, activityRes] = await Promise.all([
+          fetch(`${process.env.REACT_APP_API_URL}/api/support/notifications`, {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+          fetch(
+            `${process.env.REACT_APP_API_URL}/api/transactions/notifications`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          ),
+        ]);
+
+        const supportData = await supportRes.json();
+        const activityData = await activityRes.json();
+
+        setNotifications({
+          support: supportData.notifications || [],
+          activity: activityData.notifications || [],
+          admin: [],
+        });
+      } catch (err) {
+        console.error("Notification fetch error:", err);
+      }
+    };
+
+    fetchNotifications();
+    const interval = setInterval(fetchNotifications, 15000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (notifRef.current && !notifRef.current.contains(event.target)) {
@@ -579,32 +618,33 @@ const Topbar = ({ toggleSidebar }) => {
                   </div>
                 )}
 
-              {[...notifications.support, ...notifications.activity].map(
-                (n, i) => (
-                  <div key={i} className="notif-item">
-                    <div className="notif-content">
-                      <span>{n.text}</span>
-                      <small>{formatNotifDate(n.time)}</small>
-                    </div>
+              {[
+                ...notifications.support,
+                ...notifications.activity,
+                ...notifications.admin,
+              ].map((n, i) => (
+                <div key={i} className="notif-item">
+                  <div className="notif-content">
+                    <span>{n.text}</span>
+                    <small>{formatNotifDate(n.time)}</small>
                   </div>
-                )
-              )}
+                </div>
+              ))}
             </div>
           )}
         </div>
 
         {/* Profile */}
         <div className="profile" onClick={toggleDropdown}>
-          <img
-            src={avatarUrl || "https://i.pravatar.cc/40"}
-            alt="User"
-          />
+          <img src={avatarUrl || "https://i.pravatar.cc/40"} alt="User" />
 
           <div className="profile-info">
             <span>{userName || "Loading..."}</span>
             <FiChevronDown
               style={{
-                transform: dropdownOpen ? "rotate(180deg)" : "rotate(0deg)",
+                transform: dropdownOpen
+                  ? "rotate(180deg)"
+                  : "rotate(0deg)",
                 transition: "0.3s",
               }}
             />
