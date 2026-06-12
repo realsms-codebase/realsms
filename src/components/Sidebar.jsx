@@ -212,68 +212,223 @@
 
 // export default UserSidebar;
 
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FiHome,
   FiShoppingCart,
+  FiMessageCircle,
   FiClock,
-  FiList,
   FiCreditCard,
-  FiPlus,
-  FiLifeBuoy,
-  FiSettings,
+  FiPlusCircle,
+  FiHeadphones,
 } from "react-icons/fi";
 
-import "./sidebar.css";
+import "../styles/sidebar.css";
+import logo from "../assets/logo.png";
+import { useUnread } from "../context/UnreadContext";
+import { useBalance } from "../context/BalanceContext";
 
-export default function Sidebar() {
+/* =========================
+   FORMAT BALANCE
+========================= */
+const formatBalance = (value) => {
+  if (value === null || value === undefined) return "0.00";
+
+  return Number(value).toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+};
+
+const UserSidebar = ({ isOpen, toggleSidebar }) => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  const { unreadMessages, setUnreadMessages } = useUnread();
+  const { balance } = useBalance();
+
+  const [animatedBalance, setAnimatedBalance] = useState(0);
+  const previousBalanceRef = useRef(0);
+
+  const getToken = () => localStorage.getItem("token");
+
+  /* =========================
+     MOBILE DETECT
+  ========================= */
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  /* =========================
+     FETCH USER
+  ========================= */
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = getToken();
+        if (!token) return;
+
+        const res = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/auth/me`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        const data = await res.json();
+
+        if (data.success && data.user) {
+          setUserName(`${data.user.firstName} ${data.user.lastName}`);
+        }
+      } catch (err) {
+        console.error("Error fetching user:", err);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  /* =========================
+     UNREAD MESSAGES
+  ========================= */
+  useEffect(() => {
+    const fetchUnreadMessages = async () => {
+      try {
+        const token = getToken();
+        if (!token) return;
+
+        const res = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/support/user/unread`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        if (res.ok) {
+          const data = await res.json();
+          setUnreadMessages(data.count || 0);
+        }
+      } catch (err) {
+        console.error("Error fetching unread messages:", err);
+      }
+    };
+
+    fetchUnreadMessages();
+    const interval = setInterval(fetchUnreadMessages, 30000);
+
+    return () => clearInterval(interval);
+  }, [setUnreadMessages]);
+
+  /* =========================
+     BALANCE ANIMATION
+  ========================= */
+  useEffect(() => {
+    const start = previousBalanceRef.current;
+    const end = Number(balance) || 0;
+
+    if (start === end) return;
+
+    const duration = 1000;
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+
+      const value = start + (end - start) * easeOut;
+      setAnimatedBalance(value);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        previousBalanceRef.current = end;
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [balance]);
+
   return (
-    <aside className="sidebar">
-      <div className="sidebar__brand">
-        <div className="logo">/ realsms</div>
-      </div>
+    <>
+      {/* Overlay (mobile only) */}
+      {isOpen && isMobile && (
+        <div className="sidebar__overlay" onClick={toggleSidebar} />
+      )}
 
-      <div className="sidebar__user">
-        <div className="avatar">YE</div>
-        <div>
-          <p className="name">Olalekan Yekeen</p>
-          <span className="plan">Standard Plan</span>
+      <aside className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
+        {/* Close button (mobile) */}
+        <button className="sidebar__close" onClick={toggleSidebar}>
+          &times;
+        </button>
+
+        {/* Logo */}
+        <div className="sidebar__brand">
+          <img src={logo} alt="RealSMS" />
         </div>
-      </div>
 
-      <nav className="sidebar__nav">
-        <NavLink to="/" className="nav-item">
-          <FiHome /> Dashboard
-        </NavLink>
+        {/* USER CARD */}
+        <div className="sidebar__user">
+          <div className="sidebar__user-name">
+            {userName || "Loading..."}
+          </div>
 
-        <NavLink to="/buy" className="nav-item">
-          <FiShoppingCart /> Buy Numbers
-        </NavLink>
+          <div className="sidebar__user-balance">
+            Balance:{" "}
+            <span>₦{formatBalance(animatedBalance)}</span>
+          </div>
+        </div>
 
-        <NavLink to="/logs" className="nav-item">
-          <FiClock /> Purchase Logs
-        </NavLink>
+        {/* NAVIGATION */}
+        <nav className="sidebar__nav">
+          <NavLink to="/dashboard" className="sidebar__link" onClick={toggleSidebar}>
+            <FiHome /> <span>Dashboard</span>
+          </NavLink>
 
-        <NavLink to="/history" className="nav-item">
-          <FiList /> Number History
-        </NavLink>
+          <NavLink to="/buy-numbers" className="sidebar__link" onClick={toggleSidebar}>
+            <FiShoppingCart /> <span>Buy Numbers</span>
+          </NavLink>
 
-        <NavLink to="/transactions" className="nav-item">
-          <FiCreditCard /> Transaction History
-        </NavLink>
+          <NavLink to="/purchase-logs" className="sidebar__link" onClick={toggleSidebar}>
+            <FiMessageCircle /> <span>Purchase Logs</span>
+          </NavLink>
 
-        <NavLink to="/fund" className="nav-item">
-          <FiPlus /> Fund Wallet
-        </NavLink>
+          <NavLink to="/order-history" className="sidebar__link" onClick={toggleSidebar}>
+            <FiClock /> <span>Number History</span>
+          </NavLink>
 
-        <NavLink to="/support" className="nav-item">
-          <FiLifeBuoy /> Support
-        </NavLink>
+          <NavLink to="/logs-history" className="sidebar__link" onClick={toggleSidebar}>
+            <FiClock /> <span>Logs History</span>
+          </NavLink>
 
-        <NavLink to="/settings" className="nav-item">
-          <FiSettings /> Settings
-        </NavLink>
-      </nav>
-    </aside>
+          <NavLink to="/transaction-history" className="sidebar__link" onClick={toggleSidebar}>
+            <FiCreditCard /> <span>Transaction History</span>
+          </NavLink>
+
+          <NavLink to="/fund-wallet" className="sidebar__link" onClick={toggleSidebar}>
+            <FiPlusCircle /> <span>Fund Wallet</span>
+          </NavLink>
+
+          <NavLink
+            to="/support"
+            className="sidebar__link sidebar__link--badge"
+            onClick={toggleSidebar}
+          >
+            <FiHeadphones /> <span>Support</span>
+
+            {unreadMessages > 0 && (
+              <span className="sidebar__badge">
+                {unreadMessages}
+              </span>
+            )}
+          </NavLink>
+        </nav>
+      </aside>
+    </>
   );
-}
+};
+
+export default UserSidebar;
