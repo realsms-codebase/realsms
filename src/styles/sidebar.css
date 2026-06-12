@@ -23,11 +23,11 @@
   display: flex;
   align-items: center;
   margin-bottom: 12px;
-  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .sidebar__brand img {
-  width: 200px;
+  width: 180px;
   height: auto;
 }
 
