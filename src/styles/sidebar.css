@@ -200,6 +200,8 @@
 .sidebar__link {
   height: 42px;
   padding: 0 14px;
+}
+   
 .user-name {
   display: flex;
   align-items: center;
