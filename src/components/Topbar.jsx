@@ -272,7 +272,6 @@ import {
   FiBell,
   FiCreditCard,
 } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
 import { useBalance } from "../context/BalanceContext";
 import "../styles/topbar.css";
 
@@ -280,7 +279,6 @@ const Topbar = ({ toggleSidebar }) => {
   const [notifOpen, setNotifOpen] = useState(false);
   const [firstName, setFirstName] = useState("");
 
-  const navigate = useNavigate();
   const notifRef = useRef(null);
   const { balance } = useBalance();
 
