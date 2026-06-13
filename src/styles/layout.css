@@ -1,42 +1,21 @@
 .layout {
   display: flex;
   min-height: 100vh;
-
   background: var(--bg-color);
-
-  transition: background 0.3s ease;
 }
 
 .main-content {
   flex: 1;
+  margin-left: 285px;
+  width: calc(100% - 285px);
 
   display: flex;
   flex-direction: column;
 
   background: var(--bg-color);
-
-  transition: background 0.3s ease;
 }
 
 .page-content {
   padding: 20px;
-
   flex: 1;
-
-  background: var(--bg-color);
-  color: var(--text-color);
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
 }
-
-/* Mobile */
-@media (max-width: 768px) {
-  .page-content {
-    margin-top: 20px;
-    padding: 12px;
-  }
-}
-
-
