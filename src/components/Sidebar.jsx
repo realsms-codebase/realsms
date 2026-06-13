@@ -280,7 +280,7 @@ const UserSidebar = ({ isOpen, toggleSidebar }) => {
         {/* User Section */}
         <div className="sidebar-user">
           <div className="user-info">
-            <div className="user-avatar">
+            {/* <div className="user-avatar">
               <FiUser />
             </div>
 
@@ -299,7 +299,37 @@ const UserSidebar = ({ isOpen, toggleSidebar }) => {
                 {user.email ||
                   "user@realsms.com"}
               </p>
-            </div>
+            </div> */}
+
+            <div className="avatar-circle">
+  {(
+    user.username ||
+    user.name ||
+    "User"
+  )
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .substring(0, 2)
+    .toUpperCase()}
+</div>
+
+<div className="user-details">
+  <div className="display-name">
+    {user.username ||
+      user.name ||
+      "User"}
+
+    <span className="pro-badge">
+      Pro
+    </span>
+  </div>
+
+  <p>
+    {user.email ||
+      "user@realsms.com"}
+  </p>
+</div>
 
             <button
               className="user-settings"
