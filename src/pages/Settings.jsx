@@ -32,7 +32,7 @@ export default function Settings() {
       icon: <FiMoon />,
       title: "Appearance",
       desc: "Customize theme and colors",
-      path: "/appearance",
+      path: "/settings/appearance",
     },
     {
       icon: <FiBell />,
