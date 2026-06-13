@@ -149,7 +149,7 @@ const Topbar = ({ toggleSidebar }) => {
       {/* LEFT */}
       <div className="topbar-left">
         <div className="hamburger" onClick={toggleSidebar}>
-          <FaMenu size={22} />
+          <FiMenu size={22} />
         </div>
 
         <div className="topbar-greeting">
