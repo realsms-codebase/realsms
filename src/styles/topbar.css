@@ -322,7 +322,7 @@
 /* Mobile */
 @media (max-width: 576px) {
   .topbar-greeting {
-    font-size: 14px;
+    font-size: 13px;
     gap: 3px;
     margin-left: 15px;
     flex-direction: column;
