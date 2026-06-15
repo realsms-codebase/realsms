@@ -313,7 +313,7 @@
     padding: 16px;
   }
 
-  .hero-banner {
+  /* .hero-banner {
     padding: 22px;
   }
 
@@ -323,17 +323,66 @@
 
   .banner-content p {
     font-size: 13px;
-  }
+  } */
 
   .overview-grid {
     grid-template-columns: 1fr;
   }
 
-  .banner-arrow {
+  /* .banner-arrow {
     display: none;
-  }
+  } */
 
   .otp-card {
     min-width: 100%;
+  }
+}
+
+/* =========================
+   HERO SECTION - MOBILE
+========================= */
+@media (max-width: 768px) {
+  .hero-banner {
+    width: 100%;
+    height: 160px; 
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Smaller arrows */
+  .banner-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .banner-arrow.left {
+    left: 8px;
+  }
+
+  .banner-arrow.right {
+    right: 8px;
+  }
+
+  /* Smaller dots */
+  .slider-dots {
+    bottom: 10px;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .dot.active {
+    width: 18px;
   }
 }
