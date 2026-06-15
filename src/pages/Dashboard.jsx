@@ -198,49 +198,20 @@ import {
 } from "react-icons/fi";
 import { FaWallet } from "react-icons/fa";
 import { useBalance } from "../context/BalanceContext";
+import banner1 from "../assets/support-banner.png";
+import banner2 from "../assets/number-banner.png";
+import banner3 from "../assets/vpn-banner.png";
 import "../styles/dashboard.css";
 
 const API_URL =
   process.env.REACT_APP_API_URL ||
   "https://realsms-backend.vercel.app";
 
-const slides = [
-  {
-    title: "Instant OTPs. Anywhere.",
-    text: "Get OTPs from 100+ countries with lightning fast delivery.",
-    otp: "729410",
-  },
-  {
-    title: "Buy Numbers Globally",
-    text: "Access premium virtual numbers across multiple regions.",
-    otp: "482195",
-  },
-  {
-    title: "Fast & Reliable Delivery",
-    text: "Receive OTP codes instantly with 99.9% uptime.",
-    otp: "916274",
-  },
-];
 
-const activities = [
-  {
-    text: "OTP sent to +234 810 123 4567",
-    status: "Delivered",
-    time: "2 mins ago",
-    success: true,
-  },
-  {
-    text: "Purchased 1 number from United States",
-    status: "Completed",
-    time: "10 mins ago",
-    success: true,
-  },
-  {
-    text: "Wallet funded successfully",
-    status: "Success",
-    time: "1 hour ago",
-    success: true,
-  },
+const slides = [
+  { image: banner1 },
+  { image: banner2 },
+  { image: banner3 },
 ];
 
 const Dashboard = ({ darkMode }) => {
@@ -311,7 +282,7 @@ const Dashboard = ({ darkMode }) => {
       prev === 0 ? slides.length - 1 : prev - 1
     );
 
-  const handleFundWallet = () => navigate("/fund-wallet");
+  // const handleFundWallet = () => navigate("/fund-wallet");
 
   if (loading || loadingStats) {
     return (
@@ -365,41 +336,42 @@ const Dashboard = ({ darkMode }) => {
         </div>
       )}
 
-      {/* Hero Carousel */}
-      <div className="hero-banner">
-        <button className="banner-arrow left" onClick={prevSlide}>
-          <FiChevronLeft />
-        </button>
+     {/* Hero Carousel */}
+<div className="hero-banner">
+  <div
+    className="hero-bg"
+    style={{
+      backgroundImage: `url(${current.image})`,
+    }}
+  />
 
-        <div className="banner-content">
-          <h1>{current.title}</h1>
-          <p>{current.text}</p>
-          <button className="buy-btn" onClick={handleFundWallet}>
-            Fund Wallet
-          </button>
-        </div>
+  <button
+    className="banner-arrow left"
+    onClick={prevSlide}
+    aria-label="Previous banner"
+  >
+    <FiChevronLeft />
+  </button>
 
-        <div className="otp-card">
-          <p>Your OTP Code</p>
-          <h2>{current.otp}</h2>
-          <span>Valid for 5 minutes</span>
-        </div>
+  <button
+    className="banner-arrow right"
+    onClick={nextSlide}
+    aria-label="Next banner"
+  >
+    <FiChevronRight />
+  </button>
 
-        <button className="banner-arrow right" onClick={nextSlide}>
-          <FiChevronRight />
-        </button>
-
-        <div className="slider-dots">
-          {slides.map((_, index) => (
-            <span
-              key={index}
-              className={index === currentSlide ? "dot active" : "dot"}
-              onClick={() => setCurrentSlide(index)}
-            />
-          ))}
-        </div>
-      </div>
-
+  <div className="slider-dots">
+    {slides.map((_, index) => (
+      <span
+        key={index}
+        className={index === currentSlide ? "dot active" : "dot"}
+        onClick={() => setCurrentSlide(index)}
+      />
+    ))}
+  </div>
+</div>
+      
       {/* Stats */}
       <div className="stats-grid">
         <div className="stat-card">
