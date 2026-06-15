@@ -214,6 +214,27 @@ const slides = [
   { image: banner3 },
 ];
 
+const activities = [
+  {
+    text: "OTP sent to +234 810 123 4567",
+    status: "Delivered",
+    time: "2 mins ago",
+    success: true,
+  },
+  {
+    text: "Purchased 1 number from United States",
+    status: "Completed",
+    time: "10 mins ago",
+    success: true,
+  },
+  {
+    text: "Wallet funded successfully",
+    status: "Success",
+    time: "1 hour ago",
+    success: true,
+  },
+];
+
 const Dashboard = ({ darkMode }) => {
   const navigate = useNavigate();
   const { balance, loading } = useBalance();
