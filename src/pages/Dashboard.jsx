@@ -171,10 +171,11 @@ const Dashboard = ({ darkMode }) => {
 
      {/* Hero Carousel */}
 <div className="hero-banner">
- <img
-  src={current.image}
-  alt="banner"
-/>
+  <img
+    src={current.image}
+    alt={`Banner ${currentSlide + 1}`}
+    className="hero-image"
+  />
 
   <button
     className="banner-arrow left"
@@ -196,7 +197,7 @@ const Dashboard = ({ darkMode }) => {
     {slides.map((_, index) => (
       <span
         key={index}
-        className={index === currentSlide ? "dot active" : "dot"}
+        className={`dot ${index === currentSlide ? "active" : ""}`}
         onClick={() => setCurrentSlide(index)}
       />
     ))}
