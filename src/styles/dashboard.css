@@ -1,7 +1,8 @@
 .dashboard-page {
   padding: 0px;
   min-height: 100vh;
-  background: #f5f6fa;
+  background: var(--bg-color);
+  color: var(--text-color);
 }
 
 /* Loading */
@@ -12,7 +13,7 @@
   min-height: 70vh;
   font-size: 16px;
   font-weight: 600;
-  color: #6d28d9;
+  color: var(--primary);
 }
 
 /* Notice Modal */
@@ -30,11 +31,11 @@
 .notice-modal {
   width: 100%;
   max-width: 520px;
-  background: white;
+  background: var(--card-bg);
   border-radius: 16px;
   padding: 24px;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--shadow);
 }
 
 .notice-modal h2 {
@@ -46,12 +47,12 @@
   margin: 10px 0;
   line-height: 1.6;
   font-size: 14px;
-  color: #64748b;
+  color: var(--secondary-text);
 }
 
 .notice-highlight {
   font-weight: 600;
-  color: #dc2626;
+  color: var(--danger);
 }
 
 .notice-link {
@@ -490,5 +491,3 @@
     min-width: 100%;
   }
 }
-
-
