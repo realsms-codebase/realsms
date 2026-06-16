@@ -52,6 +52,9 @@ body[data-theme="light"] {
   --danger: #dc2626;
   --info: #2563eb;
   --warning: #ea580c;
+
+  --primary-soft: rgba(124, 58, 237, 0.12);
+  --danger-soft: rgba(220, 38, 38, 0.12);
 }
 
 /* =========================
@@ -81,6 +84,9 @@ body[data-theme="dark"] {
   --danger: #ef4444;
   --info: #3b82f6;
   --warning: #fb923c;
+
+  --primary-soft: rgba(167, 139, 250, 0.18);
+  --danger-soft: rgba(239, 68, 68, 0.18);
 }
 
 /* =========================
