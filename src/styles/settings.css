@@ -49,9 +49,12 @@
 .avatar {
   width: 54px;
   height: 54px;
-  border-radius: 50%;
+  min-width: 54px;
+  min-height: 54px;
+  flex-shrink: 0;
 
-  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6b46ff, #5b3df5);
   color: #ffffff;
 
   display: flex;
