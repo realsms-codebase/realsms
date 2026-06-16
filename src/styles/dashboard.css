@@ -435,16 +435,16 @@
   }
 
   .activity-left p {
-   font-size: 8px;
+   font-size: 10px;
  }
 
   .status {
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 600;
 }
 
  .activity-time {
-  font-size: 8px;
+  font-size: 10px;
 }
 
  .overview-grid {
