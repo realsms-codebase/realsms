@@ -31,15 +31,27 @@ const slides = [
 
 const activities = [
   {
-    text: "OTP sent to +234 810 123 4567",
-    status: "Delivered",
+    text: "Purchased Express VPN logs",
+    status: "Completed",
     time: "2 mins ago",
     success: true,
   },
   {
-    text: "Purchased 1 number from United States",
+    text: "Purchased Signal Number from United States",
     status: "Completed",
-    time: "10 mins ago",
+    time: "20 mins ago",
+    success: true,
+  },
+  {
+    text: "Purchased IP Vanish Logs ",
+    status: "Completed",
+    time: "30 mins ago",
+    success: true,
+  },
+  {
+    text: "Purchased WhatsApp number from United States",
+    status: "Completed",
+    time: "50 mins ago",
     success: true,
   },
   {
