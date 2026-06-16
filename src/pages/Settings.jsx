@@ -3,10 +3,10 @@ import {
   FiUser,
   FiLock,
   FiMoon,
-  FiBell,
   FiShield,
   FiMonitor,
   FiChevronRight,
+  FiPlayCircle,
   FiLogOut,
 } from "react-icons/fi";
 
@@ -83,11 +83,11 @@ export default function Settings() {
       desc: "Customize theme and colors",
       path: "/settings/appearance",
     },
-    {
-      icon: <FiBell />,
-      title: "Notifications",
-      desc: "SMS and email preferences",
-      path: "/notifications",
+   {
+     icon: <FiPlayCircle />,
+     title: "Video Tutorials",
+     desc: "Watch guides and learn how to use RealSMS",
+     path: "/tutorials",
     },
     {
       icon: <FiShield />,
