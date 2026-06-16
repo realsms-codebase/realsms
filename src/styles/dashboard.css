@@ -450,6 +450,10 @@
    font-weight: 600;
  }
 
+  .activity-right {
+ margin-top: 10px;
+}
+
   .activity-text {
     font-size: 11px;
     line-height: 1.4;
