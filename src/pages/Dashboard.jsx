@@ -34,14 +34,6 @@ const slides = [
 
 const activities = [
   {
-    icon: <FiShield />,
-    iconClass: "vpn-icon",
-    text: "Purchased Express VPN logs",
-    status: "Completed",
-    time: "2 mins ago",
-    success: true,
-  },
-  {
     icon: <FiMessageSquare />,
     iconClass: "sms-icon",
     text: "Purchased Signal Number from United States",
