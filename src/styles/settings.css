@@ -3,27 +3,29 @@
 ========================= */
 .settings-page {
   min-height: 100vh;
-  padding: 0px;
+  padding: 0;
   background: var(--bg-color);
   color: var(--text-color);
 }
 
-/* Header */
+/* =========================
+   HEADER
+========================= */
 .settings-header {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .settings-header h2 {
   margin: 0;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
   color: #111827;
   line-height: 1.2;
 }
 
 .settings-header p {
-  margin-top: 8px;
-  font-size: 14px;
+  margin-top: 6px;
+  font-size: 13px;
   color: #6b7280;
 }
 
@@ -32,27 +34,31 @@
 ========================= */
 .profile-card {
   display: flex;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 22px;
-  display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 16px;
-  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.04);
-  margin-bottom: 24px;
+  gap: 14px;
+
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+  margin-bottom: 20px;
 }
 
 .avatar {
-  width: 60px;
-  height: 60px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
+
   background: linear-gradient(135deg, #7c3aed, #9333ea);
   color: #ffffff;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+
+  font-size: 20px;
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -61,20 +67,20 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start; 
+  align-items: flex-start;
   text-align: left;
 }
 
 .profile-info h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #111827;
 }
 
 .profile-info p {
-  margin: 4px 0 0;
-  font-size: 14px;
+  margin: 3px 0 0;
+  font-size: 13px;
   color: #6b7280;
 }
 
@@ -84,73 +90,79 @@
 .settings-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .setting-card {
   width: 100%;
+
   background: #ffffff;
   border: none;
-  border-radius: 18px;
-  padding: 18px 20px;
+  border-radius: 14px;
+  padding: 16px 18px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.03);
+
+  box-shadow: 0 6px 18px rgba(17, 24, 39, 0.03);
   transition: all 0.25s ease;
 }
 
 .setting-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(17, 24, 39, 0.06);
+  box-shadow: 0 10px 20px rgba(17, 24, 39, 0.05);
 }
 
 .setting-left {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
+  gap: 14px;
   flex: 1;
 }
 
 .setting-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+
   background: rgba(124, 58, 237, 0.12);
   color: #7c3aed;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+
+  font-size: 18px;
   flex-shrink: 0;
 }
 
 .setting-info {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; 
+  align-items: flex-start;
   text-align: left;
 }
 
 .setting-info h4 {
   margin: 0;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: #111827;
 }
 
 .setting-info p {
-  margin: 4px 0 0;
-  font-size: 13px;
+  margin: 3px 0 0;
+  font-size: 12px;
   color: #6b7280;
   line-height: 1.4;
 }
 
 .arrow {
   color: #9ca3af;
-  font-size: 18px;
+  font-size: 16px;
   flex-shrink: 0;
 }
 
@@ -158,19 +170,25 @@
    LOGOUT BUTTON
 ========================= */
 .logout-btn {
-  margin-top: 28px;
+  margin-top: 24px;
+
   width: 100%;
-  height: 54px;
+  height: 50px;
+
   border: none;
-  border-radius: 16px;
+  border-radius: 12px;
+
   background: #fee2e2;
   color: #dc2626;
-  font-size: 15px;
+
+  font-size: 14px;
   font-weight: 600;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
+
   cursor: pointer;
   transition: 0.25s ease;
 }
@@ -183,31 +201,46 @@
    MOBILE
 ========================= */
 @media (max-width: 768px) {
+  .settings-header {
+    margin-bottom: 16px;
+  }
+
   .settings-header h2 {
-    font-size: 24px;
+    font-size: 20px;
+  }
+
+  .settings-header p {
+    font-size: 12px;
   }
 
   .profile-card {
-    padding: 18px;
+    padding: 16px;
+    border-radius: 12px;
+    gap: 12px;
+    margin-bottom: 16px;
   }
 
   .avatar {
-    width: 52px;
-    height: 52px;
-    font-size: 18px;
-  }
-
-  .profile-info h3 {
+    width: 48px;
+    height: 48px;
     font-size: 16px;
   }
 
+  .profile-info h3 {
+    font-size: 15px;
+  }
+
   .profile-info p {
-    font-size: 13px;
+    font-size: 12px;
+  }
+
+  .settings-list {
+    gap: 10px;
   }
 
   .setting-card {
-    padding: 16px;
-    border-radius: 16px;
+    padding: 14px;
+    border-radius: 12px;
   }
 
   .setting-left {
@@ -215,17 +248,28 @@
   }
 
   .setting-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    font-size: 18px;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    font-size: 16px;
   }
 
   .setting-info h4 {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .setting-info p {
-    font-size: 12px;
+    font-size: 11px;
+  }
+
+  .arrow {
+    font-size: 14px;
+  }
+
+  .logout-btn {
+    margin-top: 20px;
+    height: 46px;
+    border-radius: 10px;
+    font-size: 13px;
   }
 }
