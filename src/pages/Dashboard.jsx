@@ -25,6 +25,19 @@ const API_URL =
   process.env.REACT_APP_API_URL ||
   "https://realsms-backend.vercel.app";
 
+const maskEmail = (email) => {
+  if (!email || !email.includes("@")) return "*****";
+
+  const [name, domain] = email.split("@");
+
+  if (name.length <= 2) {
+    return `${name[0]}***@${domain}`;
+  }
+
+  return `${name.slice(0, 2)}${"*".repeat(
+    Math.max(2, name.length - 3)
+  )}${name.slice(-1)}@${domain}`;
+};
 
 const slides = [
   { image: banner1 },
@@ -36,6 +49,7 @@ const activities = [
   {
     icon: <FiMessageSquare />,
     iconClass: "sms-icon",
+    email: "johndoe@gmail.com",
     text: "Purchased Signal Number from United States",
     status: "Completed",
     time: "20 mins ago",
@@ -44,6 +58,7 @@ const activities = [
   {
     icon: <FiShield />,
     iconClass: "vpn-icon",
+    email: "marysmith@yahoo.com",
     text: "Purchased IP Vanish Logs",
     status: "Completed",
     time: "30 mins ago",
@@ -52,14 +67,16 @@ const activities = [
   {
     icon: <FiMessageSquare />,
     iconClass: "sms-icon",
-    text: "Purchased WhatsApp number from United States",
+    email: "alexbrown@hotmail.com",
+    text: "Purchased WhatsApp Number from United States",
     status: "Completed",
     time: "50 mins ago",
     success: true,
   },
   {
-    icon: <FiDollarSign />,
+    icon: <FaWallet />,
     iconClass: "wallet-icon",
+    email: "samwilson@gmail.com",
     text: "Wallet funded successfully",
     status: "Success",
     time: "1 hour ago",
@@ -187,41 +204,41 @@ const Dashboard = ({ darkMode }) => {
         </div>
       )}
 
-     {/* Hero Carousel */}
-<div className="hero-banner">
-  <img
-    src={current.image}
-    alt={`Banner ${currentSlide + 1}`}
-    className="hero-image"
-  />
+      {/* Hero Carousel */}
+      <div className="hero-banner">
+        <img
+          src={current.image}
+          alt={`Banner ${currentSlide + 1}`}
+          className="hero-image"
+        />
 
-  <button
-    className="banner-arrow left"
-    onClick={prevSlide}
-    aria-label="Previous banner"
-  >
-    <FiChevronLeft />
-  </button>
+        <button
+          className="banner-arrow left"
+          onClick={prevSlide}
+          aria-label="Previous banner"
+        >
+          <FiChevronLeft />
+        </button>
 
-  <button
-    className="banner-arrow right"
-    onClick={nextSlide}
-    aria-label="Next banner"
-  >
-    <FiChevronRight />
-  </button>
+        <button
+          className="banner-arrow right"
+          onClick={nextSlide}
+          aria-label="Next banner"
+        >
+          <FiChevronRight />
+        </button>
 
-  <div className="slider-dots">
-    {slides.map((_, index) => (
-      <span
-        key={index}
-        className={`dot ${index === currentSlide ? "active" : ""}`}
-        onClick={() => setCurrentSlide(index)}
-      />
-    ))}
-  </div>
-</div>
-      
+        <div className="slider-dots">
+          {slides.map((_, index) => (
+            <span
+              key={index}
+              className={`dot ${index === currentSlide ? "active" : ""}`}
+              onClick={() => setCurrentSlide(index)}
+            />
+          ))}
+        </div>
+      </div>
+
       {/* Stats */}
       <div className="stats-grid">
         <div className="stat-card">
@@ -258,15 +275,15 @@ const Dashboard = ({ darkMode }) => {
         </div>
 
         <div className="stat-card">
-  <div className="stat-icon orange">
-    <FiMessageSquare />
-  </div>
-  <div>
-    <p>SMS Received</p>
-    <h2>1,284</h2>
-    <span>All time</span>
-  </div>
-</div>
+          <div className="stat-icon orange">
+            <FiMessageSquare />
+          </div>
+          <div>
+            <p>SMS Received</p>
+            <h2>1,284</h2>
+            <span>All time</span>
+          </div>
+        </div>
       </div>
 
       {/* Bottom Grid */}
@@ -280,9 +297,15 @@ const Dashboard = ({ darkMode }) => {
             <div key={index} className="activity-row">
               <div className="activity-left">
                 <div className={`activity-icon ${activity.iconClass}`}>
-  {activity.icon}
-</div>
-                <p>{activity.text}</p>
+                  {activity.icon}
+                </div>
+                
+                <div className="activity-content">
+        <p className="activity-text">{activity.text}</p>
+        <small className="activity-email">
+          {maskEmail(activity.email)}
+        </small>
+      </div>
               </div>
 
               <div className="activity-right">
@@ -333,15 +356,15 @@ const Dashboard = ({ darkMode }) => {
       </div>
 
       {/* ADD TELEGRAM BUTTON HERE */}
-<a
-  href="https://t.me/realsms_store"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="telegram-float"
->
-  <FaTelegramPlane />
-</a>
-      
+      <a
+        href="https://t.me/realsms_store"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="telegram-float"
+      >
+        <FaTelegramPlane />
+      </a>
+
     </div>
   );
 };
