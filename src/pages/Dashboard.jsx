@@ -5,6 +5,7 @@ import {
   FiChevronRight,
   FiArrowDownCircle,
   FiFileText,
+  FiMessageSquare,
   FiSmartphone,
   FiGlobe,
   FiTrendingUp,
@@ -238,6 +239,17 @@ const Dashboard = ({ darkMode }) => {
             <span>All time</span>
           </div>
         </div>
+
+        <div className="stat-card">
+  <div className="stat-icon orange">
+    <FiMessageSquare />
+  </div>
+  <div>
+    <p>Total SMS Received</p>
+    <h2>1,284</h2>
+    <span>All time</span>
+  </div>
+</div>
       </div>
 
       {/* Bottom Grid */}
