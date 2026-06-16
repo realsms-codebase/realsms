@@ -142,12 +142,29 @@
 }
 
 .stat-card {
-  background: white;
-  border-radius: 16px;
-  padding: 20px;
-  display: flex;
-  gap: 16px;
-  border: 1px solid #e2e8f0;
+  padding: 16px; /* optional: slightly smaller */
+  gap: 12px;
+  border-radius: 12px;
+}
+
+.stat-card p {
+  margin: 0;
+  font-size: 12px;   
+  font-weight: 500;
+  color: #64748b;
+}
+
+.stat-card h2 {
+  margin: 6px 0 4px;
+  font-size: 18px;   /* was 22px */
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.stat-card span {
+  font-size: 11px;   /* smaller subtext */
+  color: #94a3b8;
 }
 
 .stat-icon {
@@ -174,16 +191,9 @@
   color: #2563eb;
 }
 
-.stat-card h3 {
-  margin: 0;
-  font-size: 13px;
-  color: #64748b;
-}
-
-.stat-card h2 {
-  margin-top: 8px;
-  font-size: 22px;
-  color: #111827;
+.orange {
+  background: #fff7ed;
+  color: #ea580c;
 }
 
 /* Bottom */
