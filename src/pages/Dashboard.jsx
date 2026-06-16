@@ -11,7 +11,6 @@ import {
   FiShield,
   FiTrendingUp,
   FiDollarSign,
-  FiSmartphone,
   FiZap,
 } from "react-icons/fi";
 import { FaWallet } from "react-icons/fa";
