@@ -256,7 +256,7 @@
 .activity-right {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* left aligned */
+  align-items: center;
   gap: 6px;
   min-width: 110px;
 }
@@ -274,6 +274,7 @@
   font-size: 11px;
   color: #64748b;
   letter-spacing: 0.2px;
+  text-align: center;
 }
 
 .success {
