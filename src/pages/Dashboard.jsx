@@ -34,6 +34,7 @@ const slides = [
 const activities = [
   {
     icon: <FiShield />,
+    iconClass: "vpn-icon",
     text: "Purchased Express VPN logs",
     status: "Completed",
     time: "2 mins ago",
@@ -41,6 +42,7 @@ const activities = [
   },
   {
     icon: <FiMessageSquare />,
+    iconClass: "sms-icon",
     text: "Purchased Signal Number from United States",
     status: "Completed",
     time: "20 mins ago",
@@ -48,6 +50,7 @@ const activities = [
   },
   {
     icon: <FiShield />,
+    iconClass: "vpn-icon",
     text: "Purchased IP Vanish Logs",
     status: "Completed",
     time: "30 mins ago",
@@ -55,6 +58,7 @@ const activities = [
   },
   {
     icon: <FiMessageSquare />,
+    iconClass: "sms-icon",
     text: "Purchased WhatsApp number from United States",
     status: "Completed",
     time: "50 mins ago",
@@ -62,6 +66,7 @@ const activities = [
   },
   {
     icon: <FiDollarSign />,
+    iconClass: "wallet-icon",
     text: "Wallet funded successfully",
     status: "Success",
     time: "1 hour ago",
@@ -281,7 +286,9 @@ const Dashboard = ({ darkMode }) => {
           {activities.map((activity, index) => (
             <div key={index} className="activity-row">
               <div className="activity-left">
-                <div className="activity-icon">{activity.icon}</div>
+                <div className={`activity-icon ${activity.iconClass}`}>
+  {activity.icon}
+</div>
                 <p>{activity.text}</p>
               </div>
 
