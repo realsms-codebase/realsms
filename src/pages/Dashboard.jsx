@@ -14,6 +14,7 @@ import {
   FiZap,
 } from "react-icons/fi";
 import { FaWallet } from "react-icons/fa";
+import { FaTelegramPlane } from "react-icons/fa";
 import { useBalance } from "../context/BalanceContext";
 import banner1 from "../assets/support-banner.png";
 import banner2 from "../assets/number-banner.png";
@@ -338,6 +339,17 @@ const Dashboard = ({ darkMode }) => {
           </div>
         </div>
       </div>
+
+      {/* ADD TELEGRAM BUTTON HERE */}
+<a
+  href="https://t.me/realsms_store"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="telegram-float"
+>
+  <FaTelegramPlane />
+</a>
+      
     </div>
   );
 };
