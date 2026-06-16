@@ -46,6 +46,12 @@ body[data-theme="light"] {
   --hover-bg: #f1f5f9;
   --input-bg: #ffffff;
   --shadow: 0 6px 24px rgba(15, 23, 42, 0.06);
+
+  --primary: #7c3aed;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --info: #2563eb;
+  --warning: #ea580c;
 }
 
 /* =========================
@@ -68,6 +74,13 @@ body[data-theme="dark"] {
   --hover-bg: #1e293b;
   --input-bg: #111827;
   --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+
+   
+  --primary: #a78bfa;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --info: #3b82f6;
+  --warning: #fb923c;
 }
 
 /* =========================
