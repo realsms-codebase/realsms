@@ -157,20 +157,20 @@
   margin: 0;
   font-size: 12px;   
   font-weight: 500;
-  color: #64748b;
+  color: var(--secondary-text);
 }
 
 .stat-card h2 {
   margin: 6px 0 4px;
-  font-size: 18px;   /* was 22px */
+  font-size: 18px;   
   font-weight: 700;
-  color: #111827;
+  color: var(--text-color);
   line-height: 1.2;
 }
 
 .stat-card span {
-  font-size: 11px;   /* smaller subtext */
-  color: #94a3b8;
+  font-size: 11px;   
+  color: var(--secondary-text);
 }
 
 .stat-icon {
@@ -182,25 +182,10 @@
   font-size: 18px;
 }
 
-.purple {
-  background: #ede9fe;
-  color: #7c3aed;
-}
-
-.green {
-  background: #dcfce7;
-  color: #16a34a;
-}
-
-.blue {
-  background: #dbeafe;
-  color: #2563eb;
-}
-
-.orange {
-  background: #fff7ed;
-  color: #ea580c;
-}
+.purple { background: #ede9fe; color: var(--primary); }
+.green { background: #dcfce7; color: var(--success); }
+.blue { background: #dbeafe; color: var(--info); }
+.orange { background: #fff7ed; color: var(--warning); }
 
 /* Bottom */
 .bottom-grid {
