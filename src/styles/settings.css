@@ -31,11 +31,13 @@
    PROFILE CARD
 ========================= */
 .profile-card {
+  display: flex;
   background: #ffffff;
   border-radius: 20px;
   padding: 22px;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 16px;
   box-shadow: 0 10px 30px rgba(17, 24, 39, 0.04);
   margin-bottom: 24px;
@@ -59,6 +61,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start; 
+  text-align: left;
 }
 
 .profile-info h3 {
