@@ -359,15 +359,6 @@ const BuyNumbers = ({ darkMode }) => {
             for SMS verification
           </p>
         </div>
-
-        <div className="buy-stats">
-          <div className="stat-pill">
-            <span>Available Services</span>
-            <strong>
-              {filteredServices.length}
-            </strong>
-          </div>
-        </div>
       </div>
 
       {/* TOOLBAR */}
@@ -414,7 +405,12 @@ const BuyNumbers = ({ darkMode }) => {
         <div className="services-panel">
           {search === "" && selectedCountry && (
             <div className="popular-label">
-               Popular services
+              <span>Popular services</span>
+
+              <div className="stat-pill">
+      <span>Available Services</span>
+      <strong>{filteredServices.length}</strong>
+    </div>
             </div>
           )}
 
