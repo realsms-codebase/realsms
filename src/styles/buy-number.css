@@ -84,6 +84,10 @@
   gap: 22px;
 }
 
+.popular-label{
+  margin-bottom: 10px;
+}
+
 /* PANELS */
 .services-panel,
 .otp-panel {
