@@ -383,35 +383,34 @@
     gap: 16px;
   }
 
-  /* POPULAR LABEL MOBILE */
-.popular-label {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 14px;
-}
+  .popular-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
 
-.popular-label > span {
-  font-size: 14px;
-  font-weight: 600;
-}
+  .popular-label > span {
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
 
-.popular-label .stat-pill {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  border-radius: 12px;
-}
+  .popular-label .stat-pill {
+    padding: 5px 10px;
+    border-radius: 999px;
+    gap: 6px;
+    flex-shrink: 0;
+  }
 
-.popular-label .stat-pill span {
-  font-size: 12px;
-}
+  .popular-label .stat-pill span {
+    font-size: 10px;
+  }
 
-.popular-label .stat-pill strong {
-  font-size: 16px;
-}
+  .popular-label .stat-pill strong {
+    font-size: 12px;
+  }
 
   /* SERVICES PANEL */
   .services-panel {
