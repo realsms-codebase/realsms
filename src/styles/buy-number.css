@@ -84,8 +84,33 @@
   gap: 22px;
 }
 
-.popular-label{
-  margin-bottom: 10px;
+.popular-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.popular-label .stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.popular-label .stat-pill span {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.popular-label .stat-pill strong {
+  font-size: 14px;
+  font-weight: 700;
 }
 
 /* PANELS */
