@@ -161,22 +161,80 @@ const Dashboard = ({ darkMode }) => {
   //   );
   // }
 
+//   if (loading || loadingStats) {
+//   return (
+//     <div className={`dashboard-page ${darkMode ? "dark" : ""}`}>
+//       {/* Hero */}
+//       <div className="sk-banner shimmer"></div>
+
+//       {/* Stats */}
+//       <div className="stats-grid">
+//         {[1, 2, 3, 4].map((item) => (
+//           <div className="stat-card" key={item}>
+//             <div className="sk-icon shimmer"></div>
+
+//             <div className="sk-content">
+//               <div className="sk-line small shimmer"></div>
+//               <div className="sk-line large shimmer"></div>
+//               <div className="sk-line tiny shimmer"></div>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* Bottom Grid */}
+//       <div className="bottom-grid">
+//         <div className="activities-card">
+//           <div className="sk-title shimmer"></div>
+
+//           {[1, 2, 3, 4].map((item) => (
+//             <div className="activity-row" key={item}>
+//               <div className="activity-left">
+//                 <div className="sk-avatar shimmer"></div>
+
+//                 <div className="activity-content">
+//                   <div className="sk-line large shimmer"></div>
+//                   <div className="sk-line small shimmer"></div>
+//                 </div>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+
+//         <div className="overview-card">
+//           <div className="sk-title shimmer"></div>
+
+//           <div className="overview-grid">
+//             {[1, 2, 3, 4].map((item) => (
+//               <div className="overview-box" key={item}>
+//                 <div className="sk-overview-icon shimmer"></div>
+//                 <div className="sk-line medium shimmer"></div>
+//                 <div className="sk-line tiny shimmer"></div>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
   if (loading || loadingStats) {
   return (
     <div className={`dashboard-page ${darkMode ? "dark" : ""}`}>
-      {/* Hero */}
-      <div className="sk-banner shimmer"></div>
+      {/* Hero Banner */}
+      <div className="hero-banner skeleton-block"></div>
 
       {/* Stats */}
       <div className="stats-grid">
         {[1, 2, 3, 4].map((item) => (
           <div className="stat-card" key={item}>
-            <div className="sk-icon shimmer"></div>
+            <div className="stat-icon skeleton-circle"></div>
 
-            <div className="sk-content">
-              <div className="sk-line small shimmer"></div>
-              <div className="sk-line large shimmer"></div>
-              <div className="sk-line tiny shimmer"></div>
+            <div>
+              <div className="skeleton-line text-sm"></div>
+              <div className="skeleton-line text-lg"></div>
+              <div className="skeleton-line text-xs"></div>
             </div>
           </div>
         ))}
@@ -185,31 +243,40 @@ const Dashboard = ({ darkMode }) => {
       {/* Bottom Grid */}
       <div className="bottom-grid">
         <div className="activities-card">
-          <div className="sk-title shimmer"></div>
+          <div className="section-header">
+            <div className="skeleton-line heading"></div>
+          </div>
 
           {[1, 2, 3, 4].map((item) => (
             <div className="activity-row" key={item}>
               <div className="activity-left">
-                <div className="sk-avatar shimmer"></div>
+                <div className="activity-icon skeleton-circle"></div>
 
                 <div className="activity-content">
-                  <div className="sk-line large shimmer"></div>
-                  <div className="sk-line small shimmer"></div>
+                  <div className="skeleton-line activity-main"></div>
+                  <div className="skeleton-line activity-sub"></div>
                 </div>
+              </div>
+
+              <div className="activity-right">
+                <div className="skeleton-pill"></div>
+                <div className="skeleton-line time"></div>
               </div>
             </div>
           ))}
         </div>
 
         <div className="overview-card">
-          <div className="sk-title shimmer"></div>
+          <div className="section-header">
+            <div className="skeleton-line heading"></div>
+          </div>
 
           <div className="overview-grid">
             {[1, 2, 3, 4].map((item) => (
               <div className="overview-box" key={item}>
-                <div className="sk-overview-icon shimmer"></div>
-                <div className="sk-line medium shimmer"></div>
-                <div className="sk-line tiny shimmer"></div>
+                <div className="skeleton-overview-icon"></div>
+                <div className="skeleton-line stat-number"></div>
+                <div className="skeleton-line stat-label"></div>
               </div>
             ))}
           </div>
