@@ -6,7 +6,6 @@
   color: var(--text-color);
 }
 
-/* HEADER */
 .buy-header {
   display: flex;
   justify-content: space-between;
@@ -25,7 +24,6 @@
   margin-top: 4px;
 }
 
-/* STATS */
 .buy-stats {
   display: flex;
 }
@@ -38,7 +36,6 @@
   font-size: 13px;
 }
 
-/* TOOLBAR */
 .buy-toolbar {
   display: flex;
   gap: 14px;
@@ -77,7 +74,6 @@
   font-size: 13px;
 }
 
-/* LAYOUT */
 .buy-layout {
   display: grid;
   grid-template-columns: 1fr 360px;
@@ -113,7 +109,6 @@
   font-weight: 700;
 }
 
-/* PANELS */
 .services-panel,
 .otp-panel {
   background: #0f172a;
@@ -122,7 +117,6 @@
   padding: 20px;
 }
 
-/* SERVICES LIST */
 .services-grid {
   display: flex;
   flex-direction: column;
@@ -131,7 +125,6 @@
   padding-bottom: 30px;
 }
 
-/* NOTICE */
 .notice {
   display: flex;
   align-items: center;
@@ -143,14 +136,13 @@
 .notice svg {
   font-size: 18px;
   flex-shrink: 0;
-  color: #7c3aed;
+  color: #94a3b8;
 }
 
 .notice span {
   line-height: 1.4;
 }
 
-/* OTP PANEL */
 .otp-panel {
   position: sticky;
   top: 20px;
@@ -164,7 +156,6 @@
   font-size: 13px;
 }
 
-/* NUMBER BOX */
 .number-box {
   background: #111827;
   padding: 16px;
@@ -187,7 +178,6 @@
   color: white;
 }
 
-/* OTP STATUS */
 .otp-status {
   margin-top: 18px;
   padding: 18px;
@@ -248,7 +238,6 @@
   opacity: 0.6;
 }
 
-/* LEFT SIDE */
 .service-left {
   display: flex;
   align-items: center;
@@ -257,7 +246,6 @@
   min-width: 0;
 }
 
-/* ICON */
 .service-icon,
 .service-icon-placeholder {
   width: 46px;
@@ -271,7 +259,6 @@
   font-weight: 700;
 }
 
-/* INFO */
 .service-info {
   display: flex;
   flex-direction: column;
@@ -289,7 +276,6 @@
   color: #94a3b8;
 }
 
-/* RIGHT SIDE */
 .service-right {
   display: flex;
   align-items: center;
@@ -303,7 +289,6 @@
   white-space: nowrap;
 }
 
-/* BUY BUTTON */
 .buy-btn {
   height: 44px;
   min-width: 80px;
@@ -317,12 +302,10 @@
   cursor: pointer;
 }
 
-/* HOVER EFFECT */
 .buy-btn:hover {
   opacity: 0.9;
 }
 
-/* RESPONSIVE */
 @media (max-width: 1200px) {
   .buy-layout {
     grid-template-columns: 1fr;
@@ -334,7 +317,6 @@
 }
 
 @media (max-width: 768px) {
-  /* HEADER */
   .buy-header h1 {
     font-size: 22px;
   }
@@ -343,13 +325,11 @@
     font-size: 12px;
   }
 
-  /* STATS */
   .buy-stats {
     flex-direction: column;
     gap: 10px;
   }
 
-  /* TOOLBAR */
   .buy-toolbar {
     flex-direction: column;
     gap: 10px;
@@ -396,7 +376,6 @@
     box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
   }
 
-  /* LAYOUT */
   .buy-layout {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -431,7 +410,6 @@
     font-size: 12px;
   }
 
-  /* SERVICES PANEL */
   .services-panel {
     padding: 14px;
     border-radius: 12px;
@@ -506,9 +484,6 @@
   }
 
   .notice {
-    margin-top: 14px;
-    padding: 10px 12px;
-    border-radius: 12px;
     gap: 8px;
     font-size: 12px;
   }
@@ -521,7 +496,6 @@
     font-size: 12px;
   }
 
-  /* OTP PANEL */
   .otp-panel {
     padding: 14px;
   }
