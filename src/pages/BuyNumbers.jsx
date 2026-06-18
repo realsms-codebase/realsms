@@ -417,7 +417,6 @@ const BuyNumbers = ({ darkMode }) => {
 {loadingServices ? (
   <div className="loading-state">
     <div className="spinner"></div>
-    <p>Loading services...</p>
   </div>
 ) : filteredServices.length > 0 ? (
   <>
