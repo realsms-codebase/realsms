@@ -1,5 +1,5 @@
 .buy-page {
-  padding: 28px;
+  padding: 0;
   color: #fff;
   min-height: 100vh;
   background: #060b18;
@@ -159,11 +159,6 @@
   color: white;
   font-weight: 600;
 }
-
-/* .services-panel {
-  max-width: 720px;
-  margin: 0 auto;
-} */
 
 .service-card {
   display: flex;
