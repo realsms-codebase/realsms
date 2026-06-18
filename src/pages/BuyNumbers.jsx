@@ -777,12 +777,12 @@ import "../styles/buy-number.css";
 const POPULAR_SERVICES = [
   "WhatsApp",
   "Telegram",
-  "Google",
+  "Plenty Of Fish",
   "TikTok",
   "Instagram",
   "Facebook",
   "Discord",
-  "Uber",
+  "Signal",
 ];
 
 const BuyNumbers = ({ darkMode }) => {
