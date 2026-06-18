@@ -409,7 +409,7 @@ const BuyNumbers = ({ darkMode }) => {
 
               <div className="stat-pill">
       <span>Available Services</span>
-      <strong>{filteredServices.length}</strong>
+      <strong>{services.filter((s) => s.price).length}</strong>
     </div>
             </div>
           )}
