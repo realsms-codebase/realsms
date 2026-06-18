@@ -131,6 +131,30 @@
   padding-bottom: 30px;
 }
 
+/* NOTICE */
+.notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.notice svg {
+  font-size: 18px;
+  flex-shrink: 0;
+  color: #7c3aed;
+}
+
+.notice span {
+  line-height: 1.4;
+}
+
 /* OTP PANEL */
 .otp-panel {
   position: sticky;
@@ -438,6 +462,22 @@
   .service-right {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .notice {
+    margin-top: 14px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .notice svg {
+    font-size: 16px;
+  }
+
+  .notice span {
+    font-size: 12px;
   }
 
   .price {
