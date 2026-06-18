@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/service-card.css";
+// import "../styles/service-card.css";
 
 const formatNaira = (amount) => {
   if (amount == null) return "N/A";
