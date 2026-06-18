@@ -338,8 +338,9 @@
   }
 
   .search-container input {
-    font-size: 14px;
+    font-size: 16px;
     width: 100%;
+    height: 48px;
     color: #fff;
   }
 
