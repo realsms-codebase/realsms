@@ -162,24 +162,6 @@ const BuyNumbers = ({ darkMode }) => {
           ? res.data
           : [];
 
-        // const withPrice = data.map((s) => {
-        //   const priceObj = s.pricing?.find(
-        //     (p) =>
-        //       String(p.countryID) ===
-        //       String(selectedCountry.ID)
-        //   );
-
-        //   return {
-        //     ...s,
-        //     price: priceObj?.priceNGN || null,
-        //     popular: POPULAR_SERVICES.some(
-        //       (name) =>
-        //         name.toLowerCase() ===
-        //         s.name?.toLowerCase()
-        //     ),
-        //   };
-        // });
-
        const withPrice = data.map((s) => {
   const priceObj = s.pricing?.find(
     (p) =>
@@ -520,7 +502,8 @@ const BuyNumbers = ({ darkMode }) => {
                 <span>Phone Number</span>
 
                 <div className="number-row">
-                  <h2>
+                  <h2 className="phone-number">
+                    <span className="country-code">+</span>
                     {activeOrder.number}
                   </h2>
 
