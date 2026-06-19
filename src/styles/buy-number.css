@@ -319,6 +319,55 @@
   font-size: 13px;
 }
 
+.action-btn {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.action-btn.refund {
+  background: #ef4444;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25);
+}
+
+.action-btn.refund:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+.action-btn.refund:active {
+  transform: scale(0.98);
+}
+
+.action-btn.resend {
+  background: #3b82f6;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.25);
+}
+
+.action-btn.resend:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+.action-btn.resend:active {
+  transform: scale(0.98);
+}
+
+.action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
 .service-card {
   display: flex;
   align-items: center;
