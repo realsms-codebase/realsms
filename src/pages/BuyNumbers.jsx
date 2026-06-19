@@ -470,29 +470,6 @@ const BuyNumbers = ({ darkMode }) => {
   };
 
   // ---------------- COUNTDOWN ----------------
-  // useEffect(() => {
-  //   if (orderStatus !== "waiting") return;
-
-  //   const timer = setInterval(() => {
-  //     setTimeLeft((t) => {
-  //       if (t <= 1) {
-  //         clearInterval(timer);
-  //         setOrderStatus("expired");
-  //         localStorage.removeItem("activeOrder");
-
-  //         if (pollOtp.current)
-  //           clearInterval(pollOtp.current);
-
-  //         return 0;
-  //       }
-
-  //       return t - 1;
-  //     });
-  //   }, 1000);
-
-  //   return () => clearInterval(timer);
-  // }, [orderStatus]);
-
   useEffect(() => {
     if (orderStatus !== "waiting") return;
 
@@ -678,87 +655,96 @@ const BuyNumbers = ({ darkMode }) => {
           )}
         </div>
 
-        <div className="otp-panel">
-          <h3>Inbox</h3>
+       <div className="otp-panel">
+  <h3>Inbox</h3>
 
-          {!activeOrder ? (
-            <div className="otp-empty">
-              <p>No active order</p>
-              <span>Buy a number to receive OTP here</span>
-            </div>
-          ) : (
-            <>
-              <div className="number-box">
-                <span>Phone Number</span>
+  {!activeOrder ? (
+    <div className="otp-empty">
+      <p>No active order</p>
+      <span>Buy a number to receive OTP here</span>
+    </div>
+  ) : (
+    <>
+      {/* NUMBER BOX */}
+      <div className="number-box">
+        <span>Phone Number</span>
 
-                <div className="number-row">
-                  <h2 className="phone-number">
-                    {formatNumber(activeOrder.number)}
-                  </h2>
+        <div className="number-row">
+          <h2 className="phone-number">
+            {formatNumber(activeOrder.number)}
+          </h2>
 
-                  <button onClick={handleCopyNumber} className="copy-btn">
-                    {copied ? "Copied!" : <FiCopy />}
-                  </button>
-                </div>
-              </div>
-
-              {/* ⏳ WAITING → Refund button */}
-              {orderStatus === "waiting" && (
-                <div className="otp-status waiting">
-                  <h4>Waiting for OTP...</h4>
-
-                  <div className="timer-pill">
-                    {Math.floor(timeLeft / 60)}:
-                    {String(timeLeft % 60).padStart(2, "0")}
-                  </div>
-
-                  <button
-                    className="action-btn refund"
-                    onClick={handleRefund}
-                    disabled={actionLoading}
-                  >
-                    {actionLoading ? "Processing..." : "Refund"}
-                  </button>
-                </div>
-              )}
-
-              {/* ✅ RECEIVED → Resend button */}
-              {orderStatus === "received" && (
-                <div className="otp-status success">
-                  <span>Received OTP</span>
-
-                  <h1>{otp}</h1>
-
-                  <button
-                    className="copy-otp-btn"
-                    onClick={() => {
-                      navigator.clipboard.writeText(otp);
-                      setCopied(true);
-                    }}
-                  >
-                    Copy OTP
-                  </button>
-
-                  <button
-                    className="action-btn resend"
-                    onClick={handleResend}
-                    disabled={actionLoading}
-                  >
-                    {actionLoading ? "Sending..." : "Resend"}
-                  </button>
-                </div>
-              )}
-
-              {/* ❌ EXPIRED → auto refund running */}
-              {orderStatus === "expired" && (
-                <div className="otp-status expired">
-                  <p>OTP expired</p>
-                  <span>Refunding automatically...</span>
-                </div>
-              )}
-            </>
-          )}
+          <button onClick={handleCopyNumber} className="copy-btn">
+            {copied ? "Copied!" : <FiCopy />}
+          </button>
         </div>
+      </div>
+
+      {/* ⏳ WAITING */}
+      {orderStatus === "waiting" && (
+        <>
+          <div className="otp-status waiting">
+            <h4>Waiting for OTP...</h4>
+
+            <div className="timer-pill">
+              {Math.floor(timeLeft / 60)}:
+              {String(timeLeft % 60).padStart(2, "0")}
+            </div>
+          </div>
+
+          <div className="otp-actions">
+            <button
+              className="action-btn refund"
+              onClick={handleRefund}
+              disabled={actionLoading}
+            >
+              {actionLoading ? "Processing..." : "Refund"}
+            </button>
+          </div>
+        </>
+      )}
+
+      {/* ✅ RECEIVED */}
+      {orderStatus === "received" && (
+        <>
+          <div className="otp-status success">
+            <span>Received OTP</span>
+
+            <h1>{otp}</h1>
+
+            <button
+              className="copy-otp-btn"
+              onClick={() => {
+                navigator.clipboard.writeText(otp);
+                setCopied(true);
+              }}
+            >
+              Copy OTP
+            </button>
+          </div>
+
+          <div className="otp-actions">
+            <button
+              className="action-btn resend"
+              onClick={handleResend}
+              disabled={actionLoading}
+            >
+              {actionLoading ? "Sending..." : "Resend"}
+            </button>
+          </div>
+        </>
+      )}
+
+      {/* ❌ EXPIRED */}
+      {orderStatus === "expired" && (
+        <div className="otp-status expired">
+          <p>OTP expired</p>
+          <span>Refunding automatically...</span>
+        </div>
+      )}
+    </>
+  )}
+</div>
       </div>
     </div>
   );
