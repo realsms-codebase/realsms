@@ -28,17 +28,28 @@ const ServiceCard = ({ service, onBuy, disabled = false }) => {
     <div className={`service-card ${isDisabled ? "disabled" : ""}`}>
       {/* Left */}
       <div className="service-left">
-        {service.icon ? (
-          <img
-            src={service.icon}
-            alt={service.name}
-            className="service-icon"
-          />
-        ) : (
-          <div className="service-icon-placeholder">
-            {service.name?.charAt(0).toUpperCase()}
-          </div>
-        )}
+        {service.logo ? (
+  <img
+    src={service.logo}
+    alt={service.name}
+    className="service-icon"
+    onError={(e) => {
+      e.target.style.display = "none";
+
+      // show fallback letter avatar
+      e.target.nextSibling.style.display = "flex";
+    }}
+  />
+) : null}
+
+<div
+  className="service-icon-placeholder"
+  style={{
+    display: service.logo ? "none" : "flex",
+  }}
+>
+  {service.name?.charAt(0).toUpperCase()}
+</div>
 
         <div className="service-info">
           <h4>{service.name}</h4>
