@@ -73,7 +73,11 @@ const ServiceCard = ({
         </div>
 
         <div className="service-info">
-          <h4>{service.name}</h4>
+         <h4>
+  {service.name?.length > 15
+    ? service.name.slice(0, 15) + "..."
+    : service.name}
+</h4>
         </div>
       </div>
 
