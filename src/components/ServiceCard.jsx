@@ -1,3 +1,108 @@
+// import React, { useState } from "react";
+
+// // Format price in Naira
+// const formatNaira = (amount) => {
+//   if (amount == null) return "N/A";
+//   return `₦${Number(amount).toLocaleString()}`;
+// };
+
+// const ServiceCard = ({ service, onBuy, disabled = false }) => {
+//   const [buying, setBuying] = useState(false);
+
+//   const unavailable = service.price == null;
+//   const isDisabled = disabled || unavailable || buying;
+
+//   const handleBuyClick = async () => {
+//     if (isDisabled) return;
+
+//     setBuying(true);
+
+//     try {
+//       await onBuy(service);
+//     } finally {
+//       setBuying(false);
+//     }
+//   };
+
+//   return (
+//     <div className={`service-card ${isDisabled ? "disabled" : ""}`}>
+//       {/* Left */}
+//       {/* <div className="service-left">
+//         {service.logo ? (
+//   <img
+//     src={service.logo}
+//     alt={service.name}
+//     className="service-icon"
+//     onError={(e) => {
+//       e.target.style.display = "none";
+
+//       // show fallback letter avatar
+//       e.target.nextSibling.style.display = "flex";
+//     }}
+//   />
+// ) : null}
+
+// <div
+//   className="service-icon-placeholder"
+//   style={{
+//     display: service.logo ? "none" : "flex",
+//   }}
+// >
+//   {service.name?.charAt(0).toUpperCase()}
+// </div>
+
+//         <div className="service-info">
+//           <h4>{service.name}</h4>
+//         </div> */}
+
+//       <div className="service-left">
+//   <img
+//     src={service.logo}
+//     alt={service.name}
+//     className="service-icon"
+//     onError={(e) => {
+//       e.target.style.display = "none";
+//       e.target.nextSibling.style.display = "flex";
+//     }}
+//   />
+
+//   <div
+//     className="service-icon-placeholder"
+//     style={{ display: "none" }}
+//   >
+//     {service.name?.charAt(0).toUpperCase()}
+//   </div>
+
+//   <div className="service-info">
+//     <h4>{service.name}</h4>
+//   </div>
+// </div>
+//       </div>
+
+//       {/* Right */}
+//       <div className="service-right">
+//         <span className="price">
+//           {formatNaira(service.price)}
+//         </span>
+
+//         <button
+//           className="buy-btn"
+//           onClick={handleBuyClick}
+//           disabled={isDisabled}
+//         >
+//           {buying
+//             ? "Buying..."
+//             : unavailable
+//             ? "N/A"
+//             : "Buy"}
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ServiceCard;
+
 import React, { useState } from "react";
 
 // Format price in Naira
@@ -6,89 +111,93 @@ const formatNaira = (amount) => {
   return `₦${Number(amount).toLocaleString()}`;
 };
 
-const ServiceCard = ({ service, onBuy, disabled = false }) => {
-  const [buying, setBuying] = useState(false);
+const ServiceCard = ({
+  service,
+  onBuy,
+  disabled = false,
+}) => {
+  const [buying, setBuying] =
+    useState(false);
 
-  const unavailable = service.price == null;
-  const isDisabled = disabled || unavailable || buying;
+  const unavailable =
+    service.price == null;
 
-  const handleBuyClick = async () => {
-    if (isDisabled) return;
+  const isDisabled =
+    disabled ||
+    unavailable ||
+    buying;
 
-    setBuying(true);
+  const handleBuyClick =
+    async () => {
+      if (isDisabled) return;
 
-    try {
-      await onBuy(service);
-    } finally {
-      setBuying(false);
-    }
-  };
+      setBuying(true);
+
+      try {
+        await onBuy(service);
+      } finally {
+        setBuying(false);
+      }
+    };
 
   return (
-    <div className={`service-card ${isDisabled ? "disabled" : ""}`}>
+    <div
+      className={`service-card ${
+        isDisabled
+          ? "disabled"
+          : ""
+      }`}
+    >
       {/* Left */}
-      {/* <div className="service-left">
-        {service.logo ? (
-  <img
-    src={service.logo}
-    alt={service.name}
-    className="service-icon"
-    onError={(e) => {
-      e.target.style.display = "none";
+      <div className="service-left">
+        <img
+          src={service.logo}
+          alt={service.name}
+          className="service-icon"
+          onError={(e) => {
+            e.target.style.display =
+              "none";
 
-      // show fallback letter avatar
-      e.target.nextSibling.style.display = "flex";
-    }}
-  />
-) : null}
+            e.target.nextSibling.style.display =
+              "flex";
+          }}
+        />
 
-<div
-  className="service-icon-placeholder"
-  style={{
-    display: service.logo ? "none" : "flex",
-  }}
->
-  {service.name?.charAt(0).toUpperCase()}
-</div>
+        <div
+          className="service-icon-placeholder"
+          style={{
+            display:
+              service.logo
+                ? "none"
+                : "flex",
+          }}
+        >
+          {service.name
+            ?.charAt(0)
+            .toUpperCase()}
+        </div>
 
         <div className="service-info">
           <h4>{service.name}</h4>
-        </div> */}
-
-      <div className="service-left">
-  <img
-    src={service.logo}
-    alt={service.name}
-    className="service-icon"
-    onError={(e) => {
-      e.target.style.display = "none";
-      e.target.nextSibling.style.display = "flex";
-    }}
-  />
-
-  <div
-    className="service-icon-placeholder"
-    style={{ display: "none" }}
-  >
-    {service.name?.charAt(0).toUpperCase()}
-  </div>
-
-  <div className="service-info">
-    <h4>{service.name}</h4>
-  </div>
-</div>
+        </div>
       </div>
 
       {/* Right */}
       <div className="service-right">
         <span className="price">
-          {formatNaira(service.price)}
+          {formatNaira(
+            service.price
+          )}
         </span>
 
         <button
           className="buy-btn"
-          onClick={handleBuyClick}
-          disabled={isDisabled}
+          onClick={
+            handleBuyClick
+          }
+          disabled={
+            isDisabled
+          }
         >
           {buying
             ? "Buying..."
