@@ -35,9 +35,27 @@ const SERVICE_LOGOS = {
   "plenty of fish": pofLogo,
 };
 
-const getFullNumber = (num) => {
-  if (!num) return "";
-  return num.startsWith("+") ? num : `+${num}`;
+const handleCopyNumber = async () => {
+  if (!activeOrder?.number) return;
+
+  const fullNumber = activeOrder.number.startsWith("+")
+    ? activeOrder.number
+    : `+${activeOrder.number}`;
+
+  try {
+    await navigator.clipboard.writeText(fullNumber);
+    setCopied(true);
+  } catch (err) {
+    // fallback for older browsers
+    const textArea = document.createElement("textarea");
+    textArea.value = fullNumber;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+
+    setCopied(true);
+  }
 };
 
 const BuyNumbers = ({ darkMode }) => {
@@ -512,13 +530,7 @@ const BuyNumbers = ({ darkMode }) => {
                     {activeOrder.number}
                   </h2>
 
-                  <button
-  onClick={() => {
-    navigator.clipboard.writeText(getFullNumber(activeOrder.number));
-    setCopied(true);
-  }}
-  className="copy-btn"
->
+                  <button onClick={handleCopyNumber} className="copy-btn">
   {copied ? "Copied!" : <FiCopy />}
 </button>
                 </div>
