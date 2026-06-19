@@ -35,6 +35,11 @@ const SERVICE_LOGOS = {
   "plenty of fish": pofLogo,
 };
 
+const getFullNumber = (num) => {
+  if (!num) return "";
+  return num.startsWith("+") ? num : `+${num}`;
+};
+
 const BuyNumbers = ({ darkMode }) => {
   const { balance, setBalance, fetchBalance } = useBalance();
 
