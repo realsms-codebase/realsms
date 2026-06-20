@@ -117,20 +117,22 @@
 
 .pagination {
   width: 100%;
-  margin-top: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 24px;
 }
 
 .pagination p {
   margin: 0;
-  color: #94a3b8;
-  font-size: 14px;
-} 
+  flex: 1; /* occupy left side */
+  text-align: left;
+}
 
 .page-buttons {
+  margin-left: auto; /* force right */
   display: flex;
+  align-items: center;
   gap: 12px;
 }
 
