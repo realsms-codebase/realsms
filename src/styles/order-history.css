@@ -104,6 +104,22 @@
   font-size: 13px;
 }
 
+.date-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.main-date {
+  font-weight: 600;
+  color: #fff;
+}
+
+.relative-time {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
 .refund-btn,
 .resend-btn {
   border: none;
