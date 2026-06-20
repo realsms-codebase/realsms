@@ -221,7 +221,7 @@
   padding: 14px 18px;
   margin-top: 12px;
 
-  border-radius: 14px;
+  border-radius: 10px;
   background: linear-gradient(135deg, #229ed9, #1b84b8);
   color: #fff;
   text-decoration: none;
@@ -253,7 +253,7 @@
   margin-top: 14px;
   padding: 12px 18px;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 10px;
   background: linear-gradient(135deg, #25d366, #1ebe5d);
   color: #fff;
   font-weight: 600;
