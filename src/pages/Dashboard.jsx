@@ -266,6 +266,15 @@ const Dashboard = ({ darkMode }) => {
                                 <FaTelegramPlane />
                                 <span>Join Telegram Channel</span>
                             </a>
+
+                             <a
+        href="https://wa.me/2348146921775"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="notice-whatsapp-link"
+    >
+        Message us on WhatsApp
+    </a>
                         </div>
 
                         <p>Wallet funding available via Flutterwave & Korapay.</p>
