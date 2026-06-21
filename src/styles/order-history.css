@@ -3,6 +3,7 @@
   font-size: 14px;
 }
 
+/* HEADER */
 .history-header h1 {
   font-size: 32px;
   font-weight: 800;
@@ -15,6 +16,7 @@
   font-size: 14px;
 }
 
+/* FILTERS */
 .history-filters {
   display: flex;
   gap: 14px;
@@ -31,9 +33,9 @@
 .history-filters select {
   width: 100%;
   height: 46px;
-  border-radius: 10px;
+  border-radius: 12px;
   background: #111827;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: white;
   padding: 0 14px;
   font-size: 13px;
@@ -43,6 +45,16 @@
   width: 160px;
 }
 
+/* VIEW SWITCH */
+.desktop-view {
+  display: block;
+}
+
+.mobile-view {
+  display: none;
+}
+
+/* TABLE */
 .order-history-table {
   width: 100%;
   border-collapse: collapse;
@@ -53,46 +65,49 @@
   text-align: left;
   padding: 14px;
   font-size: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .order-history-table td {
   padding: 16px 14px;
   font-size: 13px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .order-history-table tr:hover {
-  background: rgba(255,255,255,0.02);
+  background: rgba(255, 255, 255, 0.02);
 }
 
+/* STATUS */
 .status-badge {
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 11px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .status-badge.received {
-  background: rgba(34,197,94,.15);
+  background: rgba(34, 197, 94, 0.15);
   color: #22c55e;
 }
 
 .status-badge.waiting {
-  background: rgba(245,158,11,.15);
+  background: rgba(245, 158, 11, 0.15);
   color: #f59e0b;
 }
 
 .status-badge.refunded {
-  background: rgba(244,63,94,.15);
+  background: rgba(244, 63, 94, 0.15);
   color: #fb7185;
 }
 
 .status-badge.cancelled {
-  background: rgba(148,163,184,.15);
+  background: rgba(148, 163, 184, 0.15);
   color: #cbd5e1;
 }
 
+/* OTP */
 .otp-success {
   color: #22c55e;
   font-weight: 700;
@@ -104,6 +119,7 @@
   font-size: 13px;
 }
 
+/* DATE */
 .date-cell {
   display: flex;
   flex-direction: column;
@@ -120,14 +136,16 @@
   color: #94a3b8;
 }
 
+/* BUTTONS */
 .refund-btn,
 .resend-btn {
   border: none;
   color: white;
   padding: 8px 14px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 12px;
+  font-weight: 600;
 }
 
 .refund-btn {
@@ -138,6 +156,7 @@
   background: linear-gradient(135deg, #4338ca, #6366f1);
 }
 
+/* PAGINATION */
 .pagination {
   width: 100%;
   display: flex;
@@ -162,8 +181,8 @@
 
 .page-buttons button {
   padding: 8px 14px;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   background: #111827;
   color: white;
   font-size: 12px;
@@ -173,6 +192,75 @@
   background: #4f46e5;
 }
 
+/* TIMELINE */
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.timeline-card {
+  display: flex;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  border-radius: 50%;
+  background: #6366f1;
+  margin-top: 7px;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+}
+
+.timeline-content {
+  flex: 1;
+}
+
+.timeline-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.timeline-top h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.timeline-number {
+  margin: 10px 0 4px;
+  font-weight: 600;
+}
+
+.timeline-country {
+  margin: 0 0 8px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.timeline-otp {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+
+.timeline-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* MOBILE */
 @media (max-width: 768px) {
   .history-header h1 {
     font-size: 24px;
@@ -186,12 +274,28 @@
     flex-direction: column;
   }
 
-  .history-filters select {
+  .history-filters select,
+  .history-search {
     width: 100%;
+  }
+
+  .desktop-view {
+    display: none;
+  }
+
+  .mobile-view {
+    display: block;
   }
 
   .pagination {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .page-buttons {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
   }
 }
