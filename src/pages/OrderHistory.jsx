@@ -702,15 +702,9 @@ const NumberHistory = ({ darkMode }) => {
         )}
     </>
 )}
+            </div>
         </div>
     );
 };
 
 export default NumberHistory;
-
-
-
-
-
-
-
