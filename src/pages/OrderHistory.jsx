@@ -291,29 +291,17 @@ const NumberHistory = ({ darkMode }) => {
                                     </td>
 
                                     <td>
-                                        {order.status === "waiting" ? (
-                                            <button
-                                                className="refund-btn"
-                                                disabled={loadingId === order.orderid}
-                                                onClick={() => handleRefund(order.orderid)}
-                                            >
-                                                {loadingId === order.orderid
-                                                    ? "Processing..."
-                                                    : "Refund"}
-                                            </button>
-                                        ) : order.status === "received" ? (
-                                            <button
-                                                className="resend-btn"
-                                                disabled={loadingId === order.orderid}
-                                                onClick={() => handleResend(order.orderid)}
-                                            >
-                                                {loadingId === order.orderid
-                                                    ? "Sending..."
-                                                    : "Resend"}
-                                            </button>
-                                        ) : (
-                                            "-"
-                                        )}
+                                        {["waiting", "received"].includes(order.status) ? (
+    <button
+        className="resend-btn"
+        disabled={loadingId === order.orderid}
+        onClick={() => handleResend(order.orderid)}
+    >
+        {loadingId === order.orderid ? "Sending..." : "Resend"}
+    </button>
+) : (
+    "-"
+)}
                                     </td>
                                 </tr>
                             );
@@ -359,23 +347,15 @@ const NumberHistory = ({ darkMode }) => {
                                 <div className="timeline-bottom">
                                     <span>{dateInfo.relativeTime}</span>
 
-                                    {order.status === "waiting" ? (
-                                        <button
-                                            className="refund-btn"
-                                            disabled={loadingId === order.orderid}
-                                            onClick={() => handleRefund(order.orderid)}
-                                        >
-                                            Refund
-                                        </button>
-                                    ) : order.status === "received" ? (
-                                        <button
-                                            className="resend-btn"
-                                            disabled={loadingId === order.orderid}
-                                            onClick={() => handleResend(order.orderid)}
-                                        >
-                                            Resend
-                                        </button>
-                                    ) : null}
+                                    {["waiting", "received"].includes(order.status) && (
+    <button
+        className="resend-btn"
+        disabled={loadingId === order.orderid}
+        onClick={() => handleResend(order.orderid)}
+    >
+        {loadingId === order.orderid ? "Sending..." : "Resend"}
+    </button>
+)}
                                 </div>
                             </div>
                         </div>
