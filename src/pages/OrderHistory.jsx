@@ -16,6 +16,7 @@ const NumberHistory = ({ darkMode }) => {
     const [loadingPage, setLoadingPage] = useState(true);
 
     const [filter, setFilter] = useState("all");
+    const [dateFilter, setDateFilter] = useState("all");
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
@@ -110,10 +111,48 @@ const NumberHistory = ({ darkMode }) => {
     // ================================
     // FILTERED ORDERS
     // ================================
+    // const filteredOrders = useMemo(() => {
+    //     if (filter === "all") return orders;
+    //     return orders.filter((o) => o.status?.toLowerCase() === filter.toLowerCase());
+    // }, [orders, filter]);
+
     const filteredOrders = useMemo(() => {
-        if (filter === "all") return orders;
-        return orders.filter((o) => o.status?.toLowerCase() === filter.toLowerCase());
-    }, [orders, filter]);
+    let filtered = orders;
+
+    // Status filter
+    if (filter !== "all") {
+        filtered = filtered.filter(
+            (o) => o.status?.toLowerCase() === filter.toLowerCase()
+        );
+    }
+
+    // Date filter
+    if (dateFilter !== "all") {
+        const now = new Date();
+
+        filtered = filtered.filter((order) => {
+            const created = new Date(order.createdAt);
+            const diffMs = now - created;
+            const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+            if (dateFilter === "today") {
+                return created.toDateString() === now.toDateString();
+            }
+
+            if (dateFilter === "7days") {
+                return diffDays <= 7;
+            }
+
+            if (dateFilter === "30days") {
+                return diffDays <= 30;
+            }
+
+            return true;
+        });
+    }
+
+    return filtered;
+}, [orders, filter, dateFilter]);
 
     // ================================
     // PAGINATION
@@ -133,11 +172,6 @@ const NumberHistory = ({ darkMode }) => {
     // ================================
     // DATE FORMATTER
     // ================================
-    // const formatDate = (date) => {
-    //     if (!date) return "-";
-    //     return new Date(date).toLocaleString();
-    // };
-
     const formatDate = (date) => {
         if (!date) return { formattedDate: "-", relativeTime: "-" };
 
@@ -195,7 +229,13 @@ const NumberHistory = ({ darkMode }) => {
                         <option value="cancelled">Cancelled</option>
                     </select>
 
-                    <select>
+                   <select
+    value={dateFilter}
+    onChange={(e) => {
+        setDateFilter(e.target.value);
+        setCurrentPage(1);
+    }}
+>
                         <option>All Time</option>
                         <option>Today</option>
                         <option>Last 7 Days</option>
