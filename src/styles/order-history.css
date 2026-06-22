@@ -313,6 +313,22 @@
   margin-top: 7px;
 }
 
+.timeline-dot.waiting {
+  background: #f59e0b; 
+}
+
+.timeline-dot.received {
+  background: #22c55e; 
+}
+
+.timeline-dot.refunded {
+  background: #ef4444; 
+}
+
+.timeline-dot.cancelled {
+  background: #64748b; 
+}
+
 .timeline-content {
   flex: 1;
 }
