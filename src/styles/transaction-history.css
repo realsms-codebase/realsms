@@ -171,6 +171,45 @@
   color: var(--secondary-text);
 }
 
+/* Transaction skeleton sizes */
+
+.sk.tx-reference{
+  width:140px;
+  height:16px;
+}
+
+.sk.tx-amount{
+  width:90px;
+  height:16px;
+}
+
+.mobile-amount{
+  width:100px;
+  height:18px;
+}
+
+.mobile-reference{
+  width:180px;
+  height:14px;
+  margin-top:14px;
+}
+
+.mobile-provider{
+  width:80px;
+  height:14px;
+  margin-top:10px;
+}
+
+.date-skeleton{
+  display:flex;
+  flex-direction:column;
+}
+
+.skeleton-card{
+  display:flex;
+  gap:14px;
+}
+
 /* =========================
    EMPTY STATE
 ========================= */
