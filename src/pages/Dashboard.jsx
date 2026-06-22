@@ -76,7 +76,7 @@ const activities = [
         icon: <FaWallet />,
         iconClass: "wallet-icon",
         email: "samwilson@gmail.com",
-        action: "funded wallet successfully",
+        action: "funded 5000 successfully",
         status: "Success",
         time: "1 hour ago",
         success: true,
