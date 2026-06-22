@@ -269,14 +269,7 @@ const Dashboard = ({ darkMode }) => {
                                 <span>Join Telegram Channel</span>
                             </a>
 
-                             <a
-        href="https://wa.me/2348146921775"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="notice-whatsapp-link"
-    >
-        Message us on WhatsApp
-    </a>
+                             
                         </div>
 
                     </div>
