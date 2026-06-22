@@ -138,7 +138,7 @@ const FundWallet = () => {
   return (
     <div className="fund-page">
 
-      <div className="fund-header">
+      <div className="fund-wallet-header">
         <h1>Fund Wallet</h1>
         <p>
           Top up your wallet instantly using a payment method of your choice.
