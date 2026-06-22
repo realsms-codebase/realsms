@@ -168,16 +168,7 @@ gap:10px;
 cursor:pointer;
 }
 
-.benefit{
-display:flex;
-gap:15px;
-margin-top:24px;
-}
-
-.recent-header{
-display:flex;
-justify-content:space-between;
-margin-bottom:20px;
+m:20px;
 }
 
 table{
@@ -189,14 +180,6 @@ th,td{
 padding:16px;
 text-align:left;
 border-bottom:1px solid #eee;
-}
-
-.success-tag{
-background:#dcfce7;
-color:#16a34a;
-padding:6px 12px;
-border-radius:20px;
-font-size:13px;
 }
 
 hr{
