@@ -336,22 +336,25 @@ const MobileSkeleton = () => {
                         <option value="30days">Last 30 Days</option>
                     </select>
                 </div>
-                {loadingPage ? (
+               {loadingPage ? (
+  window.innerWidth <= 768 ? (
     <>
-        <div className="history-header">
-            <div className="sk header-title"></div>
-            <div className="sk header-subtitle"></div>
-        </div>
+      <div className="history-header-skeleton">
+        <div className="sk title"></div>
+        <div className="sk subtitle"></div>
 
-        <div className="history-filters">
-            <div className="sk filter search"></div>
-            <div className="sk filter select"></div>
-            <div className="sk filter select"></div>
+        <div className="history-filter-skeleton mobile">
+          <div className="sk search"></div>
+          <div className="sk select"></div>
+          <div className="sk select"></div>
         </div>
+      </div>
 
-        <TableSkeleton />
-        <MobileSkeleton />
+      <MobileSkeleton />
     </>
+  ) : (
+    <TableSkeleton />
+  )
 ) : filteredOrders.length === 0 ? (
                     <div className="no-orders">
                         <div className="no-orders-icon">📭</div>
