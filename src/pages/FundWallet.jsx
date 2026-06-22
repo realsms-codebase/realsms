@@ -126,171 +126,235 @@
 // export default FundWallet;
 
 import React, { useState } from "react";
-import {
-  FiInfo,
-  FiRefreshCw,
-  FiShield,
-} from "react-icons/fi";
-
-import flutterwaveLogo from "../assets/flutterwave.png";
-import korapayLogo from "../assets/korapay.png";
-
+import { FiArrowRight, FiShield, FiZap } from "react-icons/fi";
 import "../styles/fundwallet.css";
 
-const FundWallet = () => {
-  const [amount, setAmount] = useState("5000");
-  const [gateway, setGateway] = useState("flutterwave");
+const quickAmounts = [1000, 5000, 10000, 25000, 50000];
 
-  const quickAmounts = [1000, 5000, 10000, 25000, 50000];
+const FundWallet = () => {
+  const [amount, setAmount] = useState(5000);
+  const [payment, setPayment] = useState("flutterwave");
 
   return (
-    <div className="wallet-page">
-      {/* Header */}
-      <div className="wallet-header">
-        <div>
-          <h1>Fund Wallet</h1>
-          <p>Top up your wallet instantly using secure payment gateways.</p>
-        </div>
+    <div className="fund-page">
 
-        <button className="wallet-refresh-btn">
-          <FiRefreshCw />
-          Refresh Balance
-        </button>
+      <div className="fund-header">
+        <h1>Fund Wallet</h1>
+        <p>
+          Top up your wallet instantly using a payment method of your choice.
+        </p>
       </div>
 
-      <div className="wallet-grid">
-        {/* Left */}
-        <div className="wallet-card">
-          <div className="wallet-card-header">
-            <h3>Instant Top-Up</h3>
-            <span>Fast • Secure • Instant</span>
-          </div>
+      <div className="fund-grid">
 
-          {/* Amount */}
-          <div className="wallet-field">
-            <label>Enter Amount</label>
+        {/* LEFT SIDE */}
 
-            <div className="wallet-amount-box">
+        <div>
+
+          <div className="fund-card">
+
+            <h3 className="section-heading">
+              Instant Top-Up
+            </h3>
+
+            <div className="step-title">
+              <span>1</span>
+              Enter Amount
+            </div>
+
+            <div className="amount-box">
               <span>₦</span>
+
               <input
                 type="number"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                placeholder="5000"
+                placeholder="Enter amount"
+                onChange={(e)=>setAmount(e.target.value)}
               />
             </div>
 
-            <div className="wallet-quick-amounts">
-              {quickAmounts.map((amt) => (
+            <div className="quick-amounts">
+              {quickAmounts.map((amt)=>(
                 <button
                   key={amt}
-                  className={Number(amount) === amt ? "active" : ""}
-                  onClick={() => setAmount(amt)}
+                  className={
+                    Number(amount) === amt
+                    ? "amount-btn active"
+                    : "amount-btn"
+                  }
+                  onClick={()=>setAmount(amt)}
                 >
                   ₦{amt.toLocaleString()}
                 </button>
               ))}
             </div>
-          </div>
 
-          {/* Gateway */}
-          <div className="wallet-field">
-            <label>Select Payment Method</label>
+            <p className="limit">
+              Min: ₦1,000 • Max: ₦500,000
+            </p>
+
+            <hr />
+
+            <div className="step-title">
+              <span>2</span>
+              Select Payment Method
+            </div>
 
             <div
-              className={`gateway-card ${
-                gateway === "flutterwave" ? "active" : ""
+              className={`payment-item ${
+                payment==="flutterwave"
+                ? "selected":""
               }`}
-              onClick={() => setGateway("flutterwave")}
+              onClick={()=>setPayment("flutterwave")}
             >
-              <div className="gateway-left">
-                <img src={flutterwaveLogo} alt="" />
-
-                <div>
-                  <h4>Flutterwave</h4>
-                  <p>Card • Transfer • USSD</p>
-                </div>
+              <div>
+                <h4>Flutterwave</h4>
+                <small>
+                  Cards • Bank Transfer • USSD
+                </small>
               </div>
 
               <input
                 type="radio"
-                checked={gateway === "flutterwave"}
+                checked={payment==="flutterwave"}
                 readOnly
               />
             </div>
 
             <div
-              className={`gateway-card ${
-                gateway === "korapay" ? "active" : ""
+              className={`payment-item ${
+                payment==="korapay"
+                ? "selected":""
               }`}
-              onClick={() => setGateway("korapay")}
+              onClick={()=>setPayment("korapay")}
             >
-              <div className="gateway-left">
-                <img src={korapayLogo} alt="" />
-
-                <div>
-                  <h4>Korapay</h4>
-                  <p>Card • Bank Transfer</p>
-                </div>
+              <div>
+                <h4>Korapay</h4>
+                <small>
+                  Cards • Bank Transfer
+                </small>
               </div>
 
               <input
                 type="radio"
-                checked={gateway === "korapay"}
+                checked={payment==="korapay"}
                 readOnly
               />
             </div>
+
+            <button className="payment-btn">
+              Continue To Payment
+              <FiArrowRight />
+            </button>
+
           </div>
 
-          <button className="wallet-fund-btn">
-            Fund Wallet
-          </button>
 
-          <div className="wallet-notice">
-            <FiInfo />
-            Payments are encrypted and securely processed.
-          </div>
-        </div>
+          {/* RECENT TOPUPS */}
 
-        {/* Right */}
-        <div className="summary-card">
-          <h3>Top-Up Summary</h3>
+          <div className="fund-card">
 
-          <div className="summary-row">
-            <span>Amount</span>
-            <strong>₦{Number(amount || 0).toLocaleString()}</strong>
-          </div>
-
-          <div className="summary-row">
-            <span>Gateway</span>
-            <strong>
-              {gateway === "flutterwave"
-                ? "Flutterwave"
-                : "Korapay"}
-            </strong>
-          </div>
-
-          <div className="summary-row">
-            <span>Fee</span>
-            <strong>₦0</strong>
-          </div>
-
-          <div className="summary-divider" />
-
-          <div className="summary-total">
-            <span>You’ll Receive</span>
-            <h2>₦{Number(amount || 0).toLocaleString()}</h2>
-          </div>
-
-          <div className="security-box">
-            <FiShield />
-            <div>
-              <h4>Secure Payments</h4>
-              <p>Your transactions are protected.</p>
+            <div className="recent-header">
+              <h3>Recent Top-Ups</h3>
+              <span>View all</span>
             </div>
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Method</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <tr>
+                  <td>Jun 20, 2026</td>
+                  <td>Flutterwave</td>
+                  <td>₦5,000</td>
+
+                  <td>
+                    <span className="success-tag">
+                      Success
+                    </span>
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
           </div>
+
         </div>
+
+
+        {/* RIGHT */}
+
+        <div className="right-column">
+
+          <div className="fund-card">
+
+            <h3>Top-Up Summary</h3>
+
+            <div className="summary-row">
+              <span>Amount</span>
+              <strong>
+                ₦{Number(amount).toLocaleString()}
+              </strong>
+            </div>
+
+            <div className="summary-row">
+              <span>Processing Fee</span>
+              <strong>₦0</strong>
+            </div>
+
+            <hr />
+
+            <div className="summary-row">
+              <span>You will receive</span>
+
+              <h2>
+                ₦{Number(amount).toLocaleString()}
+              </h2>
+            </div>
+
+          </div>
+
+          <div className="fund-card">
+
+            <h3>Why top up?</h3>
+
+            <div className="benefit">
+              <FiZap />
+              <div>
+                <h4>Instant</h4>
+                <small>
+                  Funds added instantly
+                </small>
+              </div>
+            </div>
+
+            <div className="benefit">
+              <FiShield />
+              <div>
+                <h4>Secure</h4>
+                <small>
+                  Encrypted and safe transactions
+                </small>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
+
     </div>
   );
 };
