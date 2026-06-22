@@ -9,14 +9,14 @@ background: var(--bg-color);
 margin-bottom:25px;
 } */
 
-.fund-header h1 {
+.fund-wallet-header h1 {
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 6px;
   color: var(--text-color);
 }
 
-.fund-header p {
+.fund-wallet-header p {
   color: var(--secondary-text);
   margin-bottom: 22px;
   font-size: 14px;
