@@ -338,10 +338,21 @@ const MobileSkeleton = () => {
                 </div>
                 {loadingPage ? (
     <>
+        <div className="history-header">
+            <div className="sk header-title"></div>
+            <div className="sk header-subtitle"></div>
+        </div>
+
+        <div className="history-filters">
+            <div className="sk filter search"></div>
+            <div className="sk filter select"></div>
+            <div className="sk filter select"></div>
+        </div>
+
         <TableSkeleton />
         <MobileSkeleton />
     </>
-): filteredOrders.length === 0 ? (
+) : filteredOrders.length === 0 ? (
                     <div className="no-orders">
                         <div className="no-orders-icon">📭</div>
                         <h3>No Orders Found</h3>
