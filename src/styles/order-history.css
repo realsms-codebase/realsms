@@ -248,6 +248,56 @@
   margin-top: 8px;
 }
 
+/* Logs skeleton */
+
+.sk.log-platform{
+  width:90px;
+  height:16px;
+}
+
+.sk.log-product{
+  width:140px;
+  height:16px;
+}
+
+.sk.log-price{
+  width:80px;
+  height:16px;
+}
+
+.sk.log-qty{
+  width:50px;
+  height:16px;
+}
+
+.mobile-product{
+  width:180px;
+  height:14px;
+  margin-top:14px;
+}
+
+.mobile-price{
+  width:70px;
+  height:14px;
+  margin-top:10px;
+}
+
+.mobile-details{
+  width:220px;
+  height:14px;
+  margin-top:12px;
+}
+
+.date-skeleton{
+  display:flex;
+  flex-direction:column;
+}
+
+.skeleton-card{
+  display:flex;
+  gap:14px;
+}
+
 /* VIEW SWITCH */
 .desktop-view {
   display: block;
