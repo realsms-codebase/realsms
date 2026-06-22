@@ -135,7 +135,7 @@ import {
 import flutterwaveLogo from "../assets/flutterwave.png";
 import korapayLogo from "../assets/korapay.png";
 
-import "../styles/fund-wallet.css";
+import "../styles/fundwallet.css";
 
 const FundWallet = () => {
   const [amount, setAmount] = useState("5000");
