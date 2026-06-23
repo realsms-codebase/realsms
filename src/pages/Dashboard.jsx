@@ -142,6 +142,23 @@ const Dashboard = ({ darkMode }) => {
             prev === 0 ? slides.length - 1 : prev - 1
         );
 
+    const timeAgo = (date) => {
+    const now = new Date();
+    const past = new Date(date);
+    const diff = Math.floor((now - past) / 1000); // seconds
+
+    if (diff < 60) return `${diff}s ago`;
+
+    const mins = Math.floor(diff / 60);
+    if (mins < 60) return `${mins}m ago`;
+
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h ago`;
+
+    const days = Math.floor(hrs / 24);
+    return `${days}d ago`;
+};
+
     if (loading || loadingStats) {
         return (
             <div className={`dashboard-page ${darkMode ? "dark" : ""}`}>
@@ -401,7 +418,7 @@ const Dashboard = ({ darkMode }) => {
                 </span>
 
                 <small className="activity-time">
-                    {new Date(activity.createdAt).toLocaleString()}
+                   {timeAgo(activity.createdAt)}
                 </small>
             </div>
         </div>
