@@ -105,6 +105,35 @@ const Dashboard = ({ darkMode }) => {
         return () => clearInterval(interval);
     }, []);
 
+//     useEffect(() => {
+//     const fetchActivities = async () => {
+//         try {
+//             const token = localStorage.getItem("token");
+
+//             const { data } = await axios.get(
+//                 `${API_URL}/api/activity/live`,
+//                 {
+//                     headers: {
+//                         Authorization: `Bearer ${token}`,
+//                     },
+//                 }
+//             );
+
+//             setLiveActivities(data || []);
+//         } catch (err) {
+//             console.error(
+//                 "Failed to fetch live activities:",
+//                 err.response?.data || err.message
+//             );
+//             setLiveActivities([]);
+//         } finally {
+//             setLoadingActivities(false);
+//         }
+//     };
+
+//     fetchActivities();
+// }, []);
+
     useEffect(() => {
     const fetchActivities = async () => {
         try {
@@ -121,17 +150,20 @@ const Dashboard = ({ darkMode }) => {
 
             setLiveActivities(data || []);
         } catch (err) {
-            console.error(
-                "Failed to fetch live activities:",
-                err.response?.data || err.message
-            );
+            console.error(err);
             setLiveActivities([]);
         } finally {
             setLoadingActivities(false);
         }
     };
 
+    // initial fetch
     fetchActivities();
+
+    // 🔥 auto refresh every 5 seconds
+    const interval = setInterval(fetchActivities, 5000);
+
+    return () => clearInterval(interval);
 }, []);
 
     const nextSlide = () =>
