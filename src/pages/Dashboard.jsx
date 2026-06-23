@@ -94,6 +94,8 @@ const Dashboard = ({ darkMode }) => {
     const [loadingStats, setLoadingStats] = useState(true);
     const [showNotice, setShowNotice] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [liveActivities, setLiveActivities] = useState([]);
+    const [loadingActivities, setLoadingActivities] = useState(true);
 
     useEffect(() => {
         document.title = "Dashboard - RealSMS";
@@ -141,6 +143,35 @@ const Dashboard = ({ darkMode }) => {
 
         return () => clearInterval(interval);
     }, []);
+
+    useEffect(() => {
+    const fetchActivities = async () => {
+        try {
+            const token = localStorage.getItem("token");
+
+            const { data } = await axios.get(
+                `${API_URL}/api/activity/live`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            setLiveActivities(data || []);
+        } catch (err) {
+            console.error(
+                "Failed to fetch live activities:",
+                err.response?.data || err.message
+            );
+            setLiveActivities([]);
+        } finally {
+            setLoadingActivities(false);
+        }
+    };
+
+    fetchActivities();
+}, []);
 
     const nextSlide = () =>
         setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -365,35 +396,56 @@ const Dashboard = ({ darkMode }) => {
                         <h3>Live Activities</h3>
                     </div>
 
-                    {activities.map((activity, index) => (
-                        <div key={index} className="activity-row">
-                            <div className="activity-left">
-                                <div className={`activity-icon ${activity.iconClass}`}>
-                                    {activity.icon}
-                                </div>
+                   {loadingActivities ? (
+    <p className="loading-text">Loading activities...</p>
+) : liveActivities.length === 0 ? (
+    <p className="empty-text">No recent activities</p>
+) : (
+    liveActivities.map((activity, index) => (
+        <div key={index} className="activity-row">
+            <div className="activity-left">
+                <div
+                    className={`activity-icon ${
+                        activity.type === "wallet"
+                            ? "wallet-icon"
+                            : activity.type === "sms"
+                            ? "sms-icon"
+                            : "vpn-icon"
+                    }`}
+                >
+                    {activity.type === "wallet" && <FaWallet />}
+                    {activity.type === "sms" && <FiMessageSquare />}
+                    {activity.type === "vpn" && <FiShield />}
+                </div>
 
-                                <div className="activity-content">
-                                    <p className="activity-text">
-                                        <span className="activity-email-inline">
-                                            {maskEmail(activity.email)}
-                                        </span>{" "}
-                                        {activity.action}
-                                    </p>
-                                </div>
-                            </div>
+                <div className="activity-content">
+                    <p className="activity-text">
+                        <span className="activity-email-inline">
+                            {maskEmail(activity.email)}
+                        </span>{" "}
+                        {activity.action}
+                    </p>
+                </div>
+            </div>
 
-                            <div className="activity-right">
-                                <span
-                                    className={
-                                        activity.success ? "status success" : "status failed"
-                                    }
-                                >
-                                    {activity.status}
-                                </span>
-                                <small className="activity-time">{activity.time}</small>
-                            </div>
-                        </div>
-                    ))}
+            <div className="activity-right">
+                <span
+                    className={
+                        activity.success
+                            ? "status success"
+                            : "status failed"
+                    }
+                >
+                    {activity.status}
+                </span>
+
+                <small className="activity-time">
+                    {new Date(activity.createdAt).toLocaleString()}
+                </small>
+            </div>
+        </div>
+    ))
+)
                 </div>
 
                 <div className="overview-card">
