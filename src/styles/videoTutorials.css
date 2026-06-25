@@ -350,7 +350,7 @@
   }
 
   .footer-left {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
 }
