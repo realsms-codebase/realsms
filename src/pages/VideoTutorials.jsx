@@ -6,7 +6,7 @@ import {
   FiSearch,
   FiPlay,
   FiArrowRight,
-  FiBookOpen,
+  FiHeadphones,
 } from "react-icons/fi";
 
 const tutorials = [
@@ -126,7 +126,7 @@ const VideoTutorials = () => {
       <div className="tutorial-footer">
         <div className="footer-left">
           <div className="icon-box">
-            <FiBookOpen />
+            <FiHeadphones />
           </div>
 
           <div>
