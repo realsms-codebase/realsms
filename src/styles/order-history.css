@@ -572,35 +572,43 @@
     justify-content: flex-end;
   } */
 
-  .pagination{
+   .pagination{
     display:flex;
-    flex-direction:row !important;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
+    flex-direction:row !important;
     flex-wrap:nowrap;
-    gap:10px;
+    width:100%;
+    gap:8px;
   }
 
   .pagination p{
+    display:block;
     margin:0;
-    font-size:110px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    color: var(--secondary-text);
+    font-size:11px;
+    color:var(--secondary-text);
+
     flex:1;
+    min-width:0;
+    white-space:nowrap;
   }
 
   .page-buttons{
     display:flex;
     align-items:center;
     gap:6px;
-    margin-left:auto;
-    width:auto;
-    flex-shrink:0;
+
+    width:unset !important;
+    margin-left:0;
+    flex:none;
   }
 
   .page-buttons button{
-    padding:6px 10px;
+    width:30px;
+    height:30px;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
 }
