@@ -62,20 +62,17 @@ const VideoTutorials = () => {
   return (
     <div className="video-page">
 
-      {/* HERO */}
-      <div className="tutorial-hero">
-        <div className="hero-content">
-          <h1>Video Tutorials</h1>
-          <p>
-            Learn how to use our SMS/OTP platform with step-by-step
-            video guides.
-          </p>
-        </div>
+     <div className="video-tutorial-header">
+        <button
+          className="back-button"
+          onClick={() => navigate(-1)}
+        >
+          <FiArrowLeft />
+        </button>
 
-        <div className="hero-image">
-          <div className="laptop">
-            <FiPlay />
-          </div>
+        <div>
+          <h1>Video Tutorials</h1>
+          <p>Learn how to use our SMS/OTP platform with step-by-step video guides.</p>
         </div>
       </div>
 
