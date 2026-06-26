@@ -242,10 +242,18 @@ const Topbar = ({ toggleSidebar }) => {
     className="notif-item"
     onClick={() => handleNotificationClick(n, n.type)}
   >
-    <div className="notif-content">
+    {/* <div className="notif-content">
       <span>{n.text}</span>
       <small>{formatNotifDate(n.time)}</small>
-    </div>
+    </div> */}
+
+    <div className="notif-content">
+  <span className="notif-text">{n.text}</span>
+
+  <small className="notif-time">
+    {formatNotifDate(n.time)}
+  </small>
+</div>
   </div>
 ))}
             </div>
