@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FiMenu,
   FiCreditCard,
@@ -15,6 +16,7 @@ const Topbar = ({ toggleSidebar }) => {
 
   const notifRef = useRef(null);
   const { balance } = useBalance();
+  const navigate = useNavigate();
 
   const [notifications, setNotifications] = useState({
     support: [],
@@ -143,6 +145,27 @@ const Topbar = ({ toggleSidebar }) => {
     return () =>
       document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+ const handleNotificationClick = (notification, type) => {
+  // Remove clicked notification
+  setNotifications((prev) => ({
+    ...prev,
+    [type]: prev[type].filter(
+      (n) =>
+        n._id !== notification._id &&
+        n.time !== notification.time
+    ),
+  }));
+
+  setNotifOpen(false);
+
+  // Route by notification category
+  if (type === "support") {
+    navigate("/support");
+  } else if (type === "activity") {
+    navigate("/transaction-history");
+  }
+};
 
   return (
     <div className="topbar">
