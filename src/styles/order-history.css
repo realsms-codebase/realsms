@@ -408,6 +408,17 @@
   background: linear-gradient(135deg, var(--primary), #6366f1);
 }
 
+.refund-btn {
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--primary), #ef4444);
+}
+
 /* PAGINATION */
 .pagination {
   width: 100%;
