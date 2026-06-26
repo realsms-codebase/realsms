@@ -368,9 +368,21 @@ const TransactionMobileSkeleton = () => {
                                                 </span>
                                             </div>
 
-                                            <p className="timeline-number">
+                                            {/* <p className="timeline-number">
                                                 {tx.reference || tx.transactionId || tx._id}
-                                            </p>
+                                            </p> */}
+
+                                            {(() => {
+    const ref = tx.reference || tx.transactionId || tx._id;
+
+    return (
+        <p className="timeline-number">
+            {ref?.length > 23
+                ? `${ref.slice(0, 23)}...`
+                : ref}
+        </p>
+    );
+})()}
 
                                             <p className="timeline-country">
                                                 {tx.provider?.toUpperCase() || "-"}
