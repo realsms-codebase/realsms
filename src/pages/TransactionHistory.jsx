@@ -1,5 +1,9 @@
 import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
+import {
+    FiChevronLeft,
+    FiChevronRight,
+} from "react-icons/fi";
 import "../styles/transaction-history.css";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -398,7 +402,7 @@ const TransactionMobileSkeleton = () => {
                                         onClick={() => changePage(currentPage - 1)}
                                         disabled={currentPage === 1}
                                     >
-                                        Prev
+                                        <FiChevronLeft />
                                     </button>
 
                                     <button className="active">{currentPage}</button>
@@ -407,7 +411,7 @@ const TransactionMobileSkeleton = () => {
                                         onClick={() => changePage(currentPage + 1)}
                                         disabled={currentPage === totalPages}
                                     >
-                                        Next
+                                        <FiChevronRight />
                                     </button>
                                 </div>
                             </div>
