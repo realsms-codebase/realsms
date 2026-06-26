@@ -69,6 +69,33 @@ const NumberHistory = ({ darkMode }) => {
     //     }
     // };
 
+    const handleRefund = async (orderid) => {
+    try {
+        setLoadingId(orderid);
+
+        const res = await axios.post(
+            `${API_URL}/api/smspool/refund`,
+            { orderid },
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        );
+
+        if (res.data.success) {
+            alert("Refund successful");
+            fetchOrders();
+        } else {
+            alert(res.data.message || "Refund failed");
+        }
+    } catch (err) {
+        alert("Failed to process refund");
+    } finally {
+        setLoadingId(null);
+    }
+};
+
     const TableSkeleton = () => {
     return (
         <div className="desktop-view">
@@ -406,18 +433,26 @@ const MobileSkeleton = () => {
                                                     </td>
 
                                                     <td>
-                                                        {["waiting", "received"].includes(order.status) ? (
-                                                            <button
-                                                                className="resend-btn"
-                                                                disabled={loadingId === order.orderid}
-                                                                onClick={() => handleResend(order.orderid)}
-                                                            >
-                                                                {loadingId === order.orderid ? "Sending..." : "Resend"}
-                                                            </button>
-                                                        ) : (
-                                                            "-"
-                                                        )}
-                                                    </td>
+    {order.status === "waiting" ? (
+        <button
+            className="refund-btn"
+            disabled={loadingId === order.orderid}
+            onClick={() => handleRefund(order.orderid)}
+        >
+            {loadingId === order.orderid ? "Processing..." : "Refund"}
+        </button>
+    ) : order.status === "received" ? (
+        <button
+            className="resend-btn"
+            disabled={loadingId === order.orderid}
+            onClick={() => handleResend(order.orderid)}
+        >
+            {loadingId === order.orderid ? "Sending..." : "Resend"}
+        </button>
+    ) : (
+        "-"
+    )}
+</td>
                                                 </tr>
                                             );
                                         })}
@@ -462,15 +497,23 @@ const MobileSkeleton = () => {
                                                 <div className="timeline-bottom">
                                                     <span>{dateInfo.relativeTime}</span>
 
-                                                    {["waiting", "received"].includes(order.status) && (
-                                                        <button
-                                                            className="resend-btn"
-                                                            disabled={loadingId === order.orderid}
-                                                            onClick={() => handleResend(order.orderid)}
-                                                        >
-                                                            {loadingId === order.orderid ? "Sending..." : "Resend"}
-                                                        </button>
-                                                    )}
+                                                   {order.status === "waiting" ? (
+    <button
+        className="refund-btn"
+        disabled={loadingId === order.orderid}
+        onClick={() => handleRefund(order.orderid)}
+    >
+        {loadingId === order.orderid ? "Processing..." : "Refund"}
+    </button>
+) : order.status === "received" ? (
+    <button
+        className="resend-btn"
+        disabled={loadingId === order.orderid}
+        onClick={() => handleResend(order.orderid)}
+    >
+        {loadingId === order.orderid ? "Sending..." : "Resend"}
+    </button>
+) : null}
                                                 </div>
                                             </div>
                                         </div>
