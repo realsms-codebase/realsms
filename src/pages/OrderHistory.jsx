@@ -96,6 +96,17 @@ const NumberHistory = ({ darkMode }) => {
 //     }
 // };
 
+    const canRefund = (order) => {
+    if (order.status !== "waiting") return false;
+
+    const createdTime = new Date(order.createdAt);
+    const now = new Date();
+
+    const diffMinutes = (now - createdTime) / (1000 * 60);
+
+    return diffMinutes >= 10;
+};
+
     const handleRefund = async (orderid) => {
     try {
         setLoadingId(orderid);
@@ -491,21 +502,25 @@ const MobileSkeleton = () => {
                                                     </td>
 
                                                     <td>
-    {order.status === "waiting" ? (
-        <button
-            className="refund-btn"
-            disabled={loadingId === order.orderid}
-            onClick={() => handleRefund(order.orderid)}
-        >
-            {loadingId === order.orderid ? "Processing..." : "Refund"}
-        </button>
-    ) : order.status === "received" ? (
+    {order.status === "received" ? (
         <button
             className="resend-btn"
             disabled={loadingId === order.orderid}
             onClick={() => handleResend(order.orderid)}
         >
-            {loadingId === order.orderid ? "Sending..." : "Resend"}
+            {loadingId === order.orderid
+                ? "Sending..."
+                : "Resend"}
+        </button>
+    ) : canRefund(order) ? (
+        <button
+            className="refund-btn"
+            disabled={loadingId === order.orderid}
+            onClick={() => handleRefund(order.orderid)}
+        >
+            {loadingId === order.orderid
+                ? "Processing..."
+                : "Refund"}
         </button>
     ) : (
         "-"
@@ -555,21 +570,25 @@ const MobileSkeleton = () => {
                                                 <div className="timeline-bottom">
                                                     <span>{dateInfo.relativeTime}</span>
 
-                                                   {order.status === "waiting" ? (
-    <button
-        className="refund-btn"
-        disabled={loadingId === order.orderid}
-        onClick={() => handleRefund(order.orderid)}
-    >
-        {loadingId === order.orderid ? "Processing..." : "Refund"}
-    </button>
-) : order.status === "received" ? (
+                                                  {order.status === "received" ? (
     <button
         className="resend-btn"
         disabled={loadingId === order.orderid}
         onClick={() => handleResend(order.orderid)}
     >
-        {loadingId === order.orderid ? "Sending..." : "Resend"}
+        {loadingId === order.orderid
+            ? "Sending..."
+            : "Resend"}
+    </button>
+) : canRefund(order) ? (
+    <button
+        className="refund-btn"
+        disabled={loadingId === order.orderid}
+        onClick={() => handleRefund(order.orderid)}
+    >
+        {loadingId === order.orderid
+            ? "Processing..."
+            : "Refund"}
     </button>
 ) : null}
                                                 </div>
