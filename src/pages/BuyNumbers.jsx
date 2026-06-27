@@ -452,104 +452,292 @@ useEffect(() => {
     };
 
     // ---------------- HANDLE BUY ----------------
-    const handleBuy = async (service) => {
-        if (!selectedCountry)
-            return alert("Please select a country first!");
+    // const handleBuy = async (service) => {
+    //     if (!selectedCountry)
+    //         return alert("Please select a country first!");
 
-        if (!service.price)
-            return alert(
-                "Service not available for this country!"
-            );
+    //     if (!service.price)
+    //         return alert(
+    //             "Service not available for this country!"
+    //         );
 
-        if (balance < service.price)
-            return alert("Insufficient balance");
+    //     if (balance < service.price)
+    //         return alert("Insufficient balance");
 
-        if (orderStatus === "waiting")
-            return alert(
-                "You already have an active order!"
-            );
+    //     if (orderStatus === "waiting")
+    //         return alert(
+    //             "You already have an active order!"
+    //         );
 
-        const previousBalance = balance;
+    //     const previousBalance = balance;
 
-        // Instant UI deduction
-        setBalance((prev) => prev - service.price);
+    //     // Instant UI deduction
+    //     setBalance((prev) => prev - service.price);
+
+    //     setOrderStatus("waiting");
+    //     setOtp(null);
+    //     setTimeLeft(600);
+    //     setCopied(false);
+
+    //     try {
+    //         const res = await axios.post(
+    //             `${API_URL}/api/smspool/buy`,
+    //             {
+    //                 country: selectedCountry.ID,
+    //                 service: service.ID,
+    //             },
+    //             {
+    //                 headers: {
+    //                     Authorization: `Bearer ${token}`,
+    //                 },
+    //             }
+    //         );
+
+    //         if (res.data.success === 0) {
+    //             throw new Error(res.data.message);
+    //         }
+
+    //         const { number, orderid } = res.data.data;
+    //         const expiryTime = Date.now() + 600000;
+
+    //         localStorage.setItem(
+    //             "activeOrder",
+    //             JSON.stringify({
+    //                 service,
+    //                 country: selectedCountry,
+    //                 number,
+    //                 orderid,
+    //                 expiryTime,
+    //             })
+    //         );
+
+    //         setActiveOrder({
+    //             ...service,
+    //             number,
+    //             orderid,
+    //         });
+
+    //         if (pollOtp.current)
+    //             clearInterval(pollOtp.current);
+
+    //         pollOtp.current = setInterval(async () => {
+    //             try {
+    //                 const otpRes = await axios.post(
+    //                     `${API_URL}/api/smspool/otp`,
+    //                     { orderid },
+    //                     {
+    //                         headers: {
+    //                             Authorization: `Bearer ${token}`,
+    //                         },
+    //                     }
+    //                 );
+
+    //                 if (otpRes.data?.otp) {
+    //                     setOtp(otpRes.data.otp);
+    //                     setOrderStatus("received");
+    //                     clearInterval(pollOtp.current);
+    //                     localStorage.removeItem("activeOrder");
+    //                 }
+    //             } catch { }
+    //         }, 2000);
+    //     } catch (err) {
+    //         setBalance(previousBalance);
+    //         setOrderStatus("idle");
+    //         fetchBalance();
+
+    //         alert(
+    //             err.response?.data?.message || err.message
+    //         );
+    //     }
+    // };
+
+    // ---------------- HANDLE BUY ----------------
+const handleBuy = async (service) => {
+    if (!selectedCountry) {
+        return alert("Please select a country first!");
+    }
+
+    if (!service.price || !service.pool) {
+        return alert(
+            "Service unavailable for this country"
+        );
+    }
+
+    if (balance < service.price) {
+        return alert(
+            "Insufficient balance"
+        );
+    }
+
+    if (orderStatus === "waiting") {
+        return alert(
+            "You already have an active order!"
+        );
+    }
+
+    const previousBalance = balance;
+
+    try {
+        setActionLoading(true);
+
+        // Optimistic balance update
+        setBalance(
+            (prev) =>
+                prev - service.price
+        );
 
         setOrderStatus("waiting");
         setOtp(null);
         setTimeLeft(600);
         setCopied(false);
 
-        try {
-            const res = await axios.post(
-                `${API_URL}/api/smspool/buy`,
-                {
-                    country: selectedCountry.ID,
-                    service: service.ID,
+        const res = await axios.post(
+            `${API_URL}/api/smspool/buy`,
+            {
+                country:
+                    selectedCountry.ID,
+                service:
+                    service.ID,
+                pool:
+                    service.pool,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
                 },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-
-            if (res.data.success === 0) {
-                throw new Error(res.data.message);
             }
+        );
 
-            const { number, orderid } = res.data.data;
-            const expiryTime = Date.now() + 600000;
-
-            localStorage.setItem(
-                "activeOrder",
-                JSON.stringify({
-                    service,
-                    country: selectedCountry,
-                    number,
-                    orderid,
-                    expiryTime,
-                })
-            );
-
-            setActiveOrder({
-                ...service,
-                number,
-                orderid,
-            });
-
-            if (pollOtp.current)
-                clearInterval(pollOtp.current);
-
-            pollOtp.current = setInterval(async () => {
-                try {
-                    const otpRes = await axios.post(
-                        `${API_URL}/api/smspool/otp`,
-                        { orderid },
-                        {
-                            headers: {
-                                Authorization: `Bearer ${token}`,
-                            },
-                        }
-                    );
-
-                    if (otpRes.data?.otp) {
-                        setOtp(otpRes.data.otp);
-                        setOrderStatus("received");
-                        clearInterval(pollOtp.current);
-                        localStorage.removeItem("activeOrder");
-                    }
-                } catch { }
-            }, 2000);
-        } catch (err) {
-            setBalance(previousBalance);
-            setOrderStatus("idle");
-            fetchBalance();
-
-            alert(
-                err.response?.data?.message || err.message
+        if (
+            !res.data ||
+            res.data.success === 0
+        ) {
+            throw new Error(
+                res.data?.message ||
+                "Purchase failed"
             );
         }
-    };
+
+        const {
+            number,
+            orderid,
+            pricePaid,
+        } = res.data.data;
+
+        // Correct balance using actual charged amount
+        setBalance(
+            previousBalance -
+            pricePaid
+        );
+
+        const expiryTime =
+            Date.now() + 600000;
+
+        localStorage.setItem(
+            "activeOrder",
+            JSON.stringify({
+                service: {
+                    ...service,
+                    price: pricePaid,
+                },
+
+                country:
+                    selectedCountry,
+
+                number,
+                orderid,
+                expiryTime,
+            })
+        );
+
+        setActiveOrder({
+            ...service,
+            number,
+            orderid,
+            price: pricePaid,
+        });
+
+        // Start OTP polling
+        if (pollOtp.current) {
+            clearInterval(
+                pollOtp.current
+            );
+        }
+
+        pollOtp.current =
+            setInterval(
+                async () => {
+                    try {
+                        const otpRes =
+                            await axios.post(
+                                `${API_URL}/api/smspool/otp`,
+                                {
+                                    orderid,
+                                },
+                                {
+                                    headers: {
+                                        Authorization:
+                                            `Bearer ${token}`,
+                                    },
+                                }
+                            );
+
+                        if (
+                            otpRes.data
+                                ?.otp
+                        ) {
+                            setOtp(
+                                otpRes.data
+                                    .otp
+                            );
+
+                            setOrderStatus(
+                                "received"
+                            );
+
+                            clearInterval(
+                                pollOtp.current
+                            );
+
+                            localStorage.removeItem(
+                                "activeOrder"
+                            );
+                        }
+                    } catch (err) {
+                        console.error(
+                            err
+                        );
+                    }
+                },
+                2000
+            );
+
+    } catch (err) {
+
+        // Restore balance if failed
+        setBalance(
+            previousBalance
+        );
+
+        setOrderStatus(
+            "idle"
+        );
+
+        fetchBalance();
+
+        alert(
+            err.response?.data
+                ?.message ||
+            err.message ||
+            "Purchase failed"
+        );
+
+    } finally {
+        setActionLoading(
+            false
+        );
+    }
+};
 
     // ---------------- COUNTDOWN ----------------
     useEffect(() => {
