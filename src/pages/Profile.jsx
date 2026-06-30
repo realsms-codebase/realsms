@@ -22,9 +22,18 @@ const Profile = () => {
   return (
     <div className="profile-settings">
 
-      <div className="settings-header">
-        <h1>Profile</h1>
-        <p>Update your personal information.</p>
+      <div className="profile-header">
+        <button
+          className="back-button"
+          onClick={() => navigate(-1)}
+        >
+          <FiArrowLeft />
+        </button>
+
+        <div>
+          <h1>Profile</h1>
+          <p>Update your personal information.</p>
+        </div>
       </div>
 
       <div className="settings-card">
