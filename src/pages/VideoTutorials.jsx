@@ -207,11 +207,24 @@ const VideoTutorials = () => {
 
         {loading ? (
 
-          <h3>
-            Loading...
-          </h3>
+  [...Array(6)].map((_, index) => (
+    <div
+      key={index}
+      className="tutorial-card tutorial-skeleton"
+    >
+      <div className="thumbnail skeleton-block"></div>
 
-      ) : filteredTutorials.length === 0 ? (
+      <div className="card-content">
+        <div className="skeleton-line tutorial-title"></div>
+
+        <div className="skeleton-line tutorial-desc"></div>
+
+        <div className="skeleton-line tutorial-desc short"></div>
+      </div>
+    </div>
+  ))
+
+) : filteredTutorials.length === 0 ? (
 
   <div className="no-tutorials">
     <div className="no-tutorials-icon">
