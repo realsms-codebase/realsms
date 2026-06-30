@@ -11,6 +11,7 @@ import {
   FiHeadphones,
   FiFileText,
   FiLogOut,
+  FiPlayCircle,
   FiChevronDown,
   FiSettings,
 } from "react-icons/fi";
@@ -201,6 +202,13 @@ const UserSidebar = ({ isOpen, toggleSidebar }) => {
             <span>Fund Wallet</span>
           </NavLink>
 
+          <NavLink to="/video-tutorial" className={({ isActive }) =>
+            isActive ? "sidebar__link active" : "sidebar__link"
+          } onClick={handleNavClick}>
+            <FiPlayCircle />
+            <span>Video Tutorials</span>
+          </NavLink>
+
           <NavLink to="/support" className={({ isActive }) =>
             isActive
               ? "sidebar__link active sidebar__link--badge"
@@ -253,13 +261,13 @@ const UserSidebar = ({ isOpen, toggleSidebar }) => {
                 Settings
               </button>
 
-              <button
+              {/* <button
                 className="account-item signout"
                 onClick={handleLogout}
               >
                 <FiLogOut />
                 Sign Out
-              </button>
+              </button> */}
             </div>
           )}
         </div>
