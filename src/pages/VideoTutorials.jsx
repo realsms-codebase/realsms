@@ -7,7 +7,6 @@ import axios from "axios";
 import "../styles/videoTutorials.css";
 
 import {
-  FiArrowLeft,
   FiSearch,
   FiPlay,
   FiArrowRight,
@@ -114,16 +113,6 @@ const VideoTutorials = () => {
     <div className="video-page">
 
       <div className="video-tutorial-header">
-
-        <button
-          className="back-button"
-          onClick={() =>
-            navigate(-1)
-          }
-        >
-          <FiArrowLeft />
-        </button>
-
         <div>
 
           <h1>
