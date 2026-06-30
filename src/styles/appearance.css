@@ -141,37 +141,14 @@
 }
 
 /* Mobile */
-@media (max-width: 768px) {
-   /* .appearance-card {
+@media (max-width:768px){
+
+  /* Leave theme selector unchanged */
+  .theme-card{
     flex-direction: column;
     align-items: flex-start;
     gap: 14px;
     border-radius: 14px;
-  } */
-
-   /* Mobile */
-@media (max-width:768px){
-
-  .appearance-card{
-    flex-direction: row; /* keep horizontal */
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    border-radius: 14px;
-    padding: 16px;
-  }
-
-  .setting-content{
-    flex: 1;
-    min-width: 0;
-  }
-
-  .setting-content h4{
-    font-size: 13px;
-  }
-
-  .setting-content p{
-    font-size: 11px;
   }
 
   .theme-selector{
@@ -183,9 +160,23 @@
     justify-content: center;
   }
 
-  .switch{
+  /* Apply desktop layout only to switch cards */
+  .appearance-card:not(.theme-card){
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-radius: 14px;
+    padding: 16px;
+  }
+
+  .appearance-card:not(.theme-card) .setting-content{
+    flex: 1;
+    min-width: 0;
+  }
+
+  .appearance-card:not(.theme-card) .switch{
     flex-shrink: 0;
   }
 
-}
 }
