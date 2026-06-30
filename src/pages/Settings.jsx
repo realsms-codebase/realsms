@@ -3,7 +3,7 @@ import {
   FiUser,
   FiMoon,
   FiChevronRight,
-  FiPlayCircle,
+  FiGlobe,
   FiLogOut,
 } from "react-icons/fi";
 
@@ -66,7 +66,7 @@ export default function Settings() {
       icon: <FiUser />,
       title: "Profile",
       desc: "Update your personal information",
-      path: "/profile",
+      path: "/settings/profile",
     },
     {
       icon: <FiMoon />,
@@ -75,10 +75,10 @@ export default function Settings() {
       path: "/settings/appearance",
     },
    {
-     icon: <FiPlayCircle />,
-     title: "Video Tutorials",
-     desc: "Watch guides and learn how to use RealSMS",
-     path: "/settings/video-tutorials",
+     icon: <FiGlobe  />,
+     title: "Language",
+     desc: "Choose your preferred language and personalize your experience",
+     path: "/settings/language",
     },
   ];
 
