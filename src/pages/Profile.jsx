@@ -87,13 +87,13 @@
 
 // ProfileSettings.jsx
 
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { FiArrowLeft } from "react-icons/fi";
-import "../styles/profile.css";
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 
-const API_URL = process.env.REACT_APP_API_URL;
+...
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -113,14 +113,10 @@ const Profile = () => {
 
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    getProfile();
-  }, []);
-
   // =========================
   // FETCH PROFILE
   // =========================
-  const getProfile = async () => {
+  const getProfile = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -159,142 +155,12 @@ const Profile = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token, navigate]);
 
-  // =========================
-  // INPUT CHANGE
-  // =========================
-  const handleChange = (e) => {
-    const { name, value } = e.target;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
 
-  // =========================
-  // UPDATE PROFILE
-  // =========================
-  const handleSubmit = async () => {
-    try {
-      setSaving(true);
+  useEffect(() => {
+    getProfile();
+  }, [getProfile]);
 
-      const res = await axios.put(
-        `${API_URL}/api/auth/profile`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      alert(
-        res.data.message ||
-        "Profile updated successfully"
-      );
-
-      setInitialData(formData);
-
-    } catch (err) {
-      alert(
-        err.response?.data?.message ||
-        "Failed to update profile"
-      );
-
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  // =========================
-  // RESET CHANGES
-  // =========================
-  const handleCancel = () => {
-    setFormData(initialData);
-  };
-
-  if (loading) {
-    return (
-      <div className="profile-settings">
-        <div className="settings-card">
-          Loading profile...
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="profile-settings">
-
-      {/* Header */}
-      <div className="profile-header">
-
-        <button
-          className="back-button"
-          onClick={() => navigate(-1)}
-        >
-          <FiArrowLeft />
-        </button>
-
-        <div>
-          <h1>Profile</h1>
-          <p>Update your personal information.</p>
-        </div>
-
-      </div>
-
-      {/* Card */}
-      <div className="settings-card">
-
-        <div className="input-group">
-          <label>First Name</label>
-
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            placeholder="Enter first name"
-          />
-        </div>
-
-        <div className="input-group">
-          <label>Last Name</label>
-
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            placeholder="Enter last name"
-          />
-        </div>
-
-        <div className="button-group">
-
-          <button
-            className="cancel-btn"
-            onClick={handleCancel}
-          >
-            Cancel
-          </button>
-
-          <button
-            className="save-btn"
-            onClick={handleSubmit}
-            disabled={saving}
-          >
-            {saving ? "Saving..." : "Save Changes"}
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-  );
-};
-
-export default Profile;
+  ...
