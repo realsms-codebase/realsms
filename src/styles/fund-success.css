@@ -159,7 +159,7 @@ TEXT
   color: var(--text-color);
 }
 
-.fund-status-card h2 span {
+.success-status {
   color: #22c55e !important;
 }
 
