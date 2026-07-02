@@ -30,15 +30,18 @@ const FundCancel = () => {
 
   return (
     <div className="fund-status-page">
+      {/* Background dots */}
+      <div className="floating-dots dots-left"></div>
+      <div className="floating-dots dots-right"></div>
+
       <div className="fund-status-card cancel">
-        {/* Floating shapes */}
+        {/* Floating particles */}
         <span className="shape shape1"></span>
         <span className="shape shape2"></span>
         <span className="shape shape3"></span>
 
-        {/* Icon */}
+        {/* Cancel Icon */}
         <div className="icon-wrapper">
-          <div className="icon-glow"></div>
           <div className="status-icon cancel-icon">
             <FaTimes />
           </div>
@@ -55,7 +58,7 @@ const FundCancel = () => {
           Redirecting you to fund wallet...
         </p>
 
-        {/* Warning Box */}
+        {/* Warning box */}
         <div className="warning-box">
           <FaExclamationCircle />
           <div>
@@ -64,7 +67,7 @@ const FundCancel = () => {
           </div>
         </div>
 
-        {/* Action Button */}
+        {/* Button */}
         <button
           className="try-again-btn"
           onClick={() => navigate("/fund-wallet")}
@@ -74,7 +77,7 @@ const FundCancel = () => {
         </button>
       </div>
 
-      {/* Countdown */}
+      {/* Redirect info */}
       <div className="redirect-info">
         <FaClock />
         Redirecting automatically in <span>{countdown}</span> seconds...
