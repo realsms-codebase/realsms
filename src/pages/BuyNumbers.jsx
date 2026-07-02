@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef,  useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { FiSearch, FiCopy, FiInfo } from "react-icons/fi";
 import ServiceCard from "../components/ServiceCard";
@@ -59,63 +59,11 @@ const BuyNumbers = ({ darkMode }) => {
         "https://realsms-backend.vercel.app";
 
     const pollOtp = useRef(null);
-    const otpRequestInProgress = useRef(false);
 
     const formatNumber = (num) => {
         if (!num) return "";
         return String(num).startsWith("+") ? String(num) : `+${num}`;
     };
-
-    const startOtpPolling = (orderid) => {
-    if (pollOtp.current) {
-        clearInterval(pollOtp.current);
-    }
-
-    pollOtp.current = setInterval(async () => {
-        try {
-
-            if (document.hidden) return;
-
-            if (otpRequestInProgress.current) return;
-
-            otpRequestInProgress.current = true;
-
-            const otpRes = await axios.post(
-                `${API_URL}/api/smspool/otp`,
-                { orderid },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-
-            if (otpRes.data?.otp) {
-                setOtp(
-                    otpRes.data.otp
-                );
-
-                setOrderStatus(
-                    "received"
-                );
-
-                clearInterval(
-                    pollOtp.current
-                );
-
-                localStorage.removeItem(
-                    "activeOrder"
-                );
-            }
-
-        } catch (err) {
-            console.error(err);
-        } finally {
-            otpRequestInProgress.current = false;
-        }
-
-    }, 8000); // optimized for hobby
-};
 
     const handleCopyNumber = async () => {
         if (!activeOrder?.number) return;
@@ -175,15 +123,28 @@ const BuyNumbers = ({ darkMode }) => {
         setTimeLeft(remaining);
         setOrderStatus("waiting");
 
-        if (pollOtp.current) {
-    clearInterval(
-        pollOtp.current
-    );
-}
+        if (pollOtp.current) clearInterval(pollOtp.current);
 
-startOtpPolling(
-    parsed.orderid
-);
+        pollOtp.current = setInterval(async () => {
+            try {
+                const res = await axios.post(
+                    `${API_URL}/api/smspool/otp`,
+                    { orderid: parsed.orderid },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                if (res.data?.otp) {
+                    setOtp(res.data.otp);
+                    setOrderStatus("received");
+                    clearInterval(pollOtp.current);
+                    localStorage.removeItem("activeOrder");
+                }
+            } catch { }
+        }, 2000);
 
         return () => {
             if (pollOtp.current) clearInterval(pollOtp.current);
@@ -292,8 +253,70 @@ startOtpPolling(
         fetchCountries();
     }, [token, API_URL]);
 
+    // // ---------------- FETCH SERVICES ----------------
+    // useEffect(() => {
+    //     if (!selectedCountry || !token) return;
 
-//     // ---------------- FETCH SERVICES ----------------
+    //     const fetchServices = async () => {
+    //         setLoadingServices(true);
+
+    //         try {
+    //             const res = await axios.get(
+    //                 `${API_URL}/api/smspool/services`,
+    //                 {
+    //                     headers: {
+    //                         Authorization: `Bearer ${token}`,
+    //                     },
+    //                 }
+    //             );
+
+    //             const data = Array.isArray(res.data)
+    //                 ? res.data
+    //                 : [];
+
+    //             const withPrice = data.map((s) => {
+    //                 const priceObj = s.pricing?.find(
+    //                     (p) =>
+    //                         String(p.countryID) ===
+    //                         String(selectedCountry.ID)
+    //                 );
+
+    //                 const serviceName =
+    //                     s.name?.toLowerCase();
+
+    //                 return {
+    //                     ...s,
+    //                     price: priceObj?.priceNGN || null,
+
+    //                     logo:
+    //                         SERVICE_LOGOS[
+    //                         serviceName
+    //                         ] ||
+    //                         `https://img.logo.dev/search?query=${encodeURIComponent(
+    //                             s.name || ""
+    //                         )}&token=${process.env.REACT_APP_LOGO_DEV_KEY
+    //                         }`,
+
+    //                     popular:
+    //                         POPULAR_SERVICES.some(
+    //                             (name) =>
+    //                                 name.toLowerCase() ===
+    //                                 serviceName
+    //                         ),
+    //                 };
+    //             });
+    //             setServices(withPrice);
+    //         } catch {
+    //             setServices([]);
+    //         } finally {
+    //             setLoadingServices(false);
+    //         }
+    //     };
+
+    //     fetchServices();
+    // }, [selectedCountry, token, API_URL]);
+
+    // ---------------- FETCH SERVICES ----------------
 // useEffect(() => {
 //     if (!selectedCountry || !token) return;
 
@@ -304,80 +327,57 @@ startOtpPolling(
 
 //         try {
 //             const res = await axios.get(
-//                 `${API_URL}/api/smspool/services`,
-//                 {
-//                     headers: {
-//                         Authorization: `Bearer ${token}`,
-//                     },
-//                 }
-//             );
+//     `${API_URL}/api/smspool/services`,
+//     {
+//         headers: {
+//             Authorization: `Bearer ${token}`,
+//         },
+//     }
+// );
 
 //             const data = Array.isArray(res.data)
 //                 ? res.data
 //                 : [];
 
-//             const withPrice = data
-//                 .map((s) => {
+//             const withPrice = data.map((s) => {
 
-//                     // Get all prices for selected country
-//                     const countryPrices =
-//                         s.pricing?.filter(
-//                             (p) =>
-//                                 String(p.countryID) ===
-//                                 String(selectedCountry.ID)
-//                         ) || [];
+//     const countryPrices =
+//         s.pricing?.filter(
+//             (p) =>
+//                 String(p.countryID) ===
+//                 String(selectedCountry.ID)
+//         ) || [];
 
-//                     // Get cheapest pool
-//                     const priceObj =
-//                         countryPrices.sort(
-//                             (a, b) =>
-//                                 Number(a.priceNGN) -
-//                                 Number(b.priceNGN)
-//                         )[0];
+//     const priceObj = countryPrices.sort(
+//         (a,b) =>
+//             Number(a.priceNGN) -
+//             Number(b.priceNGN)
+//     )[0];
 
-//                     const serviceName =
-//                         s.name?.toLowerCase();
+//     return {
+//         ...s,
 
-//                     return {
-//                         ...s,
+//         price: priceObj?.priceNGN || null,
 
-//                         // Lowest available price
-//                         price:
-//                             priceObj?.priceNGN || null,
+//         // ADD THIS
+//         pool: priceObj?.pool || null,
 
-//                         // Save pool
-//                         pool:
-//                             priceObj?.pool || null,
+//         logo:
+//             SERVICE_LOGOS[
+//                 s.name?.toLowerCase()
+//             ] ||
+//             `https://img.logo.dev/search?query=${encodeURIComponent(
+//                 s.name || ""
+//             )}&token=${process.env.REACT_APP_LOGO_DEV_KEY}`,
 
-//                         logo:
-//                             SERVICE_LOGOS[
-//                                 serviceName
-//                             ] ||
-//                             `https://img.logo.dev/search?query=${encodeURIComponent(
-//                                 s.name || ""
-//                             )}&token=${
-//                                 process.env.REACT_APP_LOGO_DEV_KEY
-//                             }`,
-
-//                         popular:
-//                             POPULAR_SERVICES.some(
-//                                 (name) =>
-//                                     name.toLowerCase() ===
-//                                     serviceName
-//                             ),
-//                     };
-//                 })
-
-//                 // Services with available prices first
-//                 .sort((a, b) => {
-//                     if (a.price && !b.price)
-//                         return -1;
-
-//                     if (!a.price && b.price)
-//                         return 1;
-
-//                     return 0;
-//                 });
+//         popular:
+//             POPULAR_SERVICES.some(
+//                 (name)=>
+//                     name.toLowerCase()===
+//                     s.name?.toLowerCase()
+//             )
+//     };
+// });
 
 //             setServices(withPrice);
 
@@ -398,28 +398,20 @@ startOtpPolling(
 //     // Initial load
 //     fetchServices();
 
-//     // Refresh prices every 30 seconds
+//     // Auto refresh prices every 30 seconds
 //     const interval = setInterval(() => {
 //         fetchServices(false);
 //     }, 30000);
 
 //     return () => clearInterval(interval);
 
-// }, [
-//     selectedCountry,
-//     token,
-//     API_URL
-// ]);
+// }, [selectedCountry, token, API_URL]);
 
     // ---------------- FETCH SERVICES ----------------
 useEffect(() => {
     if (!selectedCountry || !token) return;
 
     const fetchServices = async (showLoader = true) => {
-
-        // Stop background requests if tab hidden
-        if (document.hidden) return;
-
         if (showLoader) {
             setLoadingServices(true);
         }
@@ -441,6 +433,7 @@ useEffect(() => {
             const withPrice = data
                 .map((s) => {
 
+                    // Get all prices for selected country
                     const countryPrices =
                         s.pricing?.filter(
                             (p) =>
@@ -448,6 +441,7 @@ useEffect(() => {
                                 String(selectedCountry.ID)
                         ) || [];
 
+                    // Get cheapest pool
                     const priceObj =
                         countryPrices.sort(
                             (a, b) =>
@@ -460,8 +454,14 @@ useEffect(() => {
 
                     return {
                         ...s,
-                        price: priceObj?.priceNGN || null,
-                        pool: priceObj?.pool || null,
+
+                        // Lowest available price
+                        price:
+                            priceObj?.priceNGN || null,
+
+                        // Save pool
+                        pool:
+                            priceObj?.pool || null,
 
                         logo:
                             SERVICE_LOGOS[
@@ -469,7 +469,9 @@ useEffect(() => {
                             ] ||
                             `https://img.logo.dev/search?query=${encodeURIComponent(
                                 s.name || ""
-                            )}&token=${process.env.REACT_APP_LOGO_DEV_KEY}`,
+                            )}&token=${
+                                process.env.REACT_APP_LOGO_DEV_KEY
+                            }`,
 
                         popular:
                             POPULAR_SERVICES.some(
@@ -479,16 +481,27 @@ useEffect(() => {
                             ),
                     };
                 })
+
+                // Services with available prices first
                 .sort((a, b) => {
-                    if (a.price && !b.price) return -1;
-                    if (!a.price && b.price) return 1;
+                    if (a.price && !b.price)
+                        return -1;
+
+                    if (!a.price && b.price)
+                        return 1;
+
                     return 0;
                 });
 
             setServices(withPrice);
 
         } catch (err) {
-            console.error(err);
+            console.error(
+                "Fetch services error:",
+                err
+            );
+
+            setServices([]);
         } finally {
             if (showLoader) {
                 setLoadingServices(false);
@@ -496,28 +509,21 @@ useEffect(() => {
         }
     };
 
+    // Initial load
     fetchServices();
 
-    // changed 30s → 2 minutes
-    const interval =
-    setInterval(
-        () => {
-
-            if (
-                !document.hidden
-            ) {
-                fetchServices(
-                    false
-                );
-            }
-
-        },
-        300000
-    ); // 5 mins
+    // Refresh prices every 30 seconds
+    const interval = setInterval(() => {
+        fetchServices(false);
+    }, 30000);
 
     return () => clearInterval(interval);
 
-}, [selectedCountry, token, API_URL]);
+}, [
+    selectedCountry,
+    token,
+    API_URL
+]);
 
 
     // ---------------- COUNTRY CHANGE ----------------
@@ -557,6 +563,106 @@ useEffect(() => {
 
         setSearch("");
     };
+
+    // ---------------- HANDLE BUY ----------------
+    // const handleBuy = async (service) => {
+    //     if (!selectedCountry)
+    //         return alert("Please select a country first!");
+
+    //     if (!service.price)
+    //         return alert(
+    //             "Service not available for this country!"
+    //         );
+
+    //     if (balance < service.price)
+    //         return alert("Insufficient balance");
+
+    //     if (orderStatus === "waiting")
+    //         return alert(
+    //             "You already have an active order!"
+    //         );
+
+    //     const previousBalance = balance;
+
+    //     // Instant UI deduction
+    //     setBalance((prev) => prev - service.price);
+
+    //     setOrderStatus("waiting");
+    //     setOtp(null);
+    //     setTimeLeft(600);
+    //     setCopied(false);
+
+    //     try {
+    //         const res = await axios.post(
+    //             `${API_URL}/api/smspool/buy`,
+    //             {
+    //                 country: selectedCountry.ID,
+    //                 service: service.ID,
+    //             },
+    //             {
+    //                 headers: {
+    //                     Authorization: `Bearer ${token}`,
+    //                 },
+    //             }
+    //         );
+
+    //         if (res.data.success === 0) {
+    //             throw new Error(res.data.message);
+    //         }
+
+    //         const { number, orderid } = res.data.data;
+    //         const expiryTime = Date.now() + 600000;
+
+    //         localStorage.setItem(
+    //             "activeOrder",
+    //             JSON.stringify({
+    //                 service,
+    //                 country: selectedCountry,
+    //                 number,
+    //                 orderid,
+    //                 expiryTime,
+    //             })
+    //         );
+
+    //         setActiveOrder({
+    //             ...service,
+    //             number,
+    //             orderid,
+    //         });
+
+    //         if (pollOtp.current)
+    //             clearInterval(pollOtp.current);
+
+    //         pollOtp.current = setInterval(async () => {
+    //             try {
+    //                 const otpRes = await axios.post(
+    //                     `${API_URL}/api/smspool/otp`,
+    //                     { orderid },
+    //                     {
+    //                         headers: {
+    //                             Authorization: `Bearer ${token}`,
+    //                         },
+    //                     }
+    //                 );
+
+    //                 if (otpRes.data?.otp) {
+    //                     setOtp(otpRes.data.otp);
+    //                     setOrderStatus("received");
+    //                     clearInterval(pollOtp.current);
+    //                     localStorage.removeItem("activeOrder");
+    //                 }
+    //             } catch { }
+    //         }, 2000);
+    //     } catch (err) {
+    //         setBalance(previousBalance);
+    //         setOrderStatus("idle");
+    //         fetchBalance();
+
+    //         alert(
+    //             err.response?.data?.message || err.message
+    //         );
+    //     }
+    // };
 
     // ---------------- HANDLE BUY ----------------
 const handleBuy = async (service) => {
@@ -664,15 +770,60 @@ const handleBuy = async (service) => {
             price: pricePaid,
         });
 
-       if (pollOtp.current) {
-    clearInterval(
-        pollOtp.current
-    );
-}
+        // Start OTP polling
+        if (pollOtp.current) {
+            clearInterval(
+                pollOtp.current
+            );
+        }
 
-startOtpPolling(
-    orderid
-);
+        pollOtp.current =
+            setInterval(
+                async () => {
+                    try {
+                        const otpRes =
+                            await axios.post(
+                                `${API_URL}/api/smspool/otp`,
+                                {
+                                    orderid,
+                                },
+                                {
+                                    headers: {
+                                        Authorization:
+                                            `Bearer ${token}`,
+                                    },
+                                }
+                            );
+
+                        if (
+                            otpRes.data
+                                ?.otp
+                        ) {
+                            setOtp(
+                                otpRes.data
+                                    .otp
+                            );
+
+                            setOrderStatus(
+                                "received"
+                            );
+
+                            clearInterval(
+                                pollOtp.current
+                            );
+
+                            localStorage.removeItem(
+                                "activeOrder"
+                            );
+                        }
+                    } catch (err) {
+                        console.error(
+                            err
+                        );
+                    }
+                },
+                2000
+            );
 
     } catch (err) {
 
@@ -769,42 +920,17 @@ startOtpPolling(
     }, [copied]);
 
     // ---------------- FILTER LOGIC ----------------
-const filteredServices = useMemo(() => {
-
     const normalizedSearch =
         search.trim().toLowerCase();
 
-    return normalizedSearch === ""
-        ? services.filter(
-            (service) =>
-                service.popular
-        )
-        : services.filter(
-            (service) =>
+    const filteredServices =
+        normalizedSearch === ""
+            ? services.filter((service) => service.popular)
+            : services.filter((service) =>
                 service.name
                     ?.toLowerCase()
-                    .includes(
-                        normalizedSearch
-                    )
-        );
-
-}, [services, search]);
-
-    useEffect(() => {
-
-    return () => {
-
-        if (
-            pollOtp.current
-        ) {
-            clearInterval(
-                pollOtp.current
+                    .includes(normalizedSearch)
             );
-        }
-
-    };
-
-}, []);
 
     return (
         <div
@@ -1017,4 +1143,3 @@ const filteredServices = useMemo(() => {
 };
 
 export default BuyNumbers;
-
