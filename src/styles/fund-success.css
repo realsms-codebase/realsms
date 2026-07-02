@@ -67,7 +67,7 @@ CARD
 }
 
 .success {
-  border-top: 4px solid #22c55e;
+  border-top: 4px solid #22c55e !important;
 }
 
 /* =========================
@@ -160,7 +160,7 @@ TEXT
 }
 
 .fund-status-card h2 span {
-  color: #22c55e;
+  color: #22c55e !important;
 }
 
 .fund-status-card > p {
