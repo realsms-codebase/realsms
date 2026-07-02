@@ -166,37 +166,65 @@ const Dashboard = ({ darkMode }) => {
     }, []);
 
     useEffect(() => {
-        const fetchActivities = async () => {
-            try {
-                const token = localStorage.getItem("token");
+    let interval;
 
-                const { data } = await axios.get(
-                    `${API_URL}/api/activity/live`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
+    const fetchActivities = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            if (!token) return;
 
-                setLiveActivities(data || []);
-            } catch (err) {
-                console.error(err);
-                setLiveActivities([]);
-            } finally {
-                setLoadingActivities(false);
-            }
-        };
+            const { data } = await axios.get(
+                `${API_URL}/api/activity/live`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
 
-        // initial fetch
-        fetchActivities();
+            setLiveActivities(data || []);
+        } catch (err) {
+            console.error(err);
+            setLiveActivities([]);
+        } finally {
+            setLoadingActivities(false);
+        }
+    };
 
-        // 🔥 auto refresh every 5 seconds
-        const interval = setInterval(fetchActivities, 5000);
+    // load once
+    fetchActivities();
 
-        return () => clearInterval(interval);
-    }, []);
+    // refresh only while tab is active
+    const handleVisibility = () => {
+        if (document.hidden) {
+            clearInterval(interval);
+        } else {
+            fetchActivities();
 
+            interval = setInterval(
+                fetchActivities,
+                60000 // 1 minute
+            );
+        }
+    };
+
+    handleVisibility();
+
+    document.addEventListener(
+        "visibilitychange",
+        handleVisibility
+    );
+
+    return () => {
+        clearInterval(interval);
+
+        document.removeEventListener(
+            "visibilitychange",
+            handleVisibility
+        );
+    };
+}, []);
+    
     const nextSlide = () =>
         setCurrentSlide((prev) => (prev + 1) % slides.length);
 
