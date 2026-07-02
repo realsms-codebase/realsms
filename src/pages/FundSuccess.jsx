@@ -43,7 +43,7 @@ const FundSuccess = () => {
         </div>
 
         <h2>
-          Payment <span>Successful</span>
+          Payment <span className="success-status">Successful</span>
         </h2>
 
         <p>
