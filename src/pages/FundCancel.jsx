@@ -38,14 +38,14 @@ const FundCancel = () => {
 
         {/* Cancel Icon */}
         <div className="icon-wrapper">
-          <div className="status-icon cancel-icon">
+          <div className="status-icon-cancel cancel-icon">
             <FaTimes />
           </div>
         </div>
 
         {/* Title */}
         <h2>
-          Payment <span>Cancelled</span>
+          Payment <span className="cancel-status">Cancelled</span>
         </h2>
 
         <p>
