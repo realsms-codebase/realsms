@@ -210,8 +210,8 @@ REDIRECT TEXT
   color: var(--secondary-text);
 }
 
-.redirect-info span {
-  color: #6f5eff;
+.cancel-countdown {
+  color: #ff476e;
   font-weight: 700;
 }
 
