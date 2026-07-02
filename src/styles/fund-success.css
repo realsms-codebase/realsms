@@ -127,7 +127,7 @@ ICON
 .status-icon {
   width: 82px;
   height: 82px;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+  background: linear-gradient(135deg, #22c55e, #16a34a) !important;
   color: white;
   border-radius: 50%;
   display: flex;
