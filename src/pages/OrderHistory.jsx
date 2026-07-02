@@ -69,16 +69,16 @@ const NumberHistory = ({ darkMode }) => {
 //         }
 //     };
     
-//     const canRefund = (order) => {
-//     if (order.status !== "waiting") return false;
+    const canRefund = (order) => {
+    if (order.status !== "waiting") return false;
 
-//     const createdTime = new Date(order.createdAt);
-//     const now = new Date();
+    const createdTime = new Date(order.createdAt);
+    const now = new Date();
 
-//     const diffMinutes = (now - createdTime) / (1000 * 60);
+    const diffMinutes = (now - createdTime) / (1000 * 60);
 
-//     return diffMinutes >= 10;
-// };
+    return diffMinutes >= 10;
+};
 
     const handleResend = async (orderid) => {
     try {
