@@ -92,7 +92,7 @@ ICON
   animation-delay: 0.8s;
 }
 
-.status-icon {
+.status-icon-cancel {
   width: 82px;
   height: 82px;
   background: linear-gradient(135deg, #ff4a73, #ff1744);
@@ -127,7 +127,7 @@ TEXT
   color: var(--text-color);
 }
 
-.fund-status-card h2 span {
+.cancel-status {
   color: #ff476e;
 }
 
