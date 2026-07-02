@@ -44,58 +44,31 @@ const NumberHistory = ({ darkMode }) => {
     // ================================
     //  HANDLE RESEND
     // ================================
-    // const handleResend = async (orderid) => {
-    //     try {
-    //         setLoadingId(orderid);
+    const handleResend = async (orderid) => {
+        try {
+            setLoadingId(orderid);
 
-    //         const res = await axios.post(
-    //             `${API_URL}/api/smspool/resend`,
-    //             { orderid },
-    //             {
-    //                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    //             }
-    //         );
+            const res = await axios.post(
+                `${API_URL}/api/smspool/resend`,
+                { orderid },
+                {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+                }
+            );
 
-    //         if (res.data.success) {
-    //             alert("OTP resent successfully! Check your number.");
-    //             fetchOrders();
-    //         } else {
-    //             alert(res.data.message || "Failed to resend OTP");
-    //         }
-    //     } catch (err) {
-    //         alert("Failed to resend OTP");
-    //     } finally {
-    //         setLoadingId(null);
-    //     }
-    // };
-
-//     const handleRefund = async (orderid) => {
-//     try {
-//         setLoadingId(orderid);
-
-//         const res = await axios.post(
-//             `${API_URL}/api/smspool/cancel`,
-//             { orderid },
-//             {
-//                 headers: {
-//                     Authorization: `Bearer ${localStorage.getItem("token")}`,
-//                 },
-//             }
-//         );
-
-//         if (res.data.success) {
-//             alert("Refund successful");
-//             fetchOrders();
-//         } else {
-//             alert(res.data.message || "Refund failed");
-//         }
-//     } catch (err) {
-//         alert("Failed to process refund");
-//     } finally {
-//         setLoadingId(null);
-//     }
-// };
-
+            if (res.data.success) {
+                alert("OTP resent successfully! Check your number.");
+                fetchOrders();
+            } else {
+                alert(res.data.message || "Failed to resend OTP");
+            }
+        } catch (err) {
+            alert("Failed to resend OTP");
+        } finally {
+            setLoadingId(null);
+        }
+    };
+    
     const canRefund = (order) => {
     if (order.status !== "waiting") return false;
 
@@ -236,35 +209,35 @@ const MobileSkeleton = () => {
     );
 };
 
-    const handleResend = async (orderid) => {
-        try {
-            setLoadingId(orderid);
+    // const handleResend = async (orderid) => {
+    //     try {
+    //         setLoadingId(orderid);
 
-            const res = await axios.post(
-                `${API_URL}/api/smspool/resend`,
-                { orderid },
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    },
-                }
-            );
+    //         const res = await axios.post(
+    //             `${API_URL}/api/smspool/resend`,
+    //             { orderid },
+    //             {
+    //                 headers: {
+    //                     Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //                 },
+    //             }
+    //         );
 
-            if (res.data.success) {
-                if (res.data.otp) {
-                    alert(`New OTP: ${res.data.otp}`);
-                } else {
-                    alert(res.data.message);
-                }
+    //         if (res.data.success) {
+    //             if (res.data.otp) {
+    //                 alert(`New OTP: ${res.data.otp}`);
+    //             } else {
+    //                 alert(res.data.message);
+    //             }
 
-                fetchOrders();
-            }
-        } catch (err) {
-            alert("Failed to resend OTP");
-        } finally {
-            setLoadingId(null);
-        }
-    };
+    //             fetchOrders();
+    //         }
+    //     } catch (err) {
+    //         alert("Failed to resend OTP");
+    //     } finally {
+    //         setLoadingId(null);
+    //     }
+    // };
 
     // ================================
     //  GET SERVICE NAME
