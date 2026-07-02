@@ -76,7 +76,7 @@ const FundCancel = () => {
       {/* Redirect info */}
       <div className="redirect-info">
         <FaClock />
-        Redirecting automatically in <span>{countdown}</span> seconds...
+        Redirecting automatically in <span className="cancel-countdown">{countdown}</span> seconds...
       </div>
     </div>
   );
