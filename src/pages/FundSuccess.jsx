@@ -1,37 +1,77 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaCheckCircle } from "react-icons/fa";
+import {
+  FaCheck,
+  FaCheckCircle,
+  FaWallet,
+  FaClock,
+} from "react-icons/fa";
 import "../styles/fund-success.css";
 
 const FundSuccess = () => {
   const navigate = useNavigate();
+  const [countdown, setCountdown] = useState(8);
 
   useEffect(() => {
     document.title = "Funding Successful - RealSMS";
 
-    // ⏳ Auto redirect to fund-wallet after 8 seconds
-    const timer = setTimeout(() => {
-      navigate("/fund-wallet");
-    }, 8000);
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          navigate("/fund-wallet");
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
-    return () => clearTimeout(timer);
+    return () => clearInterval(timer);
   }, [navigate]);
 
   return (
     <div className="fund-status-page">
       <div className="fund-status-card success">
-        <FaCheckCircle className="status-icon success-icon" />
+        <span className="shape shape1"></span>
+        <span className="shape shape2"></span>
+        <span className="shape shape3"></span>
 
-        <h2>Payment Successful!</h2>
+        {/* Success icon */}
+        <div className="icon-wrapper">
+          <div className="status-icon success-icon">
+            <FaCheck />
+          </div>
+        </div>
+
+        <h2>
+          Payment <span>Successful</span>
+        </h2>
+
         <p>
           Your wallet has been funded successfully.
           <br />
           Redirecting you to fund wallet...
         </p>
 
-        <button className="back-btn" onClick={() => navigate("/fund-wallet")}>
-          Go to Fund Wallet Now
+        <div className="success-box">
+          <FaCheckCircle />
+          <div>
+            <h4>Funds Added Successfully</h4>
+            <p>Your wallet balance has been updated.</p>
+          </div>
+        </div>
+
+        <button
+          className="go-wallet-btn"
+          onClick={() => navigate("/fund-wallet")}
+        >
+          <FaWallet />
+          Go to Fund Wallet
         </button>
+      </div>
+
+      <div className="redirect-info">
+        <FaClock />
+        Redirecting automatically in <span>{countdown}</span> seconds...
       </div>
     </div>
   );
