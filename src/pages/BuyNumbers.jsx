@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef,  useMemo } from "react";
 import axios from "axios";
 import { FiSearch, FiCopy, FiInfo } from "react-icons/fi";
 import ServiceCard from "../components/ServiceCard";
@@ -59,11 +59,63 @@ const BuyNumbers = ({ darkMode }) => {
         "https://realsms-backend.vercel.app";
 
     const pollOtp = useRef(null);
+    const otpRequestInProgress = useRef(false);
 
     const formatNumber = (num) => {
         if (!num) return "";
         return String(num).startsWith("+") ? String(num) : `+${num}`;
     };
+
+    const startOtpPolling = (orderid) => {
+    if (pollOtp.current) {
+        clearInterval(pollOtp.current);
+    }
+
+    pollOtp.current = setInterval(async () => {
+        try {
+
+            if (document.hidden) return;
+
+            if (otpRequestInProgress.current) return;
+
+            otpRequestInProgress.current = true;
+
+            const otpRes = await axios.post(
+                `${API_URL}/api/smspool/otp`,
+                { orderid },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            if (otpRes.data?.otp) {
+                setOtp(
+                    otpRes.data.otp
+                );
+
+                setOrderStatus(
+                    "received"
+                );
+
+                clearInterval(
+                    pollOtp.current
+                );
+
+                localStorage.removeItem(
+                    "activeOrder"
+                );
+            }
+
+        } catch (err) {
+            console.error(err);
+        } finally {
+            otpRequestInProgress.current = false;
+        }
+
+    }, 8000); // optimized for hobby
+};
 
     const handleCopyNumber = async () => {
         if (!activeOrder?.number) return;
@@ -123,28 +175,15 @@ const BuyNumbers = ({ darkMode }) => {
         setTimeLeft(remaining);
         setOrderStatus("waiting");
 
-        if (pollOtp.current) clearInterval(pollOtp.current);
+        if (pollOtp.current) {
+    clearInterval(
+        pollOtp.current
+    );
+}
 
-        pollOtp.current = setInterval(async () => {
-            try {
-                const res = await axios.post(
-                    `${API_URL}/api/smspool/otp`,
-                    { orderid: parsed.orderid },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-
-                if (res.data?.otp) {
-                    setOtp(res.data.otp);
-                    setOrderStatus("received");
-                    clearInterval(pollOtp.current);
-                    localStorage.removeItem("activeOrder");
-                }
-            } catch { }
-        }, 2000);
+startOtpPolling(
+    parsed.orderid
+);
 
         return () => {
             if (pollOtp.current) clearInterval(pollOtp.current);
@@ -460,9 +499,21 @@ useEffect(() => {
     fetchServices();
 
     // changed 30s → 2 minutes
-    const interval = setInterval(() => {
-        fetchServices(false);
-    }, 120000);
+    const interval =
+    setInterval(
+        () => {
+
+            if (
+                !document.hidden
+            ) {
+                fetchServices(
+                    false
+                );
+            }
+
+        },
+        300000
+    ); // 5 mins
 
     return () => clearInterval(interval);
 
@@ -613,49 +664,15 @@ const handleBuy = async (service) => {
             price: pricePaid,
         });
 
-        // Start OTP polling
-        if (pollOtp.current) {
-            clearInterval(
-                pollOtp.current
-            );
-        }
+       if (pollOtp.current) {
+    clearInterval(
+        pollOtp.current
+    );
+}
 
-pollOtp.current = setInterval(async () => {
-    try {
-
-        // stop polling if browser tab hidden
-        if (document.hidden) return;
-
-        const otpRes = await axios.post(
-            `${API_URL}/api/smspool/otp`,
-            { orderid },
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        );
-
-        if (otpRes.data?.otp) {
-
-            setOtp(otpRes.data.otp);
-
-            setOrderStatus("received");
-
-            clearInterval(
-                pollOtp.current
-            );
-
-            localStorage.removeItem(
-                "activeOrder"
-            );
-        }
-
-    } catch (err) {
-        console.error(err);
-    }
-
-}, 5000); 
+startOtpPolling(
+    orderid
+);
 
     } catch (err) {
 
@@ -752,17 +769,42 @@ pollOtp.current = setInterval(async () => {
     }, [copied]);
 
     // ---------------- FILTER LOGIC ----------------
+const filteredServices = useMemo(() => {
+
     const normalizedSearch =
         search.trim().toLowerCase();
 
-    const filteredServices =
-        normalizedSearch === ""
-            ? services.filter((service) => service.popular)
-            : services.filter((service) =>
+    return normalizedSearch === ""
+        ? services.filter(
+            (service) =>
+                service.popular
+        )
+        : services.filter(
+            (service) =>
                 service.name
                     ?.toLowerCase()
-                    .includes(normalizedSearch)
+                    .includes(
+                        normalizedSearch
+                    )
+        );
+
+}, [services, search]);
+
+    useEffect(() => {
+
+    return () => {
+
+        if (
+            pollOtp.current
+        ) {
+            clearInterval(
+                pollOtp.current
             );
+        }
+
+    };
+
+}, []);
 
     return (
         <div
