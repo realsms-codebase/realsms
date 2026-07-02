@@ -68,17 +68,6 @@ const NumberHistory = ({ darkMode }) => {
 //             setLoadingId(null);
 //         }
 //     };
-    
-    const canRefund = (order) => {
-    if (order.status !== "waiting") return false;
-
-    const createdTime = new Date(order.createdAt);
-    const now = new Date();
-
-    const diffMinutes = (now - createdTime) / (1000 * 60);
-
-    return diffMinutes >= 10;
-};
 
     const handleResend = async (orderid) => {
     try {
@@ -104,7 +93,7 @@ const NumberHistory = ({ darkMode }) => {
         const interval = setInterval(async () => {
             try {
                 const otpRes = await axios.post(
-                    `${API_URL}/api/smspool/getOtp`,
+                    `${API_URL}/api/smspool/otp`,
                     { orderid },
                     {
                         headers: {
@@ -150,6 +139,17 @@ const NumberHistory = ({ darkMode }) => {
     } finally {
         setLoadingId(null);
     }
+};
+
+    const canRefund = (order) => {
+    if (order.status !== "waiting") return false;
+
+    const createdTime = new Date(order.createdAt);
+    const now = new Date();
+
+    const diffMinutes = (now - createdTime) / (1000 * 60);
+
+    return diffMinutes >= 10;
 };
 
     const handleRefund = async (orderid) => {
