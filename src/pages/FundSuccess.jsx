@@ -71,7 +71,7 @@ const FundSuccess = () => {
 
       <div className="redirect-info">
         <FaClock />
-        Redirecting automatically in <span>{countdown}</span> seconds...
+        Redirecting automatically in <span className="success-countdown">{countdown}</span> seconds...
       </div>
     </div>
   );
