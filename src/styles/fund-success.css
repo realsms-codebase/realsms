@@ -240,7 +240,7 @@ REDIRECT INFO
   color: var(--secondary-text);
 }
 
-.redirect-info span {
+.success-countdown {
   color: #22c55e;
   font-weight: 700;
 }
