@@ -90,45 +90,61 @@ const Topbar = ({ toggleSidebar }) => {
 
   const toggleNotifications = () => setNotifOpen((prev) => !prev);
 
-  // NOTIFICATIONS FETCH
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) return;
+// NOTIFICATIONS FETCH
+useEffect(() => {
+  let interval;
 
-        const [supportRes, activityRes] = await Promise.all([
-          fetch(
-            `${process.env.REACT_APP_API_URL}/api/support/notifications`,
-            {
-              headers: { Authorization: `Bearer ${token}` },
-            }
-          ),
-          fetch(
-            `${process.env.REACT_APP_API_URL}/api/transactions/notifications`,
-            {
-              headers: { Authorization: `Bearer ${token}` },
-            }
-          ),
-        ]);
+  const fetchNotifications = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
 
-        const supportData = await supportRes.json();
-        const activityData = await activityRes.json();
+      const [supportRes, activityRes] = await Promise.all([
+        fetch(
+          `${process.env.REACT_APP_API_URL}/api/support/notifications`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        ),
+        fetch(
+          `${process.env.REACT_APP_API_URL}/api/transactions/notifications`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        ),
+      ]);
 
-        setNotifications({
-          support: supportData.notifications || [],
-          activity: activityData.notifications || [],
-          admin: [],
-        });
-      } catch (err) {
-        console.error("Notification fetch error:", err);
-      }
-    };
+      const supportData = await supportRes.json();
+      const activityData = await activityRes.json();
 
-    fetchNotifications();
-    const interval = setInterval(fetchNotifications, 15000);
-    return () => clearInterval(interval);
-  }, []);
+      setNotifications({
+        support: supportData.notifications || [],
+        activity: activityData.notifications || [],
+        admin: [],
+      });
+    } catch (err) {
+      console.error("Notification fetch error:", err);
+    }
+  };
+
+  // Load once when component mounts
+  fetchNotifications();
+
+  // Poll only while dropdown is open
+  if (notifOpen) {
+    interval = setInterval(fetchNotifications, 60000);
+  }
+
+  return () => {
+    if (interval) {
+      clearInterval(interval);
+    }
+  };
+}, [notifOpen]);
 
   // CLOSE OUTSIDE NOTIF
   useEffect(() => {
