@@ -41,43 +41,115 @@ const NumberHistory = ({ darkMode }) => {
         }
     };
 
-    // ================================
-    //  HANDLE RESEND
-    // ================================
-    const handleResend = async (orderid) => {
-        try {
-            setLoadingId(orderid);
+//     // ================================
+//     //  HANDLE RESEND
+//     // ================================
+//     const handleResend = async (orderid) => {
+//         try {
+//             setLoadingId(orderid);
 
-            const res = await axios.post(
-                `${API_URL}/api/smspool/resend`,
-                { orderid },
-                {
-                    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-                }
-            );
+//             const res = await axios.post(
+//                 `${API_URL}/api/smspool/resend`,
+//                 { orderid },
+//                 {
+//                     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+//                 }
+//             );
 
-            if (res.data.success) {
-                alert("OTP resent successfully! Check your number.");
-                fetchOrders();
-            } else {
-                alert(res.data.message || "Failed to resend OTP");
-            }
-        } catch (err) {
-            alert("Failed to resend OTP");
-        } finally {
-            setLoadingId(null);
-        }
-    };
+//             if (res.data.success) {
+//                 alert("OTP resent successfully! Check your number.");
+//                 fetchOrders();
+//             } else {
+//                 alert(res.data.message || "Failed to resend OTP");
+//             }
+//         } catch (err) {
+//             alert("Failed to resend OTP");
+//         } finally {
+//             setLoadingId(null);
+//         }
+//     };
     
-    const canRefund = (order) => {
-    if (order.status !== "waiting") return false;
+//     const canRefund = (order) => {
+//     if (order.status !== "waiting") return false;
 
-    const createdTime = new Date(order.createdAt);
-    const now = new Date();
+//     const createdTime = new Date(order.createdAt);
+//     const now = new Date();
 
-    const diffMinutes = (now - createdTime) / (1000 * 60);
+//     const diffMinutes = (now - createdTime) / (1000 * 60);
 
-    return diffMinutes >= 10;
+//     return diffMinutes >= 10;
+// };
+
+    const handleResend = async (orderid) => {
+    try {
+        setLoadingId(orderid);
+
+        const res = await axios.post(
+            `${API_URL}/api/smspool/resend`,
+            { orderid },
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        );
+
+        if (!res.data.success) {
+            alert(res.data.message);
+            return;
+        }
+
+        alert("OTP resend requested.");
+
+        const interval = setInterval(async () => {
+            try {
+                const otpRes = await axios.post(
+                    `${API_URL}/api/smspool/getOtp`,
+                    { orderid },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem("token")}`,
+                        },
+                    }
+                );
+
+                if (
+                    otpRes.data.success &&
+                    otpRes.data.status === "received"
+                ) {
+                    clearInterval(interval);
+
+                    setOrders((prev) =>
+                        prev.map((order) =>
+                            order.orderid === orderid
+                                ? {
+                                      ...order,
+                                      otp: otpRes.data.otp,
+                                      status: "received",
+                                  }
+                                : order
+                        )
+                    );
+
+                    alert("New OTP received.");
+                }
+
+                if (otpRes.data.status === "cancelled") {
+                    clearInterval(interval);
+                }
+            } catch (err) {
+                clearInterval(interval);
+            }
+        }, 5000);
+
+        // Stop polling after 2 minutes
+        setTimeout(() => clearInterval(interval), 120000);
+
+    } catch (err) {
+        alert("Failed to resend OTP");
+    } finally {
+        setLoadingId(null);
+    }
 };
 
     const handleRefund = async (orderid) => {
