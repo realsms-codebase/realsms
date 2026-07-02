@@ -479,8 +479,8 @@ const Dashboard = ({ darkMode }) => {
                                         <span
                                             className={
                                                 activity.success
-                                                    ? "status success"
-                                                    : "status failed"
+                                                    ? "activity-status success"
+                                                    : "activity-status failed"
                                             }
                                         >
                                             {activity.status}
