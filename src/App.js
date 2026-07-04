@@ -1,5 +1,120 @@
+// import React from "react";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+
+// // Scroll Component
+// import ScrollToTop from "./components/ScrollToTop";
+
+// // Layout
+// import Layout from "./components/Layout";
+
+// // Theme Context
+// import { ThemeProvider } from "./context/ThemeContext";
+
+// // Pages
+// import Dashboard from "./pages/Dashboard";
+// import BuyNumbers from "./pages/BuyNumbers";
+// import PurchaseLogs from "./pages/PurchaseLogs";
+// import ActiveOrder from "./pages/ActiveOrder";
+// import OrderHistory from "./pages/OrderHistory";
+// import LogsHistory from "./pages/LogsHistory";
+// import TransactionHistory from "./pages/TransactionHistory";
+// import FundWallet from "./pages/FundWallet";
+// import FundSuccess from "./pages/FundSuccess";
+// import FundCancel from "./pages/FundCancel";
+// import Login from "./pages/Login";
+// import Register from "./pages/Register";
+// import ForgotPassword from "./pages/ForgotPassword";
+// import ResetPassword from "./pages/ResetPassword";
+// import Support from "./pages/Support";
+// import PaystackFund from "./pages/PaystackFund";
+// import KorapayFund from "./pages/KorapayFund";
+// import FlutterwaveFund from "./pages/FlutterwaveFund";
+// import USDTFund from "./pages/FundWalletUSDT";
+// import Settings from "./pages/Settings";
+// import Profile from "./pages/Profile";
+// import Appearance from "./pages/Appearance";
+// import VideoTutorials from "./pages/VideoTutorials";
+// import NotFound from "./pages/NotFound";
+
+// // Context for unread messages
+// import { UnreadProvider } from "./context/UnreadContext";
+
+// function App() {
+//   return (
+//     <ThemeProvider>
+//       <UnreadProvider>
+//         <Router>
+//           {/* Scroll To Top on route change */}
+//           <ScrollToTop />
+
+//           <Routes>
+//             {/* Auth Pages */}
+//             <Route path="/" element={<Login />} />
+//             <Route path="/register" element={<Register />} />
+//             <Route path="/forgot-password" element={<ForgotPassword />} />
+//             <Route
+//               path="/reset-password/:token"
+//               element={<ResetPassword />}
+//             />
+
+//             {/* Protected Pages inside Layout */}
+//             <Route
+//               path="/*"
+//               element={
+//                 <Layout>
+//                   <Routes>
+//                     <Route path="/dashboard" element={<Dashboard />} />
+//                     <Route path="/buy-numbers" element={<BuyNumbers />} />
+//                     <Route path="/purchase-logs" element={<PurchaseLogs />} />
+//                     <Route path="/active-orders" element={<ActiveOrder />} />
+//                     <Route path="/order-history" element={<OrderHistory />} />
+//                     <Route path="/logs-history" element={<LogsHistory />} />
+//                     <Route path="/settings" element={<Settings />} />
+//                     <Route path="/settings/profile" element={<Profile />} />
+//                     <Route path="/settings/appearance" element={<Appearance />} />
+//                     <Route path="/video-tutorials" element={<VideoTutorials />} />
+//                     <Route path="/transaction-history" element={<TransactionHistory />} />
+//                     <Route path="/fund-wallet" element={<FundWallet />} />
+//                     <Route
+//                       path="/fund-wallet/paystack"
+//                       element={<PaystackFund />}
+//                     />
+//                     <Route
+//                       path="/fund-wallet/usdt"
+//                       element={<USDTFund />}
+//                     />
+//                     <Route
+//                       path="/fund-wallet/korapay"
+//                       element={<KorapayFund />}
+//                     />
+//                     <Route
+//                       path="/fund-wallet/flutterwave"
+//                       element={<FlutterwaveFund />}
+//                     />
+//                     <Route
+//                       path="/fund-success"
+//                       element={<FundSuccess />}
+//                     />
+//                     <Route
+//                       path="/fund-cancel"
+//                       element={<FundCancel />}
+//                     />
+//                     <Route path="/support" element={<Support />} />
+//                   </Routes>
+//                 </Layout>
+//               }
+//             />
+//           </Routes>
+//         </Router>
+//       </UnreadProvider>
+//     </ThemeProvider>
+//   );
+// }
+
+// export default App;
+
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Scroll Component
 import ScrollToTop from "./components/ScrollToTop";
@@ -34,80 +149,155 @@ import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
 import Appearance from "./pages/Appearance";
 import VideoTutorials from "./pages/VideoTutorials";
+import NotFound from "./pages/NotFound";
 
-// Context for unread messages
+// Context
 import { UnreadProvider } from "./context/UnreadContext";
 
 function App() {
-  return (
-    <ThemeProvider>
-      <UnreadProvider>
-        <Router>
-          {/* Scroll To Top on route change */}
-          <ScrollToTop />
+    return (
+        <ThemeProvider>
+            <UnreadProvider>
+                <Router>
+                    <ScrollToTop />
 
-          <Routes>
-            {/* Auth Pages */}
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route
-              path="/reset-password/:token"
-              element={<ResetPassword />}
-            />
+                    <Routes>
+                        {/* Authentication Pages */}
+                        <Route path="/" element={<Login />} />
+                        <Route
+                            path="/register"
+                            element={<Register />}
+                        />
+                        <Route
+                            path="/forgot-password"
+                            element={<ForgotPassword />}
+                        />
+                        <Route
+                            path="/reset-password/:token"
+                            element={<ResetPassword />}
+                        />
 
-            {/* Protected Pages inside Layout */}
-            <Route
-              path="/*"
-              element={
-                <Layout>
-                  <Routes>
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/buy-numbers" element={<BuyNumbers />} />
-                    <Route path="/purchase-logs" element={<PurchaseLogs />} />
-                    <Route path="/active-orders" element={<ActiveOrder />} />
-                    <Route path="/order-history" element={<OrderHistory />} />
-                    <Route path="/logs-history" element={<LogsHistory />} />
-                    <Route path="/settings" element={<Settings />} />
-                    <Route path="/settings/profile" element={<Profile />} />
-                    <Route path="/settings/appearance" element={<Appearance />} />
-                    <Route path="/video-tutorials" element={<VideoTutorials />} />
-                    <Route path="/transaction-history" element={<TransactionHistory />} />
-                    <Route path="/fund-wallet" element={<FundWallet />} />
-                    <Route
-                      path="/fund-wallet/paystack"
-                      element={<PaystackFund />}
-                    />
-                    <Route
-                      path="/fund-wallet/usdt"
-                      element={<USDTFund />}
-                    />
-                    <Route
-                      path="/fund-wallet/korapay"
-                      element={<KorapayFund />}
-                    />
-                    <Route
-                      path="/fund-wallet/flutterwave"
-                      element={<FlutterwaveFund />}
-                    />
-                    <Route
-                      path="/fund-success"
-                      element={<FundSuccess />}
-                    />
-                    <Route
-                      path="/fund-cancel"
-                      element={<FundCancel />}
-                    />
-                    <Route path="/support" element={<Support />} />
-                  </Routes>
-                </Layout>
-              }
-            />
-          </Routes>
-        </Router>
-      </UnreadProvider>
-    </ThemeProvider>
-  );
+                        {/* Protected Pages */}
+                        <Route
+                            path="/*"
+                            element={
+                                <Layout>
+                                    <Routes>
+                                        <Route
+                                            path="/dashboard"
+                                            element={<Dashboard />}
+                                        />
+
+                                        <Route
+                                            path="/buy-numbers"
+                                            element={<BuyNumbers />}
+                                        />
+
+                                        <Route
+                                            path="/purchase-logs"
+                                            element={<PurchaseLogs />}
+                                        />
+
+                                        <Route
+                                            path="/active-orders"
+                                            element={<ActiveOrder />}
+                                        />
+
+                                        <Route
+                                            path="/order-history"
+                                            element={<OrderHistory />}
+                                        />
+
+                                        <Route
+                                            path="/logs-history"
+                                            element={<LogsHistory />}
+                                        />
+
+                                        <Route
+                                            path="/transaction-history"
+                                            element={<TransactionHistory />}
+                                        />
+
+                                        <Route
+                                            path="/fund-wallet"
+                                            element={<FundWallet />}
+                                        />
+
+                                        <Route
+                                            path="/fund-wallet/paystack"
+                                            element={<PaystackFund />}
+                                        />
+
+                                        <Route
+                                            path="/fund-wallet/usdt"
+                                            element={<USDTFund />}
+                                        />
+
+                                        <Route
+                                            path="/fund-wallet/korapay"
+                                            element={<KorapayFund />}
+                                        />
+
+                                        <Route
+                                            path="/fund-wallet/flutterwave"
+                                            element={<FlutterwaveFund />}
+                                        />
+
+                                        <Route
+                                            path="/fund-success"
+                                            element={<FundSuccess />}
+                                        />
+
+                                        <Route
+                                            path="/fund-cancel"
+                                            element={<FundCancel />}
+                                        />
+
+                                        <Route
+                                            path="/support"
+                                            element={<Support />}
+                                        />
+
+                                        <Route
+                                            path="/settings"
+                                            element={<Settings />}
+                                        />
+
+                                        <Route
+                                            path="/settings/profile"
+                                            element={<Profile />}
+                                        />
+
+                                        <Route
+                                            path="/settings/appearance"
+                                            element={<Appearance />}
+                                        />
+
+                                        <Route
+                                            path="/video-tutorials"
+                                            element={<VideoTutorials />}
+                                        />
+
+                                        {/* 404 inside Layout */}
+                                        <Route
+                                            path="*"
+                                            element={<NotFound />}
+                                        />
+                                    </Routes>
+                                </Layout>
+                            }
+                        />
+
+                        {/* Global 404 */}
+                        <Route
+                            path="*"
+                            element={<NotFound />}
+                        />
+                    </Routes>
+                </Router>
+            </UnreadProvider>
+        </ThemeProvider>
+    );
 }
 
 export default App;
