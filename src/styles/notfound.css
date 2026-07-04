@@ -2,114 +2,107 @@
    NOT FOUND PAGE
 ========================= */
 
-.notfound-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-  background: #f6f8fc;
+.notfound-page{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  background:var(--bg-color);
 }
 
-.notfound-card {
-  width: 100%;
-  max-width: 520px;
-  background: #ffffff;
-  border-radius: 22px;
-  padding: 50px 40px;
-  text-align: center;
-  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
-  border: 1px solid #edf1f7;
+.notfound-card{
+  width:100%;
+  max-width:430px;
+  background:var(--card-bg);
+  border:1px solid var(--border-color);
+  border-radius:16px;
+  padding:28px 24px;
+  text-align:center;
+  box-shadow:var(--shadow);
 }
 
-.notfound-icon {
-  width: 72px;
-  height: 72px;
-  color: #4f46e5;
-  margin-bottom: 20px;
+.notfound-icon{
+  font-size:52px;
+  color:var(--primary);
+  margin-bottom:14px;
 }
 
-.notfound-card h1 {
-  font-size: 72px;
-  line-height: 1;
-  font-weight: 800;
-  color: #111827;
-  margin-bottom: 12px;
+.notfound-card h1{
+  font-size:48px;
+  font-weight:800;
+  color:var(--text-color);
+  margin-bottom:6px;
 }
 
-.notfound-card h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 15px;
+.notfound-card h2{
+  font-size:20px;
+  font-weight:700;
+  color:var(--text-color);
+  margin-bottom:10px;
 }
 
-.notfound-card p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: #6b7280;
-  margin-bottom: 32px;
+.notfound-card p{
+  font-size:13px;
+  color:var(--secondary-text);
+  line-height:1.7;
+  margin-bottom:22px;
 }
 
-.notfound-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+.notfound-btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:var(--primary);
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
 
-  padding: 14px 28px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
 
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
-  color: #fff;
-
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-
-  transition: all 0.25s ease;
+  transition:.3s;
 }
 
-.notfound-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(79, 70, 229, 0.25);
+.notfound-btn:hover{
+  opacity:.9;
 }
 
-.notfound-btn svg {
-  font-size: 18px;
-}
+@media (max-width:768px){
 
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 768px) {
-  .notfound-page {
-    padding: 25px 16px;
+  .notfound-page{
+    padding:16px;
   }
 
-  .notfound-card {
-    padding: 40px 24px;
+  .notfound-card{
+    border-radius:12px;
+    padding:22px 18px;
   }
 
-  .notfound-icon {
-    width: 60px;
-    height: 60px;
+  .notfound-icon{
+    font-size:44px;
   }
 
-  .notfound-card h1 {
-    font-size: 58px;
+  .notfound-card h1{
+    font-size:40px;
   }
 
-  .notfound-card h2 {
-    font-size: 24px;
+  .notfound-card h2{
+    font-size:18px;
   }
 
-  .notfound-card p {
-    font-size: 15px;
+  .notfound-card p{
+    font-size:12px;
   }
 
-  .notfound-btn {
-    width: 100%;
+  .notfound-btn{
+    border-radius:10px;
+    font-size:13px;
+    padding:13px;
   }
+
 }
