@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FiArrowLeft,
@@ -18,6 +18,10 @@ export default function Appearance() {
 
   const [animations, setAnimations] =
     useState(true);
+
+    useEffect(() => {
+        document.title = "Appearance - RealSMS";
+    }, []);
 
   return (
     <div className="appearance-page">
