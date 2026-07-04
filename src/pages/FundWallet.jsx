@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import axios from "axios";
 import { FiArrowRight } from "react-icons/fi";
 
@@ -15,6 +15,10 @@ const FundWallet = () => {
     const [amount, setAmount] = useState(5000);
     const [payment, setPayment] = useState("flutterwave");
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        document.title = "Fund Wallet - RealSMS";
+    }, []);
 
 const handlePayment = async () => {
     try {
