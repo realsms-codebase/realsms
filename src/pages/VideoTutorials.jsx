@@ -40,6 +40,11 @@ const VideoTutorials = () => {
       "All Categories"
     );
 
+
+    useEffect(() => {
+        document.title = "Video Tutorials - RealSMS";
+    }, []);
+
   // ==================
   // FETCH TUTORIALS
   // ==================
