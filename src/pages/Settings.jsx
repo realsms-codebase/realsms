@@ -18,6 +18,10 @@ export default function Settings() {
 
   const getToken = () => localStorage.getItem("token");
 
+    useEffect(() => {
+        document.title = "Settings - RealSMS";
+    }, []);
+
   // Fetch logged-in user
   useEffect(() => {
     const fetchUser = async () => {
