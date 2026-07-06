@@ -22,7 +22,7 @@ import "../styles/dashboard.css";
 
 const API_URL =
     process.env.REACT_APP_API_URL ||
-    "https://realsms-backend.vercel.app";
+    "https://realsms-backend.onrender.com";
 
 const maskEmail = (email) => {
     if (!email || !email.includes("@")) return "*****";
@@ -389,6 +389,7 @@ const Dashboard = ({ darkMode }) => {
                     src={current.image}
                     alt={`Banner ${currentSlide + 1}`}
                     className="hero-image"
+                    loading="lazy"
                 />
 
                 <button
