@@ -260,6 +260,131 @@ export default function LandingPage() {
   </div>
 
 </section>
+
+      {/* ============================
+    HOW IT WORKS
+============================ */}
+
+<section className="how-section">
+
+  <div className="section-title">
+
+    <span>How it works</span>
+
+    <h2>
+      Get started in
+      <br />
+      less than 60 seconds
+    </h2>
+
+    <p>
+      Buy a virtual number or access social media logs in just a few simple
+      steps.
+    </p>
+
+  </div>
+
+  <div className="steps">
+
+    <div className="step">
+
+      <div className="step-number">
+        01
+      </div>
+
+      <h3>Create your account</h3>
+
+      <p>
+        Register in seconds and verify your email to unlock the marketplace.
+      </p>
+
+    </div>
+
+    <div className="step-line"></div>
+
+    <div className="step">
+
+      <div className="step-number">
+        02
+      </div>
+
+      <h3>Select a service</h3>
+
+      <p>
+        Choose from virtual numbers, SMS activations or social media logs.
+      </p>
+
+    </div>
+
+    <div className="step-line"></div>
+
+    <div className="step">
+
+      <div className="step-number">
+        03
+      </div>
+
+      <h3>Receive instantly</h3>
+
+      <p>
+        Get OTPs, messages and account logs delivered instantly with zero delay.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+{/* ============================
+    CTA
+============================ */}
+
+<section className="cta">
+
+  <div className="cta-content">
+
+    <span className="cta-badge">
+      Ready?
+    </span>
+
+    <h2>
+      Start receiving SMS
+      <br />
+      in minutes.
+    </h2>
+
+    <p>
+      Join thousands of developers, businesses and marketers using our secure
+      virtual number platform every day.
+    </p>
+
+    <div className="cta-buttons">
+
+      <button className="primary-btn">
+        Create Free Account
+        <FiArrowRight />
+      </button>
+
+      <button className="secondary-btn">
+        Contact Sales
+      </button>
+
+    </div>
+
+  </div>
+
+  <div className="cta-decoration">
+
+    <div className="circle one"></div>
+
+    <div className="circle two"></div>
+
+    <div className="circle three"></div>
+
+  </div>
+
+</section>
     </div>
   );
 }
