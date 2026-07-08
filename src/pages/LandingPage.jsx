@@ -10,6 +10,11 @@ import {
   FaWhatsapp,
   FaInstagram,
   FaAmazon,
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+  FaGithub,
 } from "react-icons/fa";
 
 import { BsThreeDots } from "react-icons/bs";
@@ -385,6 +390,168 @@ export default function LandingPage() {
   </div>
 
 </section>
+
+      {/* ===========================
+FOOTER
+=========================== */}
+
+<footer className="footer">
+
+  <div className="footer-grid">
+
+    <div className="footer-brand">
+
+      <div className="logo">
+
+        <div className="logo-icon">
+          💬
+        </div>
+
+        <span>realsms</span>
+
+      </div>
+
+      <p>
+
+        The fastest platform for virtual phone
+        numbers, SMS verification and social
+        media logs.
+
+      </p>
+
+      <div className="social-icons">
+
+        <a href="/">
+          <FaFacebookF />
+        </a>
+
+        <a href="/">
+          <FaTwitter />
+        </a>
+
+        <a href="/">
+          <FaInstagram />
+        </a>
+
+        <a href="/">
+          <FaLinkedinIn />
+        </a>
+
+        <a href="/">
+          <FaGithub />
+        </a>
+
+      </div>
+
+    </div>
+
+    <div>
+
+      <h4>Products</h4>
+
+      <ul>
+
+        <li>Virtual Numbers</li>
+
+        <li>SMS Verification</li>
+
+        <li>Social Media Logs</li>
+
+        <li>API</li>
+
+        <li>Pricing</li>
+
+      </ul>
+
+    </div>
+
+    <div>
+
+      <h4>Resources</h4>
+
+      <ul>
+
+        <li>Documentation</li>
+
+        <li>Developers</li>
+
+        <li>Blog</li>
+
+        <li>Status</li>
+
+        <li>Help Center</li>
+
+      </ul>
+
+    </div>
+
+    <div>
+
+      <h4>Company</h4>
+
+      <ul>
+
+        <li>About</li>
+
+        <li>Careers</li>
+
+        <li>Contact</li>
+
+        <li>Privacy</li>
+
+        <li>Terms</li>
+
+      </ul>
+
+    </div>
+
+    <div>
+
+      <h4>Newsletter</h4>
+
+      <p>
+
+        Receive updates about new countries,
+        features and product launches.
+
+      </p>
+
+      <div className="newsletter">
+
+        <input
+          type="email"
+          placeholder="Enter your email"
+        />
+
+        <button>
+
+          Subscribe
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div className="footer-bottom">
+
+    <p>
+
+      © 2026 realsms. All rights reserved.
+
+    </p>
+
+    <div>
+
+      Secure payments • 99.99% uptime • GDPR Ready
+
+    </div>
+
+  </div>
+
+</footer>
     </div>
   );
 }
