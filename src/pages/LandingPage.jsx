@@ -8,7 +8,6 @@ import {
     FaGoogle,
     FaTelegramPlane,
     FaWhatsapp,
-    FaInstagram,
     FaAmazon,
     FaFacebookF,
     FaTwitter,
