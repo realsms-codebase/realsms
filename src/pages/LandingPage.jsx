@@ -4,6 +4,15 @@ import {
   FiGlobe,
   FiMessageSquare,
 } from "react-icons/fi";
+import {
+  FaGoogle,
+  FaTelegramPlane,
+  FaWhatsapp,
+  FaInstagram,
+  FaAmazon,
+} from "react-icons/fa";
+
+import { BsThreeDots } from "react-icons/bs";
 import "../styles/landing.css";
 import hero from "../assets/hero-dashboard.png";
 
@@ -131,7 +140,126 @@ export default function LandingPage() {
         </div>
 
       </section>
+{/* FEATURES */}
 
+<section className="features">
+
+  {/* CARD 1 */}
+
+  <div className="feature-card">
+
+    <div className="feature-badge blue">
+      Virtual Numbers
+    </div>
+
+    <h2>
+      Receive SMS online
+      <br />
+      with virtual numbers
+    </h2>
+
+    <ul>
+
+      <li>✓ Numbers from 100+ countries</li>
+
+      <li>✓ Real SIM based numbers</li>
+
+      <li>✓ Instant activation</li>
+
+      <li>✓ Works with all apps & services</li>
+
+      <li>✓ Keep your privacy safe</li>
+
+    </ul>
+
+    <button className="outline-btn">
+      Get virtual number
+      <FiArrowRight />
+    </button>
+
+    <div className="feature-graphic">
+
+      <div className="globe"></div>
+
+      <div className="floating-card us">
+        🇺🇸 +1 415 555 0198
+      </div>
+
+      <div className="floating-card uk">
+        🇬🇧 +44 7712 345678
+      </div>
+
+      <div className="floating-card de">
+        🇩🇪 +49 1512 3456789
+      </div>
+
+    </div>
+
+  </div>
+
+  {/* CARD 2 */}
+
+  <div className="feature-card">
+
+    <div className="feature-badge green">
+      Social Media Logs
+    </div>
+
+    <h2>
+      Access real SMS &
+      <br />
+      social media logs
+    </h2>
+
+    <ul>
+
+      <li>✓ Logs from popular platforms</li>
+
+      <li>✓ Real messages and OTPs</li>
+
+      <li>✓ Fast & reliable delivery</li>
+
+      <li>✓ Perfect for developers & businesses</li>
+
+      <li>✓ Easy API integration</li>
+
+    </ul>
+
+    <button className="outline-btn">
+      Browse logs
+      <FiArrowRight />
+    </button>
+
+   <div className="apps-preview">
+
+  <div className="app google">
+    <FaGoogle />
+  </div>
+
+  <div className="app telegram">
+    <FaTelegramPlane />
+  </div>
+
+  <div className="app whatsapp">
+    <FaWhatsapp />
+  </div>
+
+  <div className="app instagram">
+    <FaInstagram />
+  </div>
+
+  <div className="app amazon">
+    <FaAmazon />
+  </div>
+
+  <div className="app more">
+    <BsThreeDots />
+  </div>
+
+</div>
+  </div>
+
+</section>
     </div>
   );
 }
