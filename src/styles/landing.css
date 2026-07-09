@@ -392,438 +392,938 @@ display:none;
 
 }
 
-/* ======================================
+/* ==========================================
    FEATURES SECTION
-====================================== */
+========================================== */
 
-.premium-features {
-    max-width: 1600px;
-    margin: 100px auto;
-    padding: 0 40px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+.premium-features{
+    max-width:1500px;
+    margin:120px auto;
+    padding:0 40px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:32px;
 }
 
-/* ===========================
+/* ==========================================
    CARD
-=========================== */
+========================================== */
 
-.premium-card {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
-    min-height: 690px;
-    padding: 55px;
-    border-radius: 30px;
-    background: #fff;
-    border: 1px solid #ebedf7;
-    box-shadow: 0 20px 60px rgba(45, 68, 150, 0.08);
+.premium-card{
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    min-height:650px;
+
+    padding:55px;
+
+    background:#fff;
+
+    border:1px solid #edf0f8;
+
+    border-radius:32px;
+
+    box-shadow:
+        0 8px 30px rgba(25,40,70,.05),
+        0 30px 80px rgba(40,60,120,.06);
+
+    transition:.35s ease;
 }
 
-.premium-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top left,
-            rgba(92, 98, 255, .08),
-            transparent 50%);
-    pointer-events: none;
+.premium-card:hover{
+    transform:translateY(-6px);
+    box-shadow:
+        0 12px 40px rgba(25,40,70,.08),
+        0 40px 90px rgba(40,60,120,.09);
 }
 
-.premium-card:last-child::before {
-    background: radial-gradient(circle at top right,
-            rgba(52, 199, 89, .08),
-            transparent 50%);
+/* ==========================================
+   BACKGROUND GLOW
+========================================== */
+
+.premium-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+    height:420px;
+
+    border-radius:50%;
+
+    background:rgba(96,103,255,.06);
+
+    filter:blur(90px);
+
+    top:-140px;
+    left:-140px;
+
+    z-index:0;
 }
 
-/* ===========================
+.premium-card:last-child::before{
+
+    background:rgba(35,201,92,.06);
+
+    left:auto;
+    right:-140px;
+}
+
+/* ==========================================
    CONTENT
-=========================== */
+========================================== */
 
-.premium-content {
-    width: 47%;
-    position: relative;
-    z-index: 2;
+.premium-content{
+
+    position:relative;
+
+    z-index:2;
+
+    flex:0 0 46%;
+
+    max-width:46%;
 }
 
-.feature-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 11px 22px;
-    border-radius: 999px;
-    margin-bottom: 28px;
-    font-size: 15px;
-    font-weight: 700;
+/* ==========================================
+   BADGE
+========================================== */
+
+.feature-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    margin-bottom:26px;
 }
 
-.feature-tag.blue {
-    background: #eef0ff;
-    color: #5664ff;
+.feature-tag.blue{
+
+    background:#eef2ff;
+
+    color:#5867ff;
 }
 
-.feature-tag.green {
-    background: #e8fbef;
-    color: #19b85a;
+.feature-tag.green{
+
+    background:#e8fbef;
+
+    color:#1db95f;
 }
 
-.tag-icon {
-    font-size: 18px;
+.tag-icon{
+
+    font-size:18px;
+
+    display:flex;
 }
 
-.premium-content h2 {
-    font-size: 60px;
-    line-height: 1.08;
-    font-weight: 800;
-    color: #16204f;
-    margin-bottom: 24px;
+/* ==========================================
+   TITLE
+========================================== */
+
+.premium-content h2{
+
+    font-size:42px;
+
+    line-height:1.15;
+
+    font-weight:800;
+
+    color:#111827;
+
+    letter-spacing:-1px;
+
+    margin-bottom:22px;
 }
 
-.premium-content p {
-    font-size: 20px;
-    color: #66718e;
-    line-height: 1.7;
-    margin-bottom: 34px;
+/* ==========================================
+   DESCRIPTION
+========================================== */
+
+.premium-content p{
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    color:#6b7280;
+
+    margin-bottom:34px;
 }
 
-/* ===========================
-   FEATURE LIST
-=========================== */
+/* ==========================================
+   FEATURES
+========================================== */
 
-.feature-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    margin-bottom: 45px;
+.feature-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin-bottom:40px;
 }
 
-.feature-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    color: #2e3a66;
-    font-size: 18px;
+.feature-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    color:#374151;
+
+    font-size:16px;
+
+    font-weight:500;
 }
 
-.feature-item span {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: #2dcc70;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: bold;
+.feature-item span{
+
+    width:26px;
+
+    height:26px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:14px;
+
+    font-weight:700;
 }
 
-/* ===========================
+/* ==========================================
    BUTTON
-=========================== */
+========================================== */
 
-.premium-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 18px 32px;
-    font-size: 18px;
-    font-weight: 700;
-    border-radius: 18px;
-    background: #fff;
-    cursor: pointer;
-    transition: .3s;
+.premium-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:16px 26px;
+
+    border-radius:16px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    background:#fff;
+
+    cursor:pointer;
+
+    transition:.25s;
 }
 
-.outline-blue {
-    border: 2px solid #5664ff;
-    color: #5664ff;
+.outline-blue{
+
+    border:2px solid #5d66ff;
+
+    color:#5d66ff;
 }
 
-.outline-green {
-    border: 2px solid #2dcc70;
-    color: #2dcc70;
+.outline-green{
+
+    border:2px solid #20c45d;
+
+    color:#20c45d;
 }
 
-.premium-btn:hover {
-    transform: translateY(-4px);
+.premium-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.08);
 }
 
-/* ======================================
-   LEFT PREVIEW
-====================================== */
+/* ==========================================
+   ILLUSTRATION AREA
+========================================== */
 
-.numbers-preview {
-    width: 53%;
-    height: 580px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.numbers-preview,
+.phone-preview{
+    position:relative;
+    flex:0 0 54%;
+    max-width:54%;
+    height:100%;
+    min-height:540px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-.world-glow {
-    position: absolute;
-    width: 560px;
-    height: 560px;
-    border-radius: 50%;
-    background: radial-gradient(circle,
-            rgba(92, 98, 255, .14),
-            transparent 70%);
+/* ==========================================
+   GLOBE
+========================================== */
+
+.world-glow{
+    position:absolute;
+    width:520px;
+    height:520px;
+    border-radius:50%;
+    background:radial-gradient(circle,
+        rgba(92,102,255,.18),
+        rgba(92,102,255,.05) 55%,
+        transparent 75%);
+    filter:blur(18px);
 }
 
-.world-ring {
-    position: absolute;
-    width: 510px;
-    height: 510px;
-    border-radius: 50%;
-    border: 2px dashed #c6ccff;
+.world-ring{
+    position:absolute;
+    width:470px;
+    height:470px;
+    border-radius:50%;
+    border:2px dashed #cfd8ff;
+    animation:rotateRing 40s linear infinite;
 }
 
-.world-circle {
-    width: 430px;
-    height: 430px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%,
-            #9599ff,
-            #676dff 55%,
-            #4d53f2);
-    box-shadow: 0 0 80px rgba(90, 100, 255, .35);
+.world-circle{
+    width:360px;
+    height:360px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 30% 30%,
+        #8fa3ff 0%,
+        #6d7cff 35%,
+        #4d5eff 75%,
+        #3848ea 100%);
+    box-shadow:
+        inset -25px -30px 60px rgba(0,0,0,.12),
+        0 35px 80px rgba(80,95,255,.30);
 }
 
-/* ===========================
-   COUNTRY CARD
-=========================== */
+/* ==========================================
+   COUNTRY CARDS
+========================================== */
 
-.country-card {
-    position: absolute;
-    width: 230px;
-    background: #fff;
-    border-radius: 22px;
-    padding: 18px;
-    box-shadow: 0 20px 45px rgba(40, 55, 120, .12);
+.country-card{
+    position:absolute;
+    width:210px;
+    background:#fff;
+    border-radius:22px;
+    padding:18px;
+    box-shadow:
+        0 20px 45px rgba(30,50,110,.10);
+    transition:.35s;
 }
 
-.country-header {
-    font-size: 15px;
-    color: #555;
+.country-card:hover{
+    transform:translateY(-6px);
 }
 
-.country-card h4 {
-    margin: 10px 0;
-    font-size: 30px;
-    font-weight: 700;
-    color: #151515;
+.country-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
 }
 
-.country-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #30c667;
-    font-size: 15px;
+.country-name{
+    font-size:13px;
+    font-weight:700;
+    color:#374151;
 }
 
-.online {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #30c667;
+.country-card h4{
+    font-size:23px;
+    margin:8px 0;
+    color:#111827;
+    font-weight:700;
+    letter-spacing:.3px;
 }
 
-.usa {
-    top: 40px;
-    right: 10px;
+.country-status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    color:#16a34a;
 }
 
-.uk {
-    left: 0;
-    top: 230px;
+.online{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#22c55e;
+    box-shadow:0 0 12px #22c55e;
 }
 
-.germany {
-    right: 40px;
-    bottom: 35px;
+/* positions */
+
+.usa{
+    top:20px;
+    right:15px;
 }
 
-/* ======================================
+.uk{
+    left:0;
+    top:200px;
+}
+
+.germany{
+    bottom:30px;
+    right:35px;
+}
+
+/* ==========================================
    PHONE
-====================================== */
+========================================== */
 
-.phone-preview {
-    width: 53%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.phone{
+    position:relative;
+    width:285px;
+    height:560px;
+    background:#ffffff;
+    border-radius:48px;
+    border:10px solid #eef2ff;
+    box-shadow:
+        0 30px 70px rgba(25,40,90,.10);
 }
 
-.phone {
-    width: 300px;
-    height: 610px;
-    border-radius: 55px;
-    background: #fff;
-    border: 10px solid #eef2fb;
-    position: relative;
-    box-shadow: 0 25px 70px rgba(50, 70, 150, .08);
+.phone-notch{
+    position:absolute;
+    width:130px;
+    height:28px;
+    background:#edf1ff;
+    border-radius:30px;
+    left:50%;
+    top:16px;
+    transform:translateX(-50%);
 }
 
-.phone-notch {
-    width: 130px;
-    height: 28px;
-    border-radius: 20px;
-    background: #eef2fb;
-    position: absolute;
-    top: 14px;
-    left: 50%;
-    transform: translateX(-50%);
+.phone-screen{
+    position:relative;
+    width:100%;
+    height:100%;
 }
 
-.phone-screen {
-    width: 100%;
-    height: 100%;
-    position: relative;
+/* ==========================================
+   FLOATING APP ICONS
+========================================== */
+
+.phone-app{
+    position:absolute;
+    width:78px;
+    height:78px;
+    background:#fff;
+    border-radius:22px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:36px;
+    box-shadow:
+        0 18px 35px rgba(40,60,120,.12);
+    transition:.35s;
 }
 
-/* ===========================
-   FLOATING APPS
-=========================== */
-
-.phone-app {
-    position: absolute;
-    width: 90px;
-    height: 90px;
-    border-radius: 24px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 42px;
-    box-shadow: 0 18px 35px rgba(0, 0, 0, .08);
+.phone-app:hover{
+    transform:translateY(-6px) scale(1.05);
 }
 
-.google {
-    top: 180px;
-    left: -35px;
-    color: #EA4335;
+.google{
+    top:145px;
+    left:-30px;
+    color:#EA4335;
 }
 
-.telegram {
-    top: 85px;
-    right: 35px;
-    color: #2AABEE;
+.telegram{
+    top:70px;
+    right:35px;
+    color:#2AABEE;
 }
 
-.whatsapp {
-    top: 255px;
-    right: -35px;
-    color: #25D366;
+.whatsapp{
+    top:220px;
+    right:-28px;
+    color:#25D366;
 }
 
-.instagram {
-    top: 365px;
-    left: 55px;
-    color: #E1306C;
+.instagram{
+    top:330px;
+    left:40px;
+    color:#E1306C;
 }
 
-.amazon {
-    bottom: 70px;
-    left: 5px;
-    color: #111;
+.amazon{
+    bottom:70px;
+    left:0;
+    color:#111827;
 }
 
-.more {
-    bottom: 60px;
-    right: 25px;
-    color: #5664ff;
+.more{
+    bottom:65px;
+    right:25px;
+    color:#6366F1;
 }
 
-/* ======================================
-   RESPONSIVE
-====================================== */
+/* ==========================================
+   FLOATING ANIMATION
+========================================== */
 
-@media (max-width:1200px) {
+.country-card,
+.phone-app{
+    animation:floatCard 6s ease-in-out infinite;
+}
 
-    .premium-features {
-        grid-template-columns: 1fr;
+.country-card:nth-child(2),
+.phone-app:nth-child(2){
+    animation-delay:1s;
+}
+
+.country-card:nth-child(3),
+.phone-app:nth-child(3){
+    animation-delay:2s;
+}
+
+.country-card:nth-child(4),
+.phone-app:nth-child(4){
+    animation-delay:3s;
+}
+
+@keyframes floatCard{
+
+    0%{
+        transform:translateY(0);
     }
 
-    .premium-card {
-        flex-direction: column;
-        text-align: center;
-        gap: 50px;
-        min-height: auto;
+    50%{
+        transform:translateY(-10px);
     }
 
-    .premium-content,
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes rotateRing{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+/* ==========================================
+   DECORATIONS
+========================================== */
+
+.premium-card::after{
+    content:"";
+    position:absolute;
+    width:240px;
+    height:240px;
+    border-radius:50%;
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.6),
+        transparent
+    );
+    right:-120px;
+    bottom:-120px;
+    opacity:.65;
+}
+
+.premium-card:last-child::after{
+    left:-120px;
+    right:auto;
+}
+
+/* ==========================================
+   SMOOTH TRANSITIONS
+========================================== */
+
+.premium-card,
+.country-card,
+.phone,
+.phone-app,
+.premium-btn{
+    transition:all .35s ease;
+}
+
+.country-card:hover{
+    transform:translateY(-8px) scale(1.02);
+}
+
+.phone:hover{
+    transform:translateY(-8px);
+}
+
+.phone-app:hover{
+    transform:translateY(-8px) scale(1.08);
+}
+
+.world-circle{
+    animation:glowPulse 6s ease-in-out infinite;
+}
+
+/* ==========================================
+   BUTTON EFFECTS
+========================================== */
+
+.outline-blue:hover{
+    background:#5865ff;
+    color:#fff;
+    box-shadow:0 18px 35px rgba(88,101,255,.28);
+}
+
+.outline-green:hover{
+    background:#22c55e;
+    color:#fff;
+    box-shadow:0 18px 35px rgba(34,197,94,.28);
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:1200px){
+
+    .premium-features{
+
+        grid-template-columns:1fr;
+
+        gap:40px;
+    }
+
+    .premium-card{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        padding:50px 40px;
+
+        min-height:auto;
+    }
+
+    .premium-content{
+
+        max-width:100%;
+
+        flex:unset;
+
+        margin-bottom:50px;
+    }
+
     .numbers-preview,
-    .phone-preview {
-        width: 100%;
+    .phone-preview{
+
+        max-width:100%;
+
+        flex:unset;
+
+        min-height:480px;
     }
 
-    .feature-list {
-        align-items: center;
+    .feature-list{
+
+        align-items:center;
     }
 
-    .premium-content h2 {
-        font-size: 46px;
+    .premium-btn{
+
+        margin:auto;
     }
 
-    .premium-content p {
-        font-size: 18px;
-    }
 }
 
-@media (max-width:768px) {
+/* ==========================================
+   TABLET
+========================================== */
 
-    .premium-features {
-        padding: 0 20px;
-        margin: 70px auto;
+@media (max-width:900px){
+
+    .premium-features{
+
+        padding:0 24px;
     }
 
-    .premium-card {
-        padding: 35px 25px;
-        border-radius: 24px;
+    .premium-card{
+
+        padding:40px 28px;
     }
 
-    .premium-content h2 {
-        font-size: 34px;
+    .premium-content h2{
+
+        font-size:34px;
     }
 
-    .premium-content p {
-        font-size: 16px;
+    .premium-content p{
+
+        font-size:16px;
     }
 
-    .feature-item {
-        font-size: 16px;
+    .feature-item{
+
+        font-size:15px;
     }
 
-    .phone {
-        width: 250px;
-        height: 520px;
+    .world-circle{
+
+        width:300px;
+        height:300px;
     }
 
-    .world-circle {
-        width: 300px;
-        height: 300px;
+    .world-ring{
+
+        width:390px;
+        height:390px;
     }
 
-    .world-ring {
-        width: 360px;
-        height: 360px;
+    .world-glow{
+
+        width:430px;
+        height:430px;
     }
 
-    .country-card {
-        transform: scale(.82);
+    .country-card{
+
+        width:180px;
+        padding:14px;
     }
 
-    .phone-app {
-        width: 70px;
-        height: 70px;
-        font-size: 34px;
+    .country-card h4{
+
+        font-size:20px;
     }
+
+    .phone{
+
+        width:250px;
+        height:500px;
+    }
+
+    .phone-app{
+
+        width:64px;
+        height:64px;
+        font-size:28px;
+    }
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:640px){
+
+    .premium-features{
+
+        margin:70px auto;
+        padding:0 18px;
+    }
+
+    .premium-card{
+
+        border-radius:24px;
+        padding:30px 22px;
+    }
+
+    .feature-tag{
+
+        font-size:13px;
+        padding:8px 16px;
+    }
+
+    .premium-content h2{
+
+        font-size:28px;
+        line-height:1.2;
+    }
+
+    .premium-content p{
+
+        font-size:15px;
+        margin-bottom:24px;
+    }
+
+    .feature-list{
+
+        gap:14px;
+    }
+
+    .feature-item{
+
+        justify-content:flex-start;
+        font-size:15px;
+    }
+
+    .premium-btn{
+
+        width:100%;
+        justify-content:center;
+        font-size:15px;
+        padding:15px 20px;
+    }
+
+    .numbers-preview,
+    .phone-preview{
+
+        min-height:340px;
+    }
+
+    .world-circle{
+
+        width:220px;
+        height:220px;
+    }
+
+    .world-ring{
+
+        width:280px;
+        height:280px;
+    }
+
+    .world-glow{
+
+        width:320px;
+        height:320px;
+    }
+
+    .country-card{
+
+        transform:scale(.82);
+    }
+
+    .phone{
+
+        width:210px;
+        height:420px;
+    }
+
+    .phone-notch{
+
+        width:100px;
+        height:22px;
+    }
+
+    .phone-app{
+
+        width:52px;
+        height:52px;
+        border-radius:16px;
+        font-size:22px;
+    }
+
+    .google{
+
+        left:-10px;
+    }
+
+    .whatsapp{
+
+        right:-10px;
+    }
+
+}
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+@keyframes glowPulse{
+
+    0%{
+
+        transform:scale(1);
+
+        box-shadow:
+            inset -20px -20px 40px rgba(0,0,0,.12),
+            0 30px 80px rgba(88,101,255,.20);
+
+    }
+
+    50%{
+
+        transform:scale(1.03);
+
+        box-shadow:
+            inset -20px -20px 40px rgba(0,0,0,.12),
+            0 40px 100px rgba(88,101,255,.35);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        box-shadow:
+            inset -20px -20px 40px rgba(0,0,0,.12),
+            0 30px 80px rgba(88,101,255,.20);
+
+    }
+
+}
+
+/* ==========================================
+   PREMIUM ENTRANCE
+========================================== */
+
+.premium-card{
+
+    animation:fadeUp .8s ease both;
+}
+
+.premium-card:nth-child(2){
+
+    animation-delay:.15s;
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+    }
+
 }
 
 /*==================================
