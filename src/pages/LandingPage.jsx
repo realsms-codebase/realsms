@@ -48,7 +48,7 @@ export default function LandingPage() {
                 </ul>
 
                 <div className="nav-buttons">
-                    <button className="login-btn">
+                    <button className="landing-login-btn">
                         Log in
                     </button>
 
