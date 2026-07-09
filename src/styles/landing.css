@@ -392,1337 +392,439 @@ display:none;
 
 }
 
-/*==========================================================
-    PREMIUM FEATURES SECTION (PART 1A)
-    Layout • Cards • Typography • Buttons • Lists
-==========================================================*/
+/* ======================================
+   FEATURES SECTION
+====================================== */
 
-.premium-features{
-    position:relative;
-    overflow:hidden;
-    padding:90px 7%;
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:28px;
-    background:#f8faff;
+.premium-features {
+    max-width: 1600px;
+    margin: 100px auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
 }
 
-.premium-features::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-        radial-gradient(circle at top,#eef3ff 0%,transparent 45%);
-    pointer-events:none;
+/* ===========================
+   CARD
+=========================== */
+
+.premium-card {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    min-height: 690px;
+    padding: 55px;
+    border-radius: 30px;
+    background: #fff;
+    border: 1px solid #ebedf7;
+    box-shadow: 0 20px 60px rgba(45, 68, 150, 0.08);
 }
 
-.premium-features::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background-image:
-        radial-gradient(rgba(99,102,241,.05) 1px,transparent 1px);
-    background-size:34px 34px;
-    opacity:.5;
-    pointer-events:none;
+.premium-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left,
+            rgba(92, 98, 255, .08),
+            transparent 50%);
+    pointer-events: none;
 }
 
-/*==========================================================
-CARD
-==========================================================*/
-
-.premium-card{
-
-    position:relative;
-
-    display:flex;
-
-    align-items:flex-start;
-
-    justify-content:space-between;
-
-    overflow:hidden;
-
-    height:670px;
-
-    border-radius:34px;
-
-    background:#fff;
-
-    border:1px solid #e8edf7;
-
-    box-shadow:
-        0 12px 45px rgba(15,23,42,.06);
-
-    transition:.35s ease;
-
+.premium-card:last-child::before {
+    background: radial-gradient(circle at top right,
+            rgba(52, 199, 89, .08),
+            transparent 50%);
 }
 
-.premium-card:hover{
+/* ===========================
+   CONTENT
+=========================== */
 
-    transform:translateY(-6px);
-
-    box-shadow:
-        0 20px 70px rgba(15,23,42,.08);
-
+.premium-content {
+    width: 47%;
+    position: relative;
+    z-index: 2;
 }
 
-.premium-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.08),
-            transparent);
-
-    pointer-events:none;
-
+.feature-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 22px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+    font-size: 15px;
+    font-weight: 700;
 }
 
-/*==========================================================
-LEFT CONTENT
-==========================================================*/
-
-.premium-content{
-
-    position:relative;
-
-    z-index:5;
-
-    width:46%;
-
-    padding:54px;
-
+.feature-tag.blue {
+    background: #eef0ff;
+    color: #5664ff;
 }
 
-.feature-tag{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:12px 20px;
-
-    border-radius:999px;
-
-    font-size:15px;
-
-    font-weight:700;
-
-    margin-bottom:34px;
-
+.feature-tag.green {
+    background: #e8fbef;
+    color: #19b85a;
 }
 
-.feature-tag.blue{
-
-    background:#eef2ff;
-
-    color:#4f46e5;
-
+.tag-icon {
+    font-size: 18px;
 }
 
-.feature-tag.green{
-
-    background:#eafbf1;
-
-    color:#16a34a;
-
+.premium-content h2 {
+    font-size: 60px;
+    line-height: 1.08;
+    font-weight: 800;
+    color: #16204f;
+    margin-bottom: 24px;
 }
 
-.tag-icon{
-
-    width:26px;
-
-    height:26px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.7);
-
-    font-size:14px;
-
+.premium-content p {
+    font-size: 20px;
+    color: #66718e;
+    line-height: 1.7;
+    margin-bottom: 34px;
 }
 
-/*==========================================================
-HEADINGS
-==========================================================*/
+/* ===========================
+   FEATURE LIST
+=========================== */
 
-.premium-card h2{
-
-    font-size:56px;
-
-    line-height:1.08;
-
-    letter-spacing:-2px;
-
-    font-weight:700;
-
-    color:#0f172a;
-
-    margin-bottom:24px;
-
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 45px;
 }
 
-.premium-card p{
-
-    font-size:18px;
-
-    line-height:1.9;
-
-    color:#64748b;
-
-    margin-bottom:36px;
-
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #2e3a66;
+    font-size: 18px;
 }
 
-/*==========================================================
-FEATURE LIST
-==========================================================*/
-
-.feature-list{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:18px;
-
-    margin-bottom:42px;
-
+.feature-item span {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #2dcc70;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
 }
 
-.feature-item{
+/* ===========================
+   BUTTON
+=========================== */
 
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    font-size:16px;
-
-    color:#334155;
-
-    font-weight:500;
-
+.premium-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 32px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 18px;
+    background: #fff;
+    cursor: pointer;
+    transition: .3s;
 }
 
-.feature-item span{
-
-    width:24px;
-
-    height:24px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:#eef2ff;
-
-    color:#4f46e5;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    flex-shrink:0;
-
+.outline-blue {
+    border: 2px solid #5664ff;
+    color: #5664ff;
 }
 
-.feature-tag.green + h2 + p + .feature-list .feature-item span{
-
-    background:#eafbf1;
-
-    color:#16a34a;
-
+.outline-green {
+    border: 2px solid #2dcc70;
+    color: #2dcc70;
 }
 
-/*==========================================================
-BUTTONS
-==========================================================*/
-
-.premium-btn{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:12px;
-
-    padding:18px 30px;
-
-    border-radius:16px;
-
-    background:#fff;
-
-    font-size:17px;
-
-    font-weight:700;
-
-    transition:.3s;
-
+.premium-btn:hover {
+    transform: translateY(-4px);
 }
 
-.outline-blue{
+/* ======================================
+   LEFT PREVIEW
+====================================== */
 
-    border:2px solid #5b5df7;
-
-    color:#5b5df7;
-
+.numbers-preview {
+    width: 53%;
+    height: 580px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.outline-blue:hover{
-
-    background:#5b5df7;
-
-    color:#fff;
-
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 18px 35px rgba(91,93,247,.25);
-
-}
-
-.outline-green{
-
-    border:2px solid #22c55e;
-
-    color:#22c55e;
-
-}
-
-.outline-green:hover{
-
-    background:#22c55e;
-
-    color:#fff;
-
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 18px 35px rgba(34,197,94,.22);
-
-}
-
-.premium-btn svg{
-
-    font-size:18px;
-
-    transition:.3s;
-
-}
-
-.premium-btn:hover svg{
-
-    transform:translateX(4px);
-
-}
-
-/*==========================================================
-GRAPHIC CONTAINERS
-==========================================================*/
-
-.numbers-preview{
-
-    position:absolute;
-
-    right:0;
-
-    top:0;
-
-    width:54%;
-
-    height:100%;
-
-}
-
-.phone-preview{
-
-    position:absolute;
-
-    right:0;
-
-    top:0;
-
-    width:54%;
-
-    height:100%;
-
-}
-
-/*==========================================================
-    PREMIUM FEATURES (PART 1B)
-    Globe • Orbit • Country Cards • Animations
-==========================================================*/
-
-/*==========================================================
-WORLD GLOW
-==========================================================*/
-
-.world-glow{
-
-    position:absolute;
-
-    width:420px;
-    height:420px;
-
-    right:-70px;
-    bottom:-30px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(91,93,247,.12) 0%,
-            rgba(91,93,247,.05) 45%,
-            transparent 72%
-        );
-
-    filter:blur(20px);
-
-}
-
-/*==========================================================
-DASHED ORBIT
-==========================================================*/
-
-.world-ring{
-
-    position:absolute;
-
-    width:470px;
-    height:470px;
-
-    right:-35px;
-    bottom:-45px;
-
-    border-radius:50%;
-
-    border:2px dashed #d9e2ff;
-
-    animation:rotateOrbit 50s linear infinite;
-
-    opacity:.9;
-
-}
-
-/*==========================================================
-MAIN GLOBE
-==========================================================*/
-
-.world-circle{
-
-    position:absolute;
-
-    width:360px;
-    height:360px;
-
-    right:18px;
-    bottom:12px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(circle at 35% 30%,
-            #9ba8ff 0%,
-            #6b72ff 45%,
-            #4f46e5 72%,
-            #3b35cc 100%
-        );
-
-    box-shadow:
-        inset 0 12px 30px rgba(255,255,255,.25),
-        inset 0 -18px 40px rgba(0,0,0,.12),
-        0 30px 60px rgba(79,70,229,.18);
-
-    overflow:hidden;
-
-}
-
-/* latitude lines */
-
-.world-circle::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:28px;
-
-    border-radius:50%;
-
-    border:2px solid rgba(255,255,255,.18);
-
-}
-
-.world-circle::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:68px;
-
-    border-radius:50%;
-
-    border:2px solid rgba(255,255,255,.12);
-
-}
-
-/*==========================================================
-COUNTRY CARD
-==========================================================*/
-
-.country-card{
-
-    position:absolute;
-
-    width:175px;
-
-    padding:16px 18px;
-
-    background:rgba(255,255,255,.96);
-
-    backdrop-filter:blur(18px);
-
-    border:1px solid #edf2ff;
-
-    border-radius:18px;
-
-    box-shadow:
-        0 14px 35px rgba(15,23,42,.08);
-
-    z-index:10;
-
-    transition:.35s;
-
-    animation:floatCard 6s ease-in-out infinite;
-
-}
-
-.country-card:hover{
-
-    transform:
-        translateY(-8px)
-        scale(1.03);
-
-    box-shadow:
-        0 24px 45px rgba(15,23,42,.12);
-
-}
-
-/*==========================================================
-HEADER
-==========================================================*/
-
-.country-header{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-bottom:10px;
-
-}
-
-.country-name{
-
-    font-size:13px;
-
-    font-weight:600;
-
-    color:#64748b;
-
-}
-
-/*==========================================================
-NUMBER
-==========================================================*/
-
-.country-card h4{
-
-    font-size:18px;
-
-    color:#0f172a;
-
-    font-weight:700;
-
-    letter-spacing:.2px;
-
-    margin-bottom:12px;
-
-}
-
-/*==========================================================
-STATUS
-==========================================================*/
-
-.country-status{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    font-size:13px;
-
-    font-weight:600;
-
-    color:#16a34a;
-
-}
-
-.online{
-
-    width:9px;
-
-    height:9px;
-
-    border-radius:50%;
-
-    background:#22c55e;
-
-    box-shadow:
-        0 0 10px #22c55e;
-
-}
-
-/*==========================================================
-POSITIONING
-==========================================================*/
-
-.usa{
-
-    top:90px;
-
-    right:90px;
-
-}
-
-.uk{
-
-    top:230px;
-
-    right:210px;
-
-    animation-delay:1.5s;
-
-}
-
-.germany{
-
-    bottom:105px;
-
-    right:65px;
-
-    animation-delay:3s;
-
-}
-
-/*==========================================================
-DECORATIVE DOTS
-==========================================================*/
-
-.numbers-preview::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:12px;
-    height:12px;
-
-    border-radius:50%;
-
-    background:#5b5df7;
-
-    top:120px;
-    left:110px;
-
-    box-shadow:
-        80px 50px #d8dfff,
-        130px 170px #5b5df7,
-        210px 250px #d8dfff,
-        260px 120px #5b5df7;
-
-}
-
-.numbers-preview::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:220px;
-    height:220px;
-
-    right:70px;
-    top:150px;
-
-    border-radius:50%;
-
-    border:1px dashed rgba(91,93,247,.15);
-
-}
-
-/*==========================================================
-ANIMATIONS
-==========================================================*/
-
-@keyframes floatCard{
-
-    0%{
-
-        transform:translateY(0px);
-
-    }
-
-    50%{
-
-        transform:translateY(-10px);
-
-    }
-
-    100%{
-
-        transform:translateY(0px);
-
-    }
-
-}
-
-@keyframes rotateOrbit{
-
-    from{
-
-        transform:rotate(0deg);
-
-    }
-
-    to{
-
-        transform:rotate(360deg);
-
-    }
-
-}
-
-/*==========================================================
-RESPONSIVE
-==========================================================*/
-
-@media(max-width:1200px){
-
-    .numbers-preview{
-
-        position:relative;
-
-        width:100%;
-
-        height:420px;
-
-        margin-top:40px;
-
-    }
-
-    .world-ring{
-
-        left:50%;
-
-        right:auto;
-
-        transform:translateX(-50%);
-
-    }
-
-    .world-circle{
-
-        left:50%;
-
-        right:auto;
-
-        transform:translateX(-50%);
-
-    }
-
-    .world-glow{
-
-        left:50%;
-
-        right:auto;
-
-        transform:translateX(-50%);
-
-    }
-
-}
-
-@media(max-width:768px){
-
-    .numbers-preview{
-
-        transform:scale(.82);
-
-        transform-origin:center bottom;
-
-    }
-
-    .country-card{
-
-        width:155px;
-
-        padding:14px;
-
-    }
-
-    .country-card h4{
-
-        font-size:16px;
-
-    }
-
-    .country-name{
-
-        font-size:12px;
-
-    }
-
-}
-
-/*==========================================================
-    PREMIUM FEATURES (PART 2)
-    Phone • Floating Apps • Responsive
-==========================================================*/
-
-/*==========================================================
-PHONE WRAPPER
-==========================================================*/
-
-.phone-preview{
-
-    position:absolute;
-
-    right:20px;
-
-    bottom:20px;
-
-    width:54%;
-
-    height:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-/*==========================================================
-PHONE
-==========================================================*/
-
-.phone{
-
-    position:relative;
-
-    width:290px;
-
-    height:585px;
-
-    padding:10px;
-
-    border-radius:48px;
-
-    background:#ffffff;
-
-    border:1px solid #edf1fb;
-
-    box-shadow:
-        0 30px 70px rgba(15,23,42,.10),
-        0 10px 25px rgba(15,23,42,.05);
-
-    transition:.35s;
-
-}
-
-.phone:hover{
-
-    transform:translateY(-8px);
-
-}
-
-.phone::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-1px;
-
-    border-radius:48px;
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            rgba(255,255,255,.9),
-
-            rgba(255,255,255,.2)
-
-        );
-
-    z-index:-1;
-
-}
-
-.phone-notch{
-
-    position:absolute;
-
-    left:50%;
-
-    top:14px;
-
-    transform:translateX(-50%);
-
-    width:120px;
-
-    height:28px;
-
-    background:#0f172a;
-
-    border-radius:20px;
-
-    z-index:5;
-
-}
-
-/*==========================================================
-SCREEN
-==========================================================*/
-
-.phone-screen{
-
-    position:relative;
-
-    width:100%;
-
-    height:100%;
-
-    overflow:hidden;
-
-    border-radius:38px;
-
-    background:
-
-        linear-gradient(
-
-            180deg,
-
-            #ffffff,
-
-            #f6f8ff
-
-        );
-
-}
-
-.phone-screen::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:240px;
-
-    height:240px;
-
-    border-radius:50%;
-
-    background:
-
-        radial-gradient(circle,
-
-            rgba(99,102,241,.10),
-
+.world-glow {
+    position: absolute;
+    width: 560px;
+    height: 560px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            rgba(92, 98, 255, .14),
             transparent 70%);
-
-    top:-90px;
-
-    right:-80px;
-
 }
 
-.phone-screen::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-
-    height:180px;
-
-    border-radius:50%;
-
-    background:
-
-        radial-gradient(circle,
-
-            rgba(34,197,94,.08),
-
-            transparent 70%);
-
-    left:-70px;
-
-    bottom:-70px;
-
+.world-ring {
+    position: absolute;
+    width: 510px;
+    height: 510px;
+    border-radius: 50%;
+    border: 2px dashed #c6ccff;
 }
 
-/*==========================================================
-APP ICONS
-==========================================================*/
-
-.phone-app{
-
-    position:absolute;
-
-    width:82px;
-
-    height:82px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:24px;
-
-    background:#fff;
-
-    font-size:34px;
-
-    box-shadow:
-
-        0 16px 35px rgba(15,23,42,.08);
-
-    transition:.35s;
-
-    animation:appFloat 7s ease-in-out infinite;
-
+.world-circle {
+    width: 430px;
+    height: 430px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%,
+            #9599ff,
+            #676dff 55%,
+            #4d53f2);
+    box-shadow: 0 0 80px rgba(90, 100, 255, .35);
 }
 
-.phone-app:hover{
+/* ===========================
+   COUNTRY CARD
+=========================== */
 
-    transform:
-
-        translateY(-10px)
-
-        scale(1.08)
-
-        rotate(-5deg);
-
+.country-card {
+    position: absolute;
+    width: 230px;
+    background: #fff;
+    border-radius: 22px;
+    padding: 18px;
+    box-shadow: 0 20px 45px rgba(40, 55, 120, .12);
 }
 
-/*==========================================================
-INDIVIDUAL APPS
-==========================================================*/
-
-.google{
-
-    top:75px;
-
-    left:30px;
-
-    color:#4285F4;
-
+.country-header {
+    font-size: 15px;
+    color: #555;
 }
 
-.telegram{
-
-    top:140px;
-
-    right:30px;
-
-    color:#229ED9;
-
-    animation-delay:1s;
-
+.country-card h4 {
+    margin: 10px 0;
+    font-size: 30px;
+    font-weight: 700;
+    color: #151515;
 }
 
-.whatsapp{
-
-    top:245px;
-
-    left:45px;
-
-    color:#25D366;
-
-    animation-delay:2s;
-
+.country-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #30c667;
+    font-size: 15px;
 }
 
-.instagram{
-
-    top:320px;
-
-    right:35px;
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            #f58529,
-
-            #dd2a7b,
-
-            #8134af,
-
-            #515bd4
-
-        );
-
-    color:#fff;
-
-    animation-delay:3s;
-
+.online {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #30c667;
 }
 
-.amazon{
-
-    bottom:70px;
-
-    left:95px;
-
-    color:#111827;
-
-    animation-delay:4s;
-
+.usa {
+    top: 40px;
+    right: 10px;
 }
 
-.more{
-
-    bottom:75px;
-
-    right:35px;
-
-    color:#5b5df7;
-
-    animation-delay:5s;
-
+.uk {
+    left: 0;
+    top: 230px;
 }
 
-/*==========================================================
-APP FLOAT
-==========================================================*/
-
-@keyframes appFloat{
-
-    0%{
-
-        transform:translateY(0);
-
-    }
-
-    50%{
-
-        transform:translateY(-12px);
-
-    }
-
-    100%{
-
-        transform:translateY(0);
-
-    }
-
+.germany {
+    right: 40px;
+    bottom: 35px;
 }
 
-/*==========================================================
-RESPONSIVE
-==========================================================*/
+/* ======================================
+   PHONE
+====================================== */
 
-@media(max-width:1200px){
-
-    .premium-features{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .premium-card{
-
-        height:auto;
-
-        min-height:720px;
-
-    }
-
-    .premium-content{
-
-        width:100%;
-
-        max-width:100%;
-
-        padding:50px;
-
-    }
-
-    .numbers-preview{
-
-        position:relative;
-
-        width:100%;
-
-        height:450px;
-
-        margin-top:30px;
-
-    }
-
-    .phone-preview{
-
-        position:relative;
-
-        width:100%;
-
-        height:620px;
-
-        right:auto;
-
-        bottom:auto;
-
-        margin-top:40px;
-
-    }
-
+.phone-preview {
+    width: 53%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@media(max-width:768px){
-
-    .premium-features{
-
-        padding:70px 20px;
-
-        gap:24px;
-
-    }
-
-    .premium-card{
-
-        border-radius:26px;
-
-        min-height:auto;
-
-    }
-
-    .premium-content{
-
-        padding:35px;
-
-    }
-
-    .premium-card h2{
-
-        font-size:38px;
-
-    }
-
-    .premium-card p{
-
-        font-size:16px;
-
-    }
-
-    .feature-item{
-
-        font-size:15px;
-
-    }
-
-    .phone{
-
-        transform:scale(.85);
-
-    }
-
-    .numbers-preview{
-
-        transform:scale(.80);
-
-        transform-origin:center bottom;
-
-    }
-
+.phone {
+    width: 300px;
+    height: 610px;
+    border-radius: 55px;
+    background: #fff;
+    border: 10px solid #eef2fb;
+    position: relative;
+    box-shadow: 0 25px 70px rgba(50, 70, 150, .08);
 }
 
-@media(max-width:520px){
-
-    .premium-content{
-
-        padding:28px;
-
-    }
-
-    .premium-card h2{
-
-        font-size:32px;
-
-    }
-
-    .phone{
-
-        transform:scale(.68);
-
-    }
-
-    .numbers-preview{
-
-        transform:scale(.62);
-
-    }
-
-    .premium-btn{
-
-        width:100%;
-
-        justify-content:center;
-
-    }
-
+.phone-notch {
+    width: 130px;
+    height: 28px;
+    border-radius: 20px;
+    background: #eef2fb;
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* ===========================
+   FLOATING APPS
+=========================== */
+
+.phone-app {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 24px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, .08);
+}
+
+.google {
+    top: 180px;
+    left: -35px;
+    color: #EA4335;
+}
+
+.telegram {
+    top: 85px;
+    right: 35px;
+    color: #2AABEE;
+}
+
+.whatsapp {
+    top: 255px;
+    right: -35px;
+    color: #25D366;
+}
+
+.instagram {
+    top: 365px;
+    left: 55px;
+    color: #E1306C;
+}
+
+.amazon {
+    bottom: 70px;
+    left: 5px;
+    color: #111;
+}
+
+.more {
+    bottom: 60px;
+    right: 25px;
+    color: #5664ff;
+}
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+
+@media (max-width:1200px) {
+
+    .premium-features {
+        grid-template-columns: 1fr;
+    }
+
+    .premium-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+        min-height: auto;
+    }
+
+    .premium-content,
+    .numbers-preview,
+    .phone-preview {
+        width: 100%;
+    }
+
+    .feature-list {
+        align-items: center;
+    }
+
+    .premium-content h2 {
+        font-size: 46px;
+    }
+
+    .premium-content p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width:768px) {
+
+    .premium-features {
+        padding: 0 20px;
+        margin: 70px auto;
+    }
+
+    .premium-card {
+        padding: 35px 25px;
+        border-radius: 24px;
+    }
+
+    .premium-content h2 {
+        font-size: 34px;
+    }
+
+    .premium-content p {
+        font-size: 16px;
+    }
+
+    .feature-item {
+        font-size: 16px;
+    }
+
+    .phone {
+        width: 250px;
+        height: 520px;
+    }
+
+    .world-circle {
+        width: 300px;
+        height: 300px;
+    }
+
+    .world-ring {
+        width: 360px;
+        height: 360px;
+    }
+
+    .country-card {
+        transform: scale(.82);
+    }
+
+    .phone-app {
+        width: 70px;
+        height: 70px;
+        font-size: 34px;
+    }
+}
 
 /*==================================
 HOW IT WORKS
