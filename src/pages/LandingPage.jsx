@@ -3,6 +3,10 @@ import {
     FiChevronDown,
     FiGlobe,
     FiMessageSquare,
+    FiZap,
+    FiShield,
+    FiSmartphone,
+    FiTrendingUp,
 } from "react-icons/fi";
 
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaGithub, } from "react-icons/fa";
@@ -135,65 +139,128 @@ export default function LandingPage() {
             </section>
 
 
-<div className="why-card">
-    <div className="why-icon">
-        <FiZap />
-    </div>
-    <h3>Instant SMS Delivery</h3>
-    <p>
-        Receive OTPs and verification codes within seconds after purchasing a virtual number.
-    </p>
-</div>
+{/* ======================================
+WHY CHOOSE REALSMS
+====================================== */}
 
-<div className="why-card">
-    <div className="why-icon">
-        <FiGlobe />
-    </div>
-    <h3>Global Coverage</h3>
-    <p>
-        Choose virtual numbers from over 100 countries for your verification needs.
-    </p>
-</div>
+<section className="why-realsms">
 
-<div className="why-card">
-    <div className="why-icon">
-        <FiShield />
-    </div>
-    <h3>Privacy First</h3>
-    <p>
-        Keep your personal phone number private by using virtual numbers for online registrations.
-    </p>
-</div>
+    <div className="why-header">
 
-<div className="why-card">
-    <div className="why-icon">
-        <FiSmartphone />
-    </div>
-    <h3>Wide Platform Support</h3>
-    <p>
-        Compatible with popular services including WhatsApp, Telegram, Google, Facebook and many more.
-    </p>
-</div>
+        <span className="why-badge">
+            Why Choose RealSMS
+        </span>
 
-<div className="why-card">
-    <div className="why-icon">
-        <FiTrendingUp />
-    </div>
-    <h3>Live Inventory</h3>
-    <p>
-        View available countries, services and pricing updated in real time before making a purchase.
-    </p>
-</div>
+        <h2>
+            Everything you need for fast,
+            secure virtual numbers and
+            SMS verification.
+        </h2>
 
-<div className="why-card">
-    <div className="why-icon">
-        <FiMessageSquare />
+        <p>
+            Built for developers, businesses and individuals who need
+            reliable virtual phone numbers, instant SMS delivery and
+            access to social media logs.
+        </p>
+
     </div>
-    <h3>Social Media Logs</h3>
-    <p>
-        Browse available social media logs through a fast, secure and easy-to-use marketplace.
-    </p>
-</div>
+
+    <div className="why-grid">
+
+        <div className="why-card">
+
+            <div className="why-icon">
+                <FiZap />
+            </div>
+
+            <h3>Instant SMS Delivery</h3>
+
+            <p>
+                Receive verification codes and OTP messages within
+                seconds after purchasing a virtual number.
+            </p>
+
+        </div>
+
+        <div className="why-card">
+
+            <div className="why-icon">
+                <FiGlobe />
+            </div>
+
+            <h3>100+ Countries</h3>
+
+            <p>
+                Access virtual phone numbers from a growing list of
+                countries for registrations worldwide.
+            </p>
+
+        </div>
+
+        <div className="why-card">
+
+            <div className="why-icon">
+                <FiShield />
+            </div>
+
+            <h3>Privacy Protection</h3>
+
+            <p>
+                Keep your personal phone number private while creating
+                and verifying online accounts.
+            </p>
+
+        </div>
+
+        <div className="why-card">
+
+            <div className="why-icon">
+                <FiSmartphone />
+            </div>
+
+            <h3>Wide Platform Support</h3>
+
+            <p>
+                Works with popular services including WhatsApp,
+                Telegram, Google, Facebook, TikTok, Instagram and
+                many others.
+            </p>
+
+        </div>
+
+        <div className="why-card">
+
+            <div className="why-icon">
+                <FiTrendingUp />
+            </div>
+
+            <h3>Live Inventory</h3>
+
+            <p>
+                Browse available countries, services and prices that
+                are updated in real time before you purchase.
+            </p>
+
+        </div>
+
+        <div className="why-card">
+
+            <div className="why-icon">
+                <FiMessageSquare />
+            </div>
+
+            <h3>Social Media Logs</h3>
+
+            <p>
+                Browse available social media logs through a secure,
+                simple and easy-to-use marketplace.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
             
             {/* ============================
     HOW IT WORKS
