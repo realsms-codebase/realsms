@@ -135,89 +135,65 @@ export default function LandingPage() {
             </section>
 
 
-{/* ======================================
-WHY CHOOSE REALSMS
-====================================== */}
-
-<section className="why-realsms">
-
-    <div className="why-header">
-
-        <span className="why-badge">
-            Why Choose RealSMS
-        </span>
-
-        <h2>
-            Built for fast, secure and
-            reliable SMS verification
-        </h2>
-
-        <p>
-            Everything you need to buy virtual numbers and receive OTPs
-            with confidence, whether you're a developer, business or individual.
-        </p>
-
+<div className="why-card">
+    <div className="why-icon">
+        <FiZap />
     </div>
+    <h3>Instant SMS Delivery</h3>
+    <p>
+        Receive OTPs and verification codes within seconds after purchasing a virtual number.
+    </p>
+</div>
 
-    <div className="why-grid">
-
-        <div className="why-card">
-            <div className="why-icon">⚡</div>
-            <h3>Instant SMS Delivery</h3>
-            <p>
-                Receive OTPs and verification codes within seconds with
-                high delivery success rates.
-            </p>
-        </div>
-
-        <div className="why-card">
-            <div className="why-icon">🌍</div>
-            <h3>100+ Countries</h3>
-            <p>
-                Access virtual phone numbers from a growing list of
-                countries around the world.
-            </p>
-        </div>
-
-        <div className="why-card">
-            <div className="why-icon">🛡️</div>
-            <h3>Privacy Protection</h3>
-            <p>
-                Keep your personal phone number private while verifying
-                accounts securely.
-            </p>
-        </div>
-
-        <div className="why-card">
-            <div className="why-icon">📱</div>
-            <h3>Real SIM Numbers</h3>
-            <p>
-                High-quality numbers with better verification success
-                across supported platforms.
-            </p>
-        </div>
-
-        <div className="why-card">
-            <div className="why-icon">📊</div>
-            <h3>Live Availability</h3>
-            <p>
-                Stock and pricing are updated in real time so you always
-                know what's available.
-            </p>
-        </div>
-
-        <div className="why-card">
-            <div className="why-icon">⚙️</div>
-            <h3>Developer Friendly</h3>
-            <p>
-                Integrate RealSMS into your applications using our
-                simple and reliable API.
-            </p>
-        </div>
-
+<div className="why-card">
+    <div className="why-icon">
+        <FiGlobe />
     </div>
+    <h3>Global Coverage</h3>
+    <p>
+        Choose virtual numbers from over 100 countries for your verification needs.
+    </p>
+</div>
 
-</section>
+<div className="why-card">
+    <div className="why-icon">
+        <FiShield />
+    </div>
+    <h3>Privacy First</h3>
+    <p>
+        Keep your personal phone number private by using virtual numbers for online registrations.
+    </p>
+</div>
+
+<div className="why-card">
+    <div className="why-icon">
+        <FiSmartphone />
+    </div>
+    <h3>Wide Platform Support</h3>
+    <p>
+        Compatible with popular services including WhatsApp, Telegram, Google, Facebook and many more.
+    </p>
+</div>
+
+<div className="why-card">
+    <div className="why-icon">
+        <FiTrendingUp />
+    </div>
+    <h3>Live Inventory</h3>
+    <p>
+        View available countries, services and pricing updated in real time before making a purchase.
+    </p>
+</div>
+
+<div className="why-card">
+    <div className="why-icon">
+        <FiMessageSquare />
+    </div>
+    <h3>Social Media Logs</h3>
+    <p>
+        Browse available social media logs through a fast, secure and easy-to-use marketplace.
+    </p>
+</div>
             
             {/* ============================
     HOW IT WORKS
