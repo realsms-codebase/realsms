@@ -4,18 +4,6 @@ import {
     FiGlobe,
     FiMessageSquare,
 } from "react-icons/fi";
-import {
-    FaGoogle,
-    FaTelegramPlane,
-    FaWhatsapp,
-    FaAmazon,
-    FaFacebookF,
-    FaTwitter,
-    FaInstagram,
-    FaLinkedinIn,
-    FaGithub,
-} from "react-icons/fa";
-
 import "../styles/landing.css";
 import hero from "../assets/hero-dashboard.png";
 
