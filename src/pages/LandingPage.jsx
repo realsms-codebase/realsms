@@ -8,7 +8,7 @@ import {
     FiSmartphone,
     FiTrendingUp,
 } from "react-icons/fi";
-
+import logo from "../assets/logo.png";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaGithub, } from "react-icons/fa";
 import "../styles/landing.css";
 import hero from "../assets/hero-dashboard.png";
@@ -21,8 +21,7 @@ export default function LandingPage() {
 
             <nav className="navbar">
                 <div className="logo">
-                    <div className="logo-icon">💬</div>
-                    <span>realsms</span>
+                    <img src={logo} alt="RealSMS" />
                 </div>
 
                 <ul className="nav-links">
