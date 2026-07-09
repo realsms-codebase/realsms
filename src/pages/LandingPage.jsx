@@ -146,263 +146,77 @@ export default function LandingPage() {
             </section>
 
 {/* ======================================
-            FEATURES
+POPULAR SERVICES
 ====================================== */}
 
-<section className="premium-features">
+<section className="popular-services">
 
-    {/* ================= LEFT CARD ================= */}
+    <div className="section-header">
 
-    <div className="premium-card">
+        <span className="section-badge">
+            Popular Services
+        </span>
 
-        <div className="premium-content">
+        <h2>
+            Buy numbers for your
+            favorite platforms
+        </h2>
 
-            <div className="feature-tag blue">
-
-                <span className="tag-icon">🛡️</span>
-
-                <span>Virtual Numbers</span>
-
-            </div>
-
-            <h2>
-                Receive SMS online
-                <br />
-                with virtual numbers
-            </h2>
-
-            <p>
-                Get virtual phone numbers from over 100 countries
-                and receive SMS & OTPs instantly.
-            </p>
-
-            <div className="feature-list">
-
-                <div className="feature-item">
-                    <span>✓</span>
-                    Numbers from 100+ countries
-                </div>
-
-                <div className="feature-item">
-                    <span>✓</span>
-                    Real SIM based numbers
-                </div>
-
-                <div className="feature-item">
-                    <span>✓</span>
-                    Instant activation
-                </div>
-
-                <div className="feature-item">
-                    <span>✓</span>
-                    Works with all apps & services
-                </div>
-
-                <div className="feature-item">
-                    <span>✓</span>
-                    Keep your privacy safe
-                </div>
-
-            </div>
-
-            <button className="premium-btn outline-blue">
-
-                Get virtual number
-
-                <FiArrowRight />
-
-            </button>
-
-        </div>
-
-        {/* ================= GRAPHIC ================= */}
-
-        <div className="numbers-preview">
-
-            <div className="world-ring"></div>
-
-            <div className="world-glow"></div>
-
-            <div className="world-circle"></div>
-
-            {/* USA */}
-
-            <div className="country-card usa">
-
-                <div className="country-header">
-
-                    <span className="country-name">
-                        🇺🇸 United States
-                    </span>
-
-                </div>
-
-                <h4>+1 415 555 0198</h4>
-
-                <div className="country-status">
-
-                    <span className="online"></span>
-
-                    Online
-
-                </div>
-
-            </div>
-
-            {/* UK */}
-
-            <div className="country-card uk">
-
-                <div className="country-header">
-
-                    <span className="country-name">
-                        🇬🇧 United Kingdom
-                    </span>
-
-                </div>
-
-                <h4>+44 7712 345678</h4>
-
-                <div className="country-status">
-
-                    <span className="online"></span>
-
-                    Online
-
-                </div>
-
-            </div>
-
-            {/* Germany */}
-
-            <div className="country-card germany">
-
-                <div className="country-header">
-
-                    <span className="country-name">
-                        🇩🇪 Germany
-                    </span>
-
-                </div>
-
-                <h4>+49 1512 3456789</h4>
-
-                <div className="country-status">
-
-                    <span className="online"></span>
-
-                    Online
-
-                </div>
-
-            </div>
-
-        </div>
+        <p>
+            Virtual numbers available for the world's most popular
+            apps and services.
+        </p>
 
     </div>
 
-    {/* ================= RIGHT CARD ================= */}
+    <div className="services-grid">
 
-    <div className="premium-card">
-
-        <div className="premium-content">
-
-            <div className="feature-tag green">
-
-                <span className="tag-icon">🗄️</span>
-
-                <span>Social Media Logs</span>
-
-            </div>
-
-            <h2>
-                Access real SMS &
-                <br />
-                social media logs
-            </h2>
-
-            <p>
-                Access real messages and OTPs from popular
-                platforms in real-time.
-            </p>
-
-            <div className="feature-list">
-
-                <div className="feature-item">
-                    <span>✓</span>
-                    Logs from popular platforms
-                </div>
-
-                <div className="feature-item">
-                    <span>✓</span>
-                    Real messages & OTPs
-                </div>
-
-                <div className="feature-item">
-                    <span>✓</span>
-                    Fast & reliable delivery
-                </div>
-
-                <div className="feature-item">
-                    <span>✓</span>
-                    Perfect for developers & businesses
-                </div>
-
-                <div className="feature-item">
-                    <span>✓</span>
-                    Easy API integration
-                </div>
-
-            </div>
-
-            <button className="premium-btn outline-green">
-
-                Browse logs
-
-                <FiArrowRight />
-
-            </button>
-
+        <div className="service-card">
+            <FaWhatsapp className="service-icon whatsapp" />
+            <h3>WhatsApp</h3>
+            <p>From ₦250</p>
+            <span className="stock">● In Stock</span>
+            <button>Buy Number</button>
         </div>
 
-        {/* ================= PHONE ================= */}
+        <div className="service-card">
+            <FaTelegramPlane className="service-icon telegram" />
+            <h3>Telegram</h3>
+            <p>From ₦180</p>
+            <span className="stock">● In Stock</span>
+            <button>Buy Number</button>
+        </div>
 
-        <div className="phone-preview">
+        <div className="service-card">
+            <FaGoogle className="service-icon google" />
+            <h3>Google</h3>
+            <p>From ₦200</p>
+            <span className="stock">● In Stock</span>
+            <button>Buy Number</button>
+        </div>
 
-            <div className="phone">
+        <div className="service-card">
+            <FaInstagram className="service-icon instagram" />
+            <h3>Instagram</h3>
+            <p>From ₦280</p>
+            <span className="stock">● In Stock</span>
+            <button>Buy Number</button>
+        </div>
 
-                <div className="phone-notch"></div>
+        <div className="service-card">
+            <FaFacebookF className="service-icon facebook" />
+            <h3>Facebook</h3>
+            <p>From ₦220</p>
+            <span className="stock">● In Stock</span>
+            <button>Buy Number</button>
+        </div>
 
-                <div className="phone-screen">
-
-                    <div className="phone-app google">
-                        <FaGoogle />
-                    </div>
-
-                    <div className="phone-app telegram">
-                        <FaTelegramPlane />
-                    </div>
-
-                    <div className="phone-app whatsapp">
-                        <FaWhatsapp />
-                    </div>
-
-                    <div className="phone-app instagram">
-                        <FaInstagram />
-                    </div>
-
-                    <div className="phone-app amazon">
-                        <FaAmazon />
-                    </div>
-
-                    <div className="phone-app more">
-                        <BsThreeDots />
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div className="service-card">
+            <FaAmazon className="service-icon amazon" />
+            <h3>Amazon</h3>
+            <p>From ₦300</p>
+            <span className="stock">● In Stock</span>
+            <button>Buy Number</button>
         </div>
 
     </div>
