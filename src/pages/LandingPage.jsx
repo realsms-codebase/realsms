@@ -16,7 +16,6 @@ import {
     FaGithub,
 } from "react-icons/fa";
 
-import { BsThreeDots } from "react-icons/bs";
 import "../styles/landing.css";
 import hero from "../assets/hero-dashboard.png";
 
