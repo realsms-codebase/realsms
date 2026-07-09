@@ -392,105 +392,114 @@ display:none;
 
 }
 
-/*==================================
- PREMIUM FEATURES
-==================================*/
+/*==========================================================
+    PREMIUM FEATURES SECTION (PART 1A)
+    Layout • Cards • Typography • Buttons • Lists
+==========================================================*/
 
 .premium-features{
-    position: relative;
-    padding:120px 7%;
+    position:relative;
+    overflow:hidden;
+    padding:90px 7%;
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:40px;
-    background:
-        linear-gradient(180deg,#ffffff 0%,#f8faff 100%);
+    gap:28px;
+    background:#f8faff;
 }
 
 .premium-features::before{
     content:"";
     position:absolute;
     inset:0;
-    background-image:
-        radial-gradient(rgba(99,102,241,.08) 1px,transparent 1px);
-    background-size:28px 28px;
-    opacity:.45;
+    background:
+        radial-gradient(circle at top,#eef3ff 0%,transparent 45%);
     pointer-events:none;
 }
 
-/*========================*/
+.premium-features::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(rgba(99,102,241,.05) 1px,transparent 1px);
+    background-size:34px 34px;
+    opacity:.5;
+    pointer-events:none;
+}
+
+/*==========================================================
+CARD
+==========================================================*/
 
 .premium-card{
 
     position:relative;
 
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
     overflow:hidden;
 
-    min-height:680px;
+    height:670px;
 
     border-radius:34px;
 
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.96),
-            rgba(248,250,255,.92)
-        );
+    background:#fff;
 
-    border:1px solid rgba(255,255,255,.9);
-
-    backdrop-filter:blur(18px);
+    border:1px solid #e8edf7;
 
     box-shadow:
-        0 20px 60px rgba(15,23,42,.06),
-        0 70px 120px rgba(99,102,241,.08);
+        0 12px 45px rgba(15,23,42,.06);
 
-    transition:.45s ease;
+    transition:.35s ease;
 
 }
 
 .premium-card:hover{
 
-    transform:translateY(-8px);
+    transform:translateY(-6px);
 
     box-shadow:
-        0 40px 90px rgba(99,102,241,.15);
+        0 20px 70px rgba(15,23,42,.08);
 
 }
 
-.premium-card::before{
+.premium-card::after{
 
     content:"";
 
     position:absolute;
 
-    width:500px;
-    height:500px;
-
-    right:-220px;
-    top:-220px;
-
-    border-radius:50%;
+    inset:0;
 
     background:
-        radial-gradient(circle,
-        rgba(99,102,241,.18),
-        transparent 70%);
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.08),
+            transparent);
+
+    pointer-events:none;
 
 }
+
+/*==========================================================
+LEFT CONTENT
+==========================================================*/
 
 .premium-content{
 
     position:relative;
 
-    z-index:2;
+    z-index:5;
 
-    max-width:55%;
+    width:46%;
 
-    padding:55px;
+    padding:54px;
 
 }
-
-/*========================*/
 
 .feature-tag{
 
@@ -498,15 +507,17 @@ display:none;
 
     align-items:center;
 
-    padding:10px 20px;
+    gap:10px;
+
+    padding:12px 20px;
 
     border-radius:999px;
 
-    font-size:14px;
+    font-size:15px;
 
     font-weight:700;
 
-    margin-bottom:28px;
+    margin-bottom:34px;
 
 }
 
@@ -520,39 +531,55 @@ display:none;
 
 .feature-tag.green{
 
-    background:#ecfdf5;
+    background:#eafbf1;
 
     color:#16a34a;
 
 }
 
-/*========================*/
+.tag-icon{
 
-.premium-card h2{
+    width:26px;
 
-    font-size:48px;
+    height:26px;
 
-    font-weight:800;
+    display:flex;
 
-    line-height:1.15;
+    align-items:center;
 
-    letter-spacing:-2px;
+    justify-content:center;
 
-    margin-bottom:24px;
+    border-radius:50%;
 
-    color:#0f172a;
+    background:rgba(255,255,255,.7);
+
+    font-size:14px;
 
 }
 
-.premium-card h2 span{
+/*==========================================================
+HEADINGS
+==========================================================*/
 
-    color:#4f46e5;
+.premium-card h2{
+
+    font-size:56px;
+
+    line-height:1.08;
+
+    letter-spacing:-2px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:24px;
 
 }
 
 .premium-card p{
 
-    font-size:17px;
+    font-size:18px;
 
     line-height:1.9;
 
@@ -562,7 +589,9 @@ display:none;
 
 }
 
-/*========================*/
+/*==========================================================
+FEATURE LIST
+==========================================================*/
 
 .feature-list{
 
@@ -572,7 +601,7 @@ display:none;
 
     gap:18px;
 
-    margin-bottom:40px;
+    margin-bottom:42px;
 
 }
 
@@ -586,19 +615,22 @@ display:none;
 
     font-size:16px;
 
-    font-weight:500;
-
     color:#334155;
+
+    font-weight:500;
 
 }
 
 .feature-item span{
 
-    width:26px;
-    height:26px;
+    width:24px;
+
+    height:24px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     border-radius:50%;
@@ -607,13 +639,25 @@ display:none;
 
     color:#4f46e5;
 
-    font-size:14px;
+    font-size:13px;
 
     font-weight:700;
 
+    flex-shrink:0;
+
 }
 
-/*========================*/
+.feature-tag.green + h2 + p + .feature-list .feature-item span{
+
+    background:#eafbf1;
+
+    color:#16a34a;
+
+}
+
+/*==========================================================
+BUTTONS
+==========================================================*/
 
 .premium-btn{
 
@@ -621,44 +665,83 @@ display:none;
 
     align-items:center;
 
+    justify-content:center;
+
     gap:12px;
 
-    padding:18px 34px;
-
-    border:none;
+    padding:18px 30px;
 
     border-radius:16px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #6366f1,
-            #4f46e5);
+    background:#fff;
 
-    color:white;
-
-    font-size:16px;
+    font-size:17px;
 
     font-weight:700;
 
-    cursor:pointer;
-
-    transition:.35s;
+    transition:.3s;
 
 }
 
-.premium-btn:hover{
+.outline-blue{
 
-    transform:translateY(-4px);
+    border:2px solid #5b5df7;
+
+    color:#5b5df7;
+
+}
+
+.outline-blue:hover{
+
+    background:#5b5df7;
+
+    color:#fff;
+
+    transform:translateY(-3px);
 
     box-shadow:
-        0 25px 50px rgba(99,102,241,.35);
+        0 18px 35px rgba(91,93,247,.25);
 
 }
 
-/*==================================
-LEFT GRAPHIC
-==================================*/
+.outline-green{
+
+    border:2px solid #22c55e;
+
+    color:#22c55e;
+
+}
+
+.outline-green:hover{
+
+    background:#22c55e;
+
+    color:#fff;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 18px 35px rgba(34,197,94,.22);
+
+}
+
+.premium-btn svg{
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.premium-btn:hover svg{
+
+    transform:translateX(4px);
+
+}
+
+/*==========================================================
+GRAPHIC CONTAINERS
+==========================================================*/
 
 .numbers-preview{
 
@@ -668,32 +751,86 @@ LEFT GRAPHIC
 
     top:0;
 
-    width:48%;
+    width:54%;
 
     height:100%;
 
 }
 
+.phone-preview{
+
+    position:absolute;
+
+    right:0;
+
+    top:0;
+
+    width:54%;
+
+    height:100%;
+
+}
+
+/*==========================================================
+    PREMIUM FEATURES (PART 1B)
+    Globe • Orbit • Country Cards • Animations
+==========================================================*/
+
+/*==========================================================
+WORLD GLOW
+==========================================================*/
+
 .world-glow{
 
     position:absolute;
 
-    width:440px;
-    height:440px;
+    width:420px;
+    height:420px;
 
-    right:-110px;
-    bottom:-60px;
+    right:-70px;
+    bottom:-30px;
 
     border-radius:50%;
 
     background:
-        radial-gradient(circle,
-        rgba(99,102,241,.35),
-        transparent 70%);
+        radial-gradient(
+            circle,
+            rgba(91,93,247,.12) 0%,
+            rgba(91,93,247,.05) 45%,
+            transparent 72%
+        );
 
-    filter:blur(25px);
+    filter:blur(20px);
 
 }
+
+/*==========================================================
+DASHED ORBIT
+==========================================================*/
+
+.world-ring{
+
+    position:absolute;
+
+    width:470px;
+    height:470px;
+
+    right:-35px;
+    bottom:-45px;
+
+    border-radius:50%;
+
+    border:2px dashed #d9e2ff;
+
+    animation:rotateOrbit 50s linear infinite;
+
+    opacity:.9;
+
+}
+
+/*==========================================================
+MAIN GLOBE
+==========================================================*/
 
 .world-circle{
 
@@ -702,23 +839,29 @@ LEFT GRAPHIC
     width:360px;
     height:360px;
 
-    right:35px;
-    bottom:60px;
+    right:18px;
+    bottom:12px;
 
     border-radius:50%;
 
     background:
-        radial-gradient(
-            circle at 30% 30%,
-            #8b7bff,
-            #6366f1,
-            #4338ca);
+        radial-gradient(circle at 35% 30%,
+            #9ba8ff 0%,
+            #6b72ff 45%,
+            #4f46e5 72%,
+            #3b35cc 100%
+        );
 
     box-shadow:
-        inset 0 0 40px rgba(255,255,255,.2),
-        0 35px 70px rgba(79,70,229,.35);
+        inset 0 12px 30px rgba(255,255,255,.25),
+        inset 0 -18px 40px rgba(0,0,0,.12),
+        0 30px 60px rgba(79,70,229,.18);
+
+    overflow:hidden;
 
 }
+
+/* latitude lines */
 
 .world-circle::before{
 
@@ -726,7 +869,7 @@ LEFT GRAPHIC
 
     position:absolute;
 
-    inset:26px;
+    inset:28px;
 
     border-radius:50%;
 
@@ -740,7 +883,7 @@ LEFT GRAPHIC
 
     position:absolute;
 
-    inset:70px;
+    inset:68px;
 
     border-radius:50%;
 
@@ -748,31 +891,34 @@ LEFT GRAPHIC
 
 }
 
-/*==================================
-COUNTRY CARDS
-==================================*/
+/*==========================================================
+COUNTRY CARD
+==========================================================*/
 
 .country-card{
 
     position:absolute;
 
-    width:220px;
+    width:175px;
 
-    padding:18px;
+    padding:16px 18px;
 
-    border-radius:22px;
-
-    background:
-        rgba(255,255,255,.88);
+    background:rgba(255,255,255,.96);
 
     backdrop-filter:blur(18px);
 
-    border:1px solid rgba(255,255,255,.8);
+    border:1px solid #edf2ff;
+
+    border-radius:18px;
 
     box-shadow:
-        0 20px 50px rgba(15,23,42,.12);
+        0 14px 35px rgba(15,23,42,.08);
+
+    z-index:10;
 
     transition:.35s;
+
+    animation:floatCard 6s ease-in-out infinite;
 
 }
 
@@ -782,407 +928,177 @@ COUNTRY CARDS
         translateY(-8px)
         scale(1.03);
 
+    box-shadow:
+        0 24px 45px rgba(15,23,42,.12);
+
 }
 
-.country-top{
+/*==========================================================
+HEADER
+==========================================================*/
+
+.country-header{
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
 
-    font-size:14px;
+    justify-content:space-between;
 
-    color:#64748b;
-
-    margin-bottom:12px;
+    margin-bottom:10px;
 
 }
 
+.country-name{
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#64748b;
+
+}
+
+/*==========================================================
+NUMBER
+==========================================================*/
+
 .country-card h4{
 
-    font-size:20px;
+    font-size:18px;
 
     color:#0f172a;
 
     font-weight:700;
 
+    letter-spacing:.2px;
+
+    margin-bottom:12px;
+
+}
+
+/*==========================================================
+STATUS
+==========================================================*/
+
+.country-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#16a34a;
+
 }
 
 .online{
 
-    width:10px;
+    width:9px;
 
-    height:10px;
+    height:9px;
 
     border-radius:50%;
 
     background:#22c55e;
 
     box-shadow:
-        0 0 12px #22c55e;
+        0 0 10px #22c55e;
 
 }
 
-/* Positioning */
+/*==========================================================
+POSITIONING
+==========================================================*/
 
 .usa{
 
     top:90px;
 
-    right:70px;
+    right:90px;
 
 }
 
 .uk{
 
-    top:240px;
+    top:230px;
 
-    right:190px;
+    right:210px;
+
+    animation-delay:1.5s;
 
 }
 
 .germany{
 
-    bottom:180px;
+    bottom:105px;
 
-    right:40px;
+    right:65px;
 
-}
-
-.canada{
-
-    bottom:60px;
-
-    right:200px;
+    animation-delay:3s;
 
 }
 
-/*==================================
-PHONE PREVIEW
-==================================*/
+/*==========================================================
+DECORATIVE DOTS
+==========================================================*/
 
-.phone-preview{
-
-    position:absolute;
-
-    right:35px;
-
-    bottom:35px;
-
-    width:340px;
-
-    height:560px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-.phone{
-
-    position:relative;
-
-    width:270px;
-
-    height:540px;
-
-    border-radius:42px;
-
-    padding:12px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #20222c,
-            #0f1118);
-
-    box-shadow:
-        0 45px 90px rgba(15,23,42,.25),
-        0 15px 40px rgba(99,102,241,.18);
-
-}
-
-.phone::before{
+.numbers-preview::before{
 
     content:"";
 
     position:absolute;
 
-    inset:-2px;
-
-    border-radius:44px;
-
-    padding:2px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.4),
-            rgba(255,255,255,.05));
-
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-
-    -webkit-mask-composite:xor;
-
-            mask-composite:exclude;
-
-}
-
-.phone-notch{
-
-    position:absolute;
-
-    top:14px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:110px;
-
-    height:26px;
-
-    border-radius:18px;
-
-    background:#09090b;
-
-    z-index:5;
-
-}
-
-.phone-screen{
-
-    position:relative;
-
-    width:100%;
-
-    height:100%;
-
-    overflow:hidden;
-
-    border-radius:34px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #ffffff,
-            #f6f8ff);
-
-}
-
-/* Decorative background */
-
-.phone-screen::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:240px;
-    height:240px;
-
-    right:-80px;
-    top:-80px;
+    width:12px;
+    height:12px;
 
     border-radius:50%;
 
-    background:
-        radial-gradient(circle,
-        rgba(99,102,241,.18),
-        transparent 70%);
+    background:#5b5df7;
+
+    top:120px;
+    left:110px;
+
+    box-shadow:
+        80px 50px #d8dfff,
+        130px 170px #5b5df7,
+        210px 250px #d8dfff,
+        260px 120px #5b5df7;
 
 }
 
-.phone-screen::after{
+.numbers-preview::after{
 
     content:"";
 
     position:absolute;
 
-    width:180px;
-    height:180px;
+    width:220px;
+    height:220px;
 
-    left:-60px;
-    bottom:-60px;
+    right:70px;
+    top:150px;
 
     border-radius:50%;
 
-    background:
-        radial-gradient(circle,
-        rgba(16,185,129,.12),
-        transparent 70%);
+    border:1px dashed rgba(91,93,247,.15);
 
 }
 
-/*==================================
-APP ICONS
-==================================*/
-
-.phone-app{
-
-    position:absolute;
-
-    width:78px;
-
-    height:78px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:24px;
-
-    background:white;
-
-    font-size:34px;
-
-    box-shadow:
-        0 18px 40px rgba(15,23,42,.12);
-
-    transition:.35s;
-
-    z-index:3;
-
-}
-
-.phone-app:hover{
-
-    transform:
-        translateY(-8px)
-        scale(1.08)
-        rotate(-4deg);
-
-}
-
-.google{
-
-    left:28px;
-    top:80px;
-
-    color:#4285F4;
-
-}
-
-.telegram{
-
-    right:28px;
-    top:140px;
-
-    color:#229ED9;
-
-}
-
-.whatsapp{
-
-    left:45px;
-    top:245px;
-
-    color:#25D366;
-
-}
-
-.instagram{
-
-    right:38px;
-    top:315px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f58529,
-            #dd2a7b,
-            #8134af,
-            #515bd4);
-
-    color:white;
-
-}
-
-.amazon{
-
-    left:95px;
-    bottom:70px;
-
-    color:#111827;
-
-}
-
-.more{
-
-    right:35px;
-    bottom:75px;
-
-    color:#6366f1;
-
-}
-
-/*==================================
-FLOATING STATUS PILLS
-==================================*/
-
-.floating-pill{
-
-    position:absolute;
-
-    padding:14px 20px;
-
-    border-radius:18px;
-
-    background:rgba(255,255,255,.95);
-
-    backdrop-filter:blur(18px);
-
-    box-shadow:
-        0 18px 40px rgba(15,23,42,.12);
-
-    font-size:14px;
-
-    font-weight:600;
-
-    color:#334155;
-
-    z-index:20;
-
-    animation:float 5s ease-in-out infinite;
-
-}
-
-.floating-pill.top{
-
-    top:80px;
-
-    left:-40px;
-
-}
-
-.floating-pill.bottom{
-
-    bottom:80px;
-
-    right:-20px;
-
-    animation-delay:2s;
-
-}
-
-/*==================================
+/*==========================================================
 ANIMATIONS
-==================================*/
+==========================================================*/
 
-@keyframes float{
+@keyframes floatCard{
 
     0%{
 
-        transform:translateY(0);
+        transform:translateY(0px);
 
     }
 
@@ -1194,77 +1110,470 @@ ANIMATIONS
 
     100%{
 
+        transform:translateY(0px);
+
+    }
+
+}
+
+@keyframes rotateOrbit{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/*==========================================================
+RESPONSIVE
+==========================================================*/
+
+@media(max-width:1200px){
+
+    .numbers-preview{
+
+        position:relative;
+
+        width:100%;
+
+        height:420px;
+
+        margin-top:40px;
+
+    }
+
+    .world-ring{
+
+        left:50%;
+
+        right:auto;
+
+        transform:translateX(-50%);
+
+    }
+
+    .world-circle{
+
+        left:50%;
+
+        right:auto;
+
+        transform:translateX(-50%);
+
+    }
+
+    .world-glow{
+
+        left:50%;
+
+        right:auto;
+
+        transform:translateX(-50%);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .numbers-preview{
+
+        transform:scale(.82);
+
+        transform-origin:center bottom;
+
+    }
+
+    .country-card{
+
+        width:155px;
+
+        padding:14px;
+
+    }
+
+    .country-card h4{
+
+        font-size:16px;
+
+    }
+
+    .country-name{
+
+        font-size:12px;
+
+    }
+
+}
+
+/*==========================================================
+    PREMIUM FEATURES (PART 2)
+    Phone • Floating Apps • Responsive
+==========================================================*/
+
+/*==========================================================
+PHONE WRAPPER
+==========================================================*/
+
+.phone-preview{
+
+    position:absolute;
+
+    right:20px;
+
+    bottom:20px;
+
+    width:54%;
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+/*==========================================================
+PHONE
+==========================================================*/
+
+.phone{
+
+    position:relative;
+
+    width:290px;
+
+    height:585px;
+
+    padding:10px;
+
+    border-radius:48px;
+
+    background:#ffffff;
+
+    border:1px solid #edf1fb;
+
+    box-shadow:
+        0 30px 70px rgba(15,23,42,.10),
+        0 10px 25px rgba(15,23,42,.05);
+
+    transition:.35s;
+
+}
+
+.phone:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.phone::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-1px;
+
+    border-radius:48px;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            rgba(255,255,255,.9),
+
+            rgba(255,255,255,.2)
+
+        );
+
+    z-index:-1;
+
+}
+
+.phone-notch{
+
+    position:absolute;
+
+    left:50%;
+
+    top:14px;
+
+    transform:translateX(-50%);
+
+    width:120px;
+
+    height:28px;
+
+    background:#0f172a;
+
+    border-radius:20px;
+
+    z-index:5;
+
+}
+
+/*==========================================================
+SCREEN
+==========================================================*/
+
+.phone-screen{
+
+    position:relative;
+
+    width:100%;
+
+    height:100%;
+
+    overflow:hidden;
+
+    border-radius:38px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #ffffff,
+
+            #f6f8ff
+
+        );
+
+}
+
+.phone-screen::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+
+    height:240px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(circle,
+
+            rgba(99,102,241,.10),
+
+            transparent 70%);
+
+    top:-90px;
+
+    right:-80px;
+
+}
+
+.phone-screen::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(circle,
+
+            rgba(34,197,94,.08),
+
+            transparent 70%);
+
+    left:-70px;
+
+    bottom:-70px;
+
+}
+
+/*==========================================================
+APP ICONS
+==========================================================*/
+
+.phone-app{
+
+    position:absolute;
+
+    width:82px;
+
+    height:82px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:24px;
+
+    background:#fff;
+
+    font-size:34px;
+
+    box-shadow:
+
+        0 16px 35px rgba(15,23,42,.08);
+
+    transition:.35s;
+
+    animation:appFloat 7s ease-in-out infinite;
+
+}
+
+.phone-app:hover{
+
+    transform:
+
+        translateY(-10px)
+
+        scale(1.08)
+
+        rotate(-5deg);
+
+}
+
+/*==========================================================
+INDIVIDUAL APPS
+==========================================================*/
+
+.google{
+
+    top:75px;
+
+    left:30px;
+
+    color:#4285F4;
+
+}
+
+.telegram{
+
+    top:140px;
+
+    right:30px;
+
+    color:#229ED9;
+
+    animation-delay:1s;
+
+}
+
+.whatsapp{
+
+    top:245px;
+
+    left:45px;
+
+    color:#25D366;
+
+    animation-delay:2s;
+
+}
+
+.instagram{
+
+    top:320px;
+
+    right:35px;
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #f58529,
+
+            #dd2a7b,
+
+            #8134af,
+
+            #515bd4
+
+        );
+
+    color:#fff;
+
+    animation-delay:3s;
+
+}
+
+.amazon{
+
+    bottom:70px;
+
+    left:95px;
+
+    color:#111827;
+
+    animation-delay:4s;
+
+}
+
+.more{
+
+    bottom:75px;
+
+    right:35px;
+
+    color:#5b5df7;
+
+    animation-delay:5s;
+
+}
+
+/*==========================================================
+APP FLOAT
+==========================================================*/
+
+@keyframes appFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
         transform:translateY(0);
 
     }
 
 }
 
-.country-card{
-
-    animation:float 6s ease-in-out infinite;
-
-}
-
-.country-card:nth-child(2){
-
-    animation-delay:1s;
-
-}
-
-.country-card:nth-child(3){
-
-    animation-delay:2s;
-
-}
-
-.country-card:nth-child(4){
-
-    animation-delay:3s;
-
-}
-
-.phone-app{
-
-    animation:float 7s ease-in-out infinite;
-
-}
-
-.phone-app:nth-child(2){
-
-    animation-delay:1s;
-
-}
-
-.phone-app:nth-child(3){
-
-    animation-delay:2s;
-
-}
-
-.phone-app:nth-child(4){
-
-    animation-delay:3s;
-
-}
-
-.phone-app:nth-child(5){
-
-    animation-delay:4s;
-
-}
-
-.phone-app:nth-child(6){
-
-    animation-delay:5s;
-
-}
-
-/*==================================
+/*==========================================================
 RESPONSIVE
-==================================*/
+==========================================================*/
 
-@media (max-width:1200px){
+@media(max-width:1200px){
 
     .premium-features{
 
@@ -1274,81 +1583,85 @@ RESPONSIVE
 
     .premium-card{
 
-        min-height:auto;
+        height:auto;
 
-        padding-bottom:520px;
+        min-height:720px;
 
     }
 
     .premium-content{
 
+        width:100%;
+
         max-width:100%;
+
+        padding:50px;
 
     }
 
     .numbers-preview{
 
-        position:absolute;
+        position:relative;
 
         width:100%;
 
-        height:420px;
+        height:450px;
 
-        right:0;
-
-        bottom:0;
-
-        top:auto;
+        margin-top:30px;
 
     }
 
     .phone-preview{
 
-        position:absolute;
+        position:relative;
 
-        right:50%;
+        width:100%;
 
-        transform:translateX(50%);
+        height:620px;
 
-        bottom:20px;
+        right:auto;
+
+        bottom:auto;
+
+        margin-top:40px;
 
     }
 
 }
 
-@media (max-width:768px){
+@media(max-width:768px){
 
     .premium-features{
 
         padding:70px 20px;
 
-        gap:28px;
+        gap:24px;
 
     }
 
     .premium-card{
 
-        padding-bottom:440px;
+        border-radius:26px;
 
-        border-radius:24px;
+        min-height:auto;
 
     }
 
     .premium-content{
 
-        padding:30px;
+        padding:35px;
 
     }
 
     .premium-card h2{
 
-        font-size:34px;
+        font-size:38px;
 
     }
 
     .premium-card p{
 
-        font-size:15px;
+        font-size:16px;
 
     }
 
@@ -1358,49 +1671,58 @@ RESPONSIVE
 
     }
 
-    .numbers-preview{
+    .phone{
 
-        transform:scale(.72);
-
-        transform-origin:bottom center;
-
-    }
-
-    .phone-preview{
-
-        transform:
-            translateX(50%)
-            scale(.82);
-
-        transform-origin:bottom center;
-
-    }
-
-}
-
-@media (max-width:500px){
-
-    .premium-card{
-
-        padding-bottom:360px;
+        transform:scale(.85);
 
     }
 
     .numbers-preview{
 
-        transform:scale(.58);
+        transform:scale(.80);
 
-    }
-
-    .phone-preview{
-
-        transform:
-            translateX(50%)
-            scale(.62);
+        transform-origin:center bottom;
 
     }
 
 }
+
+@media(max-width:520px){
+
+    .premium-content{
+
+        padding:28px;
+
+    }
+
+    .premium-card h2{
+
+        font-size:32px;
+
+    }
+
+    .phone{
+
+        transform:scale(.68);
+
+    }
+
+    .numbers-preview{
+
+        transform:scale(.62);
+
+    }
+
+    .premium-btn{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+
 
 /*==================================
 HOW IT WORKS
