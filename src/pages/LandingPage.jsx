@@ -144,126 +144,264 @@ export default function LandingPage() {
                 </div>
 
             </section>
-            {/* FEATURES */}
+           {/* ===========================
+    PREMIUM FEATURES
+=========================== */}
 
-            <section className="features">
+<section className="premium-features">
 
-                {/* CARD 1 */}
+    {/* LEFT CARD */}
 
-                <div className="feature-card">
+    <div className="premium-card">
 
-                    <div className="feature-badge blue">
-                        Virtual Numbers
+        <div className="premium-content">
+
+            <span className="feature-tag blue">
+                Virtual Numbers
+            </span>
+
+            <h2>
+                Receive SMS online
+                <br />
+                from over
+                <span> 100+ countries</span>
+            </h2>
+
+            <p>
+                Secure virtual phone numbers for OTP verification,
+                registrations and business automation.
+            </p>
+
+            <div className="feature-list">
+
+                <div className="feature-item">
+                    <span>✓</span>
+                    Instant SMS delivery
+                </div>
+
+                <div className="feature-item">
+                    <span>✓</span>
+                    Real SIM numbers
+                </div>
+
+                <div className="feature-item">
+                    <span>✓</span>
+                    Keep your identity private
+                </div>
+
+                <div className="feature-item">
+                    <span>✓</span>
+                    Works with Telegram, Google,
+                    WhatsApp and more
+                </div>
+
+            </div>
+
+            <button className="premium-btn">
+
+                Get Started
+
+                <FiArrowRight/>
+
+            </button>
+
+        </div>
+
+        {/* GRAPHIC */}
+
+        <div className="numbers-preview">
+
+            <div className="world-glow"></div>
+
+            <div className="world-circle"></div>
+
+            <div className="country-card usa">
+
+                <div className="country-top">
+
+                    🇺🇸 United States
+
+                    <span className="online"></span>
+
+                </div>
+
+                <h4>+1 415 555 0198</h4>
+
+            </div>
+
+            <div className="country-card uk">
+
+                <div className="country-top">
+
+                    🇬🇧 United Kingdom
+
+                    <span className="online"></span>
+
+                </div>
+
+                <h4>+44 7712 345678</h4>
+
+            </div>
+
+            <div className="country-card germany">
+
+                <div className="country-top">
+
+                    🇩🇪 Germany
+
+                    <span className="online"></span>
+
+                </div>
+
+                <h4>+49 1512 345678</h4>
+
+            </div>
+
+            <div className="country-card canada">
+
+                <div className="country-top">
+
+                    🇨🇦 Canada
+
+                    <span className="online"></span>
+
+                </div>
+
+                <h4>+1 236 554 8890</h4>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {/* RIGHT CARD */}
+
+    <div className="premium-card">
+
+        <div className="premium-content">
+
+            <span className="feature-tag green">
+                Social Media Logs
+            </span>
+
+            <h2>
+
+                Access premium
+                <br />
+                social media
+                <span> logs</span>
+
+            </h2>
+
+            <p>
+
+                Purchase verified account logs securely with
+                instant delivery and live inventory.
+
+            </p>
+
+            <div className="feature-list">
+
+                <div className="feature-item">
+                    <span>✓</span>
+                    Verified account inventory
+                </div>
+
+                <div className="feature-item">
+                    <span>✓</span>
+                    Fast checkout
+                </div>
+
+                <div className="feature-item">
+                    <span>✓</span>
+                    Secure encrypted delivery
+                </div>
+
+                <div className="feature-item">
+                    <span>✓</span>
+                    Updated every few minutes
+                </div>
+
+            </div>
+
+            <button className="premium-btn">
+
+                Browse Logs
+
+                <FiArrowRight/>
+
+            </button>
+
+        </div>
+
+        {/* PHONE */}
+
+        <div className="phone-preview">
+
+            <div className="phone">
+
+                <div className="phone-notch"></div>
+
+                <div className="phone-screen">
+
+                    <div className="phone-app google">
+
+                        <FaGoogle/>
+
                     </div>
 
-                    <h2>
-                        Receive SMS online
-                        <br />
-                        with virtual numbers
-                    </h2>
+                    <div className="phone-app telegram">
 
-                    <ul>
+                        <FaTelegramPlane/>
 
-                        <li>✓ Numbers from 100+ countries</li>
+                    </div>
 
-                        <li>✓ Real SIM based numbers</li>
+                    <div className="phone-app whatsapp">
 
-                        <li>✓ Instant activation</li>
+                        <FaWhatsapp/>
 
-                        <li>✓ Works with all apps & services</li>
+                    </div>
 
-                        <li>✓ Keep your privacy safe</li>
+                    <div className="phone-app instagram">
 
-                    </ul>
+                        <FaInstagram/>
 
-                    <button className="outline-btn">
-                        Get virtual number
-                        <FiArrowRight />
-                    </button>
+                    </div>
 
-                    <div className="feature-graphic">
+                    <div className="phone-app amazon">
 
-                        <div className="globe"></div>
+                        <FaAmazon/>
 
-                        <div className="floating-card us">
-                            🇺🇸 +1 415 555 0198
-                        </div>
+                    </div>
 
-                        <div className="floating-card uk">
-                            🇬🇧 +44 7712 345678
-                        </div>
+                    <div className="phone-app more">
 
-                        <div className="floating-card de">
-                            🇩🇪 +49 1512 3456789
-                        </div>
+                        <BsThreeDots/>
 
                     </div>
 
                 </div>
 
-                {/* CARD 2 */}
+            </div>
 
-                <div className="feature-card">
+            <div className="floating-pill top">
 
-                    <div className="feature-badge green">
-                        Social Media Logs
-                    </div>
+                🔒 Secure Delivery
 
-                    <h2>
-                        Access real SMS &
-                        <br />
-                        social media logs
-                    </h2>
+            </div>
 
-                    <ul>
+            <div className="floating-pill bottom">
 
-                        <li>✓ Logs from popular platforms</li>
+                ⚡ Instant Access
 
-                        <li>✓ Real messages and OTPs</li>
+            </div>
 
-                        <li>✓ Fast & reliable delivery</li>
+        </div>
 
-                        <li>✓ Perfect for developers & businesses</li>
+    </div>
 
-                        <li>✓ Easy API integration</li>
-
-                    </ul>
-
-                    <button className="outline-btn">
-                        Browse logs
-                        <FiArrowRight />
-                    </button>
-
-                    <div className="apps-preview">
-
-                        <div className="app google">
-                            <FaGoogle />
-                        </div>
-
-                        <div className="app telegram">
-                            <FaTelegramPlane />
-                        </div>
-
-                        <div className="app whatsapp">
-                            <FaWhatsapp />
-                        </div>
-
-                        <div className="app instagram">
-                            <FaInstagram />
-                        </div>
-
-                        <div className="app amazon">
-                            <FaAmazon />
-                        </div>
-
-                        <div className="app more">
-                            <BsThreeDots />
-                        </div>
-
-                    </div>
-                </div>
-
-            </section>
+</section>
 
             {/* ============================
     HOW IT WORKS
