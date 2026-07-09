@@ -397,13 +397,8 @@ FOOTER
                     <div className="footer-brand">
 
                         <div className="logo">
-
-                            <div className="logo-icon">
-                                💬
+                                <img src={logo} alt="RealSMS" />
                             </div>
-
-                            <span>realsms</span>
-
                         </div>
 
                         <p>
