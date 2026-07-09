@@ -144,78 +144,85 @@ export default function LandingPage() {
 
             </section>
 
+
 {/* ======================================
-POPULAR SERVICES
+WHY CHOOSE REALSMS
 ====================================== */}
 
-<section className="popular-services">
+<section className="why-realsms">
 
-    <div className="section-header">
+    <div className="why-header">
 
-        <span className="section-badge">
-            Popular Services
+        <span className="why-badge">
+            Why Choose RealSMS
         </span>
 
         <h2>
-            Buy numbers for your
-            favorite platforms
+            Built for fast, secure and
+            reliable SMS verification
         </h2>
 
         <p>
-            Virtual numbers available for the world's most popular
-            apps and services.
+            Everything you need to buy virtual numbers and receive OTPs
+            with confidence, whether you're a developer, business or individual.
         </p>
 
     </div>
 
-    <div className="services-grid">
+    <div className="why-grid">
 
-        <div className="service-card">
-            <FaWhatsapp className="service-icon whatsapp" />
-            <h3>WhatsApp</h3>
-            <p>From ₦250</p>
-            <span className="stock">● In Stock</span>
-            <button>Buy Number</button>
+        <div className="why-card">
+            <div className="why-icon">⚡</div>
+            <h3>Instant SMS Delivery</h3>
+            <p>
+                Receive OTPs and verification codes within seconds with
+                high delivery success rates.
+            </p>
         </div>
 
-        <div className="service-card">
-            <FaTelegramPlane className="service-icon telegram" />
-            <h3>Telegram</h3>
-            <p>From ₦180</p>
-            <span className="stock">● In Stock</span>
-            <button>Buy Number</button>
+        <div className="why-card">
+            <div className="why-icon">🌍</div>
+            <h3>100+ Countries</h3>
+            <p>
+                Access virtual phone numbers from a growing list of
+                countries around the world.
+            </p>
         </div>
 
-        <div className="service-card">
-            <FaGoogle className="service-icon google" />
-            <h3>Google</h3>
-            <p>From ₦200</p>
-            <span className="stock">● In Stock</span>
-            <button>Buy Number</button>
+        <div className="why-card">
+            <div className="why-icon">🛡️</div>
+            <h3>Privacy Protection</h3>
+            <p>
+                Keep your personal phone number private while verifying
+                accounts securely.
+            </p>
         </div>
 
-        <div className="service-card">
-            <FaInstagram className="service-icon instagram" />
-            <h3>Instagram</h3>
-            <p>From ₦280</p>
-            <span className="stock">● In Stock</span>
-            <button>Buy Number</button>
+        <div className="why-card">
+            <div className="why-icon">📱</div>
+            <h3>Real SIM Numbers</h3>
+            <p>
+                High-quality numbers with better verification success
+                across supported platforms.
+            </p>
         </div>
 
-        <div className="service-card">
-            <FaFacebookF className="service-icon facebook" />
-            <h3>Facebook</h3>
-            <p>From ₦220</p>
-            <span className="stock">● In Stock</span>
-            <button>Buy Number</button>
+        <div className="why-card">
+            <div className="why-icon">📊</div>
+            <h3>Live Availability</h3>
+            <p>
+                Stock and pricing are updated in real time so you always
+                know what's available.
+            </p>
         </div>
 
-        <div className="service-card">
-            <FaAmazon className="service-icon amazon" />
-            <h3>Amazon</h3>
-            <p>From ₦300</p>
-            <span className="stock">● In Stock</span>
-            <button>Buy Number</button>
+        <div className="why-card">
+            <div className="why-icon">⚙️</div>
+            <h3>Developer Friendly</h3>
+            <p>
+                Integrate RealSMS into your applications using our
+                simple and reliable API.
+            </p>
         </div>
 
     </div>
