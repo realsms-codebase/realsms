@@ -4,6 +4,7 @@ import {
     FiGlobe,
     FiMessageSquare,
     FiZap,
+    FiGrid,
     FiShield,
     FiSmartphone,
     FiTrendingUp,
@@ -79,13 +80,13 @@ export default function LandingPage() {
                     <div className="hero-buttons">
 
                         <button className="primary-btn">
-                            Get virtual number
+                            Get Started Now
                             <FiArrowRight />
                         </button>
 
                         <button className="secondary-btn">
-                            Browse social media logs
-                            <FiArrowRight />
+                             <FiGrid />
+                            Explore Services
                         </button>
 
                     </div>
