@@ -230,6 +230,10 @@ MOBILE NAV
     gap:15px;
 }
 
+.mobile-login-button{
+   border: 1px solid var(--border-color);
+}
+
 .mobile-sidebar-buttons button{
     width:100%;
 }
