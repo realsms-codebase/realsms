@@ -19,6 +19,7 @@ import hero from "../assets/hero-dashboard.png";
 export default function LandingPage() {
 
     const heroRef = useRef(null);
+    const servicesRef = useRef(null);
     const whySectionRef = useRef(null);
     const howSectionRef = useRef(null);
     const footerRef = useRef(null);
@@ -56,7 +57,16 @@ export default function LandingPage() {
                         Why Choose Us
                     </li>
 
-                    <li>Docs</li>
+                    <li
+    onClick={() =>
+        servicesRef.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        })
+    }
+>
+    Our Services
+</li>
 
                     <li
                         onClick={() =>
@@ -131,7 +141,7 @@ export default function LandingPage() {
                         <button
                             className="secondary-btn"
                             onClick={() =>
-                                whySectionRef.current?.scrollIntoView({
+                                servicesRef.current?.scrollIntoView({
                                     behavior: "smooth",
                                     block: "start",
                                 })
@@ -194,7 +204,9 @@ export default function LandingPage() {
 SERVICES
 ====================================== */}
 
-<section className="landing-services">
+<section 
+    ref={servicesRef}
+    className="landing-services">
 
     <div className="landing-services-header">
 
