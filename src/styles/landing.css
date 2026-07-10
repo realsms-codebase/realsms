@@ -458,6 +458,222 @@ select {
     }
 }
 
+/* ======================================
+SERVICES
+====================================== */
+
+.services-section{
+    padding:110px 8%;
+    background:#fff;
+}
+
+.services-header{
+    max-width:720px;
+    margin:0 auto 70px;
+    text-align:center;
+}
+
+.services-badge{
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:999px;
+    background:#eef4ff;
+    color:#3563ff;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.services-header h2{
+    font-size:44px;
+    font-weight:800;
+    line-height:1.2;
+    color:#111827;
+    margin-bottom:18px;
+}
+
+.services-header p{
+    font-size:17px;
+    line-height:1.8;
+    color:#6b7280;
+}
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:32px;
+}
+
+.service-card{
+    background:#fff;
+    border:1px solid #e9edf5;
+    border-radius:24px;
+    padding:42px;
+    transition:all .35s ease;
+    cursor:default;
+}
+
+.service-card:hover{
+    transform:translateY(-8px);
+    border-color:#3563ff;
+    box-shadow:0 20px 45px rgba(53,99,255,.08);
+}
+
+.service-icon{
+    width:72px;
+    height:72px;
+    border-radius:20px;
+    background:#eef4ff;
+    color:#3563ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    margin-bottom:28px;
+}
+
+.service-icon.purple{
+    background:#f3edff;
+    color:#7c3aed;
+}
+
+.service-card h3{
+    font-size:28px;
+    font-weight:700;
+    color:#111827;
+    margin-bottom:18px;
+}
+
+.service-card p{
+    color:#6b7280;
+    font-size:16px;
+    line-height:1.8;
+}
+
+/* ==========================
+TABLET
+========================== */
+
+@media (max-width:992px){
+
+.services-section{
+    padding:90px 6%;
+}
+
+.services-grid{
+    gap:24px;
+}
+
+.service-card{
+    padding:34px;
+}
+
+.services-header h2{
+    font-size:38px;
+}
+
+}
+
+/* ==========================
+MOBILE
+========================== */
+
+@media (max-width:768px){
+
+.services-section{
+    padding:80px 5%;
+}
+
+.services-grid{
+    grid-template-columns:1fr;
+}
+
+.services-header{
+    margin-bottom:50px;
+}
+
+.services-header h2{
+    font-size:32px;
+}
+
+.services-header p{
+    font-size:15px;
+}
+
+.service-card{
+    padding:30px;
+    border-radius:20px;
+}
+
+.service-icon{
+    width:64px;
+    height:64px;
+    font-size:26px;
+    border-radius:18px;
+}
+
+.service-card h3{
+    font-size:24px;
+}
+
+.service-card p{
+    font-size:15px;
+}
+
+}
+
+/* ==========================
+RESPONSIVENESS
+========================== */
+
+@media (max-width: 768px) {
+
+    .services-section {
+        padding: 70px 5%;
+    }
+
+    .services-header {
+        margin-bottom: 45px;
+    }
+
+    .services-header h2 {
+        font-size: 30px;
+    }
+
+    .services-header p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-card {
+        padding: 28px;
+        border-radius: 20px;
+    }
+
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .service-card p {
+        font-size: 15px;
+    }
+
+}
+
 /* =====================================================
    WHY CHOOSE REALSMS
 ===================================================== */
