@@ -231,7 +231,13 @@ MOBILE NAV
 }
 
 .mobile-login-button{
-   border: 1px solid var(--border-color);
+    padding: 12px 22px;
+    border-radius: 10px;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all .3s ease;
+    border: 1px solid var(--border-color);
 }
 
 .mobile-sidebar-buttons button{
