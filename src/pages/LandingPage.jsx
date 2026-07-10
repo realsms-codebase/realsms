@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import {
     FiArrowRight,
-    FiChevronDown,
     FiGlobe,
     FiMessageSquare,
     FiZap,
