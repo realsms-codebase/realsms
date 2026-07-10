@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
     FiArrowRight,
     FiGlobe,
+    FiMenu,
+    FiX,
     FiMessageSquare,
     FiZap,
     FiGrid,
@@ -24,83 +26,186 @@ export default function LandingPage() {
     const howSectionRef = useRef(null);
     const footerRef = useRef(null);
 
+    const [menuOpen, setMenuOpen] = useState(false);
+
     return (
         <div className="landing">
 
             {/* NAVBAR */}
 
-            <nav className="navbar">
-                <div className="logo">
-                    <img src={logo} alt="RealSMS" />
-                </div>
+           <nav className="navbar">
 
-                <ul className="nav-links">
-                    <li
-                        onClick={() =>
-                            heroRef.current?.scrollIntoView({
-                                behavior: "smooth",
-                                block: "start",
-                            })
-                        }
-                    >
-                        Discover
-                    </li>
+    <div className="logo">
+        <img src={logo} alt="RealSMS" />
+    </div>
 
-                    <li
-                        onClick={() =>
-                            whySectionRef.current?.scrollIntoView({
-                                behavior: "smooth",
-                                block: "start",
-                            })
-                        }
-                    >
-                        Why Choose Us
-                    </li>
+    {/* Desktop Navigation */}
 
-                    <li
-    onClick={() =>
-        servicesRef.current?.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-        })
-    }
->
-    Our Services
-</li>
+    <ul className="nav-links">
 
-                    <li
-                        onClick={() =>
-                            howSectionRef.current?.scrollIntoView({
-                                behavior: "smooth",
-                                block: "start",
-                            })
-                        }
-                    >
-                        Overview
-                    </li>
+        <li onClick={() =>
+            heroRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        }>
+            Discover
+        </li>
 
-                    <li
-                        onClick={() =>
-                            footerRef.current?.scrollIntoView({
-                                behavior: "smooth",
-                                block: "start",
-                            })
-                        }
-                    >
-                        Reach Us
-                    </li>
-                </ul>
+        <li onClick={() =>
+            whySectionRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        }>
+            Why Choose Us
+        </li>
 
-                <div className="nav-buttons">
-                    <button className="landing-login-btn">
-                        Log in
-                    </button>
+        <li onClick={() =>
+            servicesRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        }>
+            Our Services
+        </li>
 
-                    <button className="signup-btn">
-                        Sign up
-                    </button>
-                </div>
-            </nav>
+        <li onClick={() =>
+            howSectionRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        }>
+            Overview
+        </li>
+
+        <li onClick={() =>
+            footerRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        }>
+            Reach Us
+        </li>
+
+    </ul>
+
+    <div className="nav-buttons">
+
+        <button className="landing-login-btn">
+            Log in
+        </button>
+
+        <button className="signup-btn">
+            Sign up
+        </button>
+
+    </div>
+
+    {/* Mobile Hamburger */}
+
+    <button
+        className="mobile-menu-btn"
+        onClick={() => setMenuOpen(true)}
+    >
+        <FiMenu />
+    </button>
+
+</nav>
+            
+            {/* Mobile Sidebar */}
+
+<div
+    className={`mobile-overlay ${menuOpen ? "show" : ""}`}
+    onClick={() => setMenuOpen(false)}
+></div>
+
+<aside className={`mobile-sidebar ${menuOpen ? "open" : ""}`}>
+
+    <button
+        className="mobile-close"
+        onClick={() => setMenuOpen(false)}
+    >
+        <FiX />
+    </button>
+
+   <ul className="mobile-nav-links">
+
+    <li
+        onClick={() => {
+            heroRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+            setMenuOpen(false);
+        }}
+    >
+        Discover
+    </li>
+
+    <li
+        onClick={() => {
+            servicesRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+            setMenuOpen(false);
+        }}
+    >
+        Our Services
+    </li>
+
+    <li
+        onClick={() => {
+            whySectionRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+            setMenuOpen(false);
+        }}
+    >
+        Why Choose Us
+    </li>
+
+    <li
+        onClick={() => {
+            howSectionRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+            setMenuOpen(false);
+        }}
+    >
+        Overview
+    </li>
+
+    <li
+        onClick={() => {
+            footerRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+            setMenuOpen(false);
+        }}
+    >
+        Reach Us
+    </li>
+
+</ul>
+
+<div className="mobile-sidebar-buttons">
+
+    <button className="landing-login-btn">
+        Log in
+    </button>
+
+    <button className="signup-btn">
+        Sign up
+    </button>
+
+</div>
+
+</aside>
 
             {/* HERO */}
 
