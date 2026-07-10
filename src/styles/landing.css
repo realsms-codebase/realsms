@@ -1289,11 +1289,9 @@ select {
     width: min(1400px, calc(100% - 48px));
     margin: 80px auto 24px;
 
-    background: var(--footer-bg);
+    background: var(--bg-color);
 
     border: 1px solid rgba(255,255,255,.08);
-    border-radius: 28px;
-
     color: var(--footer-text);
 
     padding: 70px 60px 30px;
