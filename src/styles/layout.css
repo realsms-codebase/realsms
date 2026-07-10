@@ -13,6 +13,7 @@
   flex-direction: column;
 
   background: var(--bg-color);
+  padding-top: 65px;
 }
 
 .page-content {
