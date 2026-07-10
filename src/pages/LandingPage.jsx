@@ -189,66 +189,79 @@ export default function LandingPage() {
                 </div>
 
             </section>
-            {/* ======================================
-OUR SERVICES
+            
+          {/* ======================================
+SERVICES
 ====================================== */}
-            <section className="services-section">
 
-                <div className="services-header">
+<section className="services-section">
 
-                    <span className="services-badge">
-                        Our Services
-                    </span>
+    <div className="services-header">
 
-                    <h2>
-                        Everything you need in one secure marketplace
-                    </h2>
+        <span className="services-badge">
+            Our Services
+        </span>
 
-                    <p>
-                        Buy virtual phone numbers from over 100 countries or browse
-                        premium social media logs—all from one fast, secure and
-                        reliable platform.
-                    </p>
+        <h2>
+            Everything you need in one
+            secure marketplace
+        </h2>
 
-                </div>
+        <p>
+            Buy virtual phone numbers from over 100 countries or browse
+            premium social media logs—all from one fast, secure and
+            reliable platform.
+        </p>
 
-                <div className="services-grid">
+    </div>
 
-                    <div className="service-card">
+    <div className="services-grid">
 
-                        <div className="service-icon">
-                            <FiPhone />
-                        </div>
+        {/* Virtual Numbers */}
 
-                        <h3>Virtual Numbers</h3>
+        <div className="service-card">
 
-                        <p>
-                            Purchase virtual numbers for WhatsApp, Telegram,
-                            Google, Facebook, Instagram, TikTok and hundreds of
-                            other services with instant SMS delivery.
-                        </p>
+            <div className="service-icon">
+                <FiPhone />
+            </div>
 
-                    </div>
+            <h3>
+                Virtual Numbers
+            </h3>
 
-                    <div className="service-card">
+            <p>
+                Purchase virtual phone numbers from over 100 countries
+                for WhatsApp, Telegram, Google, Facebook, Instagram,
+                TikTok and hundreds of other online services with
+                instant SMS delivery.
+            </p>
 
-                        <div className="service-icon purple">
-                            <FiDatabase />
-                        </div>
+        </div>
 
-                        <h3>Social Media Logs</h3>
+        {/* Social Media Logs */}
 
-                        <p>
-                            Browse a growing marketplace of social media logs with
-                            secure access, competitive pricing and instant delivery
-                            after purchase.
-                        </p>
+        <div className="service-card">
 
-                    </div>
+            <div className="service-icon purple">
+                <FiDatabase />
+            </div>
 
-                </div>
+            <h3>
+                Social Media Logs
+            </h3>
 
-            </section>
+            <p>
+                Browse a growing marketplace of premium social media
+                logs with secure access, competitive pricing and
+                instant delivery after every successful purchase.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+            
             {/* ======================================
 WHY CHOOSE REALSMS
 ====================================== */}
