@@ -8,6 +8,8 @@ import {
     FiShield,
     FiSmartphone,
     FiTrendingUp,
+    FiPhone,
+    FiDatabase,
 } from "react-icons/fi";
 import logo from "../assets/logo.png";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaGithub, } from "react-icons/fa";
@@ -16,11 +18,11 @@ import hero from "../assets/hero-dashboard.png";
 
 export default function LandingPage() {
 
-     const heroRef = useRef(null);
-     const whySectionRef = useRef(null);
-     const howSectionRef = useRef(null);
-     const footerRef = useRef(null);
-    
+    const heroRef = useRef(null);
+    const whySectionRef = useRef(null);
+    const howSectionRef = useRef(null);
+    const footerRef = useRef(null);
+
     return (
         <div className="landing">
 
@@ -31,54 +33,54 @@ export default function LandingPage() {
                     <img src={logo} alt="RealSMS" />
                 </div>
 
-                 <ul className="nav-links">
-    <li
-        onClick={() =>
-            heroRef.current?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            })
-        }
-    >
-        Discover
-    </li>
+                <ul className="nav-links">
+                    <li
+                        onClick={() =>
+                            heroRef.current?.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start",
+                            })
+                        }
+                    >
+                        Discover
+                    </li>
 
-    <li
-        onClick={() =>
-            whySectionRef.current?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            })
-        }
-    >
-        Why Choose Us
-    </li>
+                    <li
+                        onClick={() =>
+                            whySectionRef.current?.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start",
+                            })
+                        }
+                    >
+                        Why Choose Us
+                    </li>
 
-    <li>Docs</li>
+                    <li>Docs</li>
 
-    <li
-        onClick={() =>
-            howSectionRef.current?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            })
-        }
-    >
-        Overview
-    </li>
+                    <li
+                        onClick={() =>
+                            howSectionRef.current?.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start",
+                            })
+                        }
+                    >
+                        Overview
+                    </li>
 
-    <li
-        onClick={() =>
-            footerRef.current?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            })
-        }
-    >
-        Reach Us
-    </li>
-</ul>
-                
+                    <li
+                        onClick={() =>
+                            footerRef.current?.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start",
+                            })
+                        }
+                    >
+                        Reach Us
+                    </li>
+                </ul>
+
                 <div className="nav-buttons">
                     <button className="landing-login-btn">
                         Log in
@@ -92,10 +94,10 @@ export default function LandingPage() {
 
             {/* HERO */}
 
-            <section 
+            <section
                 ref={heroRef}
                 className="hero"
-                >
+            >
 
                 <div className="hero-left">
 
@@ -126,16 +128,16 @@ export default function LandingPage() {
                             <FiArrowRight />
                         </button>
 
-                        <button 
+                        <button
                             className="secondary-btn"
                             onClick={() =>
-        whySectionRef.current?.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-        })
-    }
-                            >
-                             <FiGrid />
+                                whySectionRef.current?.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start",
+                                })
+                            }
+                        >
+                            <FiGrid />
                             Explore Services
                         </button>
 
@@ -187,142 +189,200 @@ export default function LandingPage() {
                 </div>
 
             </section>
+            {/* ======================================
+OUR SERVICES
+====================================== */}
+            <section className="services-section">
 
+                <div className="services-header">
 
-{/* ======================================
+                    <span className="services-badge">
+                        Our Services
+                    </span>
+
+                    <h2>
+                        Everything you need in one secure marketplace
+                    </h2>
+
+                    <p>
+                        Buy virtual phone numbers from over 100 countries or browse
+                        premium social media logs—all from one fast, secure and
+                        reliable platform.
+                    </p>
+
+                </div>
+
+                <div className="services-grid">
+
+                    <div className="service-card">
+
+                        <div className="service-icon">
+                            <FiPhone />
+                        </div>
+
+                        <h3>Virtual Numbers</h3>
+
+                        <p>
+                            Purchase virtual numbers for WhatsApp, Telegram,
+                            Google, Facebook, Instagram, TikTok and hundreds of
+                            other services with instant SMS delivery.
+                        </p>
+
+                    </div>
+
+                    <div className="service-card">
+
+                        <div className="service-icon purple">
+                            <FiDatabase />
+                        </div>
+
+                        <h3>Social Media Logs</h3>
+
+                        <p>
+                            Browse a growing marketplace of social media logs with
+                            secure access, competitive pricing and instant delivery
+                            after purchase.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+            {/* ======================================
 WHY CHOOSE REALSMS
 ====================================== */}
 
-<section 
-     ref={whySectionRef}
-    className="why-realsms"
-    >
+            <section
+                ref={whySectionRef}
+                className="why-realsms"
+            >
 
-    <div className="why-header">
+                <div className="why-header">
 
-        <span className="why-badge">
-            Why Choose RealSMS
-        </span>
+                    <span className="why-badge">
+                        Why Choose RealSMS
+                    </span>
 
-        <h2>
-            Everything you need for fast,
-            secure virtual numbers and
-            SMS verification.
-        </h2>
+                    <h2>
+                        Everything you need for fast,
+                        secure virtual numbers and
+                        SMS verification.
+                    </h2>
 
-        <p>
-            Built for developers, businesses and individuals who need
-            reliable virtual phone numbers, instant SMS delivery and
-            access to social media logs.
-        </p>
+                    <p>
+                        Built for developers, businesses and individuals who need
+                        reliable virtual phone numbers, instant SMS delivery and
+                        access to social media logs.
+                    </p>
 
-    </div>
+                </div>
 
-    <div className="why-grid">
+                <div className="why-grid">
 
-        <div className="why-card">
+                    <div className="why-card">
 
-            <div className="why-icon">
-                <FiZap />
-            </div>
+                        <div className="why-icon">
+                            <FiZap />
+                        </div>
 
-            <h3>Instant SMS Delivery</h3>
+                        <h3>Instant SMS Delivery</h3>
 
-            <p>
-                Receive verification codes and OTP messages within
-                seconds after purchasing a virtual number.
-            </p>
+                        <p>
+                            Receive verification codes and OTP messages within
+                            seconds after purchasing a virtual number.
+                        </p>
 
-        </div>
+                    </div>
 
-        <div className="why-card">
+                    <div className="why-card">
 
-            <div className="why-icon">
-                <FiGlobe />
-            </div>
+                        <div className="why-icon">
+                            <FiGlobe />
+                        </div>
 
-            <h3>100+ Countries</h3>
+                        <h3>100+ Countries</h3>
 
-            <p>
-                Access virtual phone numbers from a growing list of
-                countries for registrations worldwide.
-            </p>
+                        <p>
+                            Access virtual phone numbers from a growing list of
+                            countries for registrations worldwide.
+                        </p>
 
-        </div>
+                    </div>
 
-        <div className="why-card">
+                    <div className="why-card">
 
-            <div className="why-icon">
-                <FiShield />
-            </div>
+                        <div className="why-icon">
+                            <FiShield />
+                        </div>
 
-            <h3>Privacy Protection</h3>
+                        <h3>Privacy Protection</h3>
 
-            <p>
-                Keep your personal phone number private while creating
-                and verifying online accounts.
-            </p>
+                        <p>
+                            Keep your personal phone number private while creating
+                            and verifying online accounts.
+                        </p>
 
-        </div>
+                    </div>
 
-        <div className="why-card">
+                    <div className="why-card">
 
-            <div className="why-icon">
-                <FiSmartphone />
-            </div>
+                        <div className="why-icon">
+                            <FiSmartphone />
+                        </div>
 
-            <h3>Wide Platform Support</h3>
+                        <h3>Wide Platform Support</h3>
 
-            <p>
-                Works with popular services including WhatsApp,
-                Telegram, Google, Facebook, TikTok, Instagram and
-                many others.
-            </p>
+                        <p>
+                            Works with popular services including WhatsApp,
+                            Telegram, Google, Facebook, TikTok, Instagram and
+                            many others.
+                        </p>
 
-        </div>
+                    </div>
 
-        <div className="why-card">
+                    <div className="why-card">
 
-            <div className="why-icon">
-                <FiTrendingUp />
-            </div>
+                        <div className="why-icon">
+                            <FiTrendingUp />
+                        </div>
 
-            <h3>Live Inventory</h3>
+                        <h3>Live Inventory</h3>
 
-            <p>
-                Browse available countries, services and prices that
-                are updated in real time before you purchase.
-            </p>
+                        <p>
+                            Browse available countries, services and prices that
+                            are updated in real time before you purchase.
+                        </p>
 
-        </div>
+                    </div>
 
-        <div className="why-card">
+                    <div className="why-card">
 
-            <div className="why-icon">
-                <FiMessageSquare />
-            </div>
+                        <div className="why-icon">
+                            <FiMessageSquare />
+                        </div>
 
-            <h3>Social Media Logs</h3>
+                        <h3>Social Media Logs</h3>
 
-            <p>
-                Browse available social media logs through a secure,
-                simple and easy-to-use marketplace.
-            </p>
+                        <p>
+                            Browse available social media logs through a secure,
+                            simple and easy-to-use marketplace.
+                        </p>
 
-        </div>
+                    </div>
 
-    </div>
+                </div>
 
-</section>
-            
+            </section>
+
             {/* ============================
     HOW IT WORKS
 ============================ */}
 
-            <section 
+            <section
                 ref={howSectionRef}
                 className="how-section"
-                >
+            >
 
                 <div className="section-title">
 
@@ -447,19 +507,19 @@ WHY CHOOSE REALSMS
 FOOTER
 =========================== */}
 
-            <footer 
+            <footer
                 ref={footerRef}
                 className="footer"
-                >
+            >
 
                 <div className="footer-grid">
 
                     <div className="footer-brand">
 
                         <div className="logo">
-                                <img src={logo} alt="RealSMS" />
-                            </div>
-                       
+                            <img src={logo} alt="RealSMS" />
+                        </div>
+
 
                         <p>
 
