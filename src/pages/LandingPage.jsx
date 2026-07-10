@@ -16,7 +16,10 @@ import hero from "../assets/hero-dashboard.png";
 
 export default function LandingPage() {
 
+     const heroRef = useRef(null);
      const whySectionRef = useRef(null);
+     const howSectionRef = useRef(null);
+     const footerRef = useRef(null);
     
     return (
         <div className="landing">
@@ -28,18 +31,54 @@ export default function LandingPage() {
                     <img src={logo} alt="RealSMS" />
                 </div>
 
-                <ul className="nav-links">
-                    <li>Discover</li>
-                    
-                    <li>Why Choose Us</li>
+                 <ul className="nav-links">
+    <li
+        onClick={() =>
+            heroRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        }
+    >
+        Discover
+    </li>
 
-                    <li>Docs</li>
+    <li
+        onClick={() =>
+            whySectionRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        }
+    >
+        Why Choose Us
+    </li>
 
-                    <li>Overview</li>
+    <li>Docs</li>
 
-                    <li>Reach Us</li>
-                </ul>
+    <li
+        onClick={() =>
+            howSectionRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        }
+    >
+        Overview
+    </li>
 
+    <li
+        onClick={() =>
+            footerRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        }
+    >
+        Reach Us
+    </li>
+</ul>
+                
                 <div className="nav-buttons">
                     <button className="landing-login-btn">
                         Log in
@@ -53,7 +92,10 @@ export default function LandingPage() {
 
             {/* HERO */}
 
-            <section className="hero">
+            <section 
+                ref={heroRef}
+                className="hero"
+                >
 
                 <div className="hero-left">
 
@@ -277,7 +319,10 @@ WHY CHOOSE REALSMS
     HOW IT WORKS
 ============================ */}
 
-            <section className="how-section">
+            <section 
+                ref={howSectionRef}
+                className="how-section"
+                >
 
                 <div className="section-title">
 
@@ -402,7 +447,10 @@ WHY CHOOSE REALSMS
 FOOTER
 =========================== */}
 
-            <footer className="footer">
+            <footer 
+                ref={footerRef}
+                className="footer"
+                >
 
                 <div className="footer-grid">
 
