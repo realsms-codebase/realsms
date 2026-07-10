@@ -62,13 +62,13 @@ export default function LandingPage() {
                 <div className="hero-left">
 
                     <div className="hero-badge">
-                        Virtual numbers & social media logs
+                        Virtual numbers & Social media logs
                     </div>
 
                     <h1>
                         Virtual numbers and
                         <br />
-                        social media logs
+                        Social media logs
                         <br />
                         <span>you can trust.</span>
                     </h1>
