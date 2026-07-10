@@ -30,18 +30,15 @@ export default function LandingPage() {
                 </div>
 
                 <ul className="nav-links">
-                    <li>
-                        Products
-                        <FiChevronDown />
-                    </li>
-
-                    <li>API</li>
+                    <li>Discover</li>
+                    
+                    <li>Why Choose Us</li>
 
                     <li>Docs</li>
 
-                    <li>Blog</li>
+                    <li>Overview</li>
 
-                    <li>Support</li>
+                    <li>Reach Us</li>
                 </ul>
 
                 <div className="nav-buttons">
