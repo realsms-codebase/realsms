@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import {
     FiArrowRight,
     FiChevronDown,
@@ -15,6 +16,9 @@ import "../styles/landing.css";
 import hero from "../assets/hero-dashboard.png";
 
 export default function LandingPage() {
+
+     const whySectionRef = useRef(null);
+    
     return (
         <div className="landing">
 
@@ -84,7 +88,15 @@ export default function LandingPage() {
                             <FiArrowRight />
                         </button>
 
-                        <button className="secondary-btn">
+                        <button 
+                            className="secondary-btn"
+                            onClick={() =>
+        whySectionRef.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        })
+    }
+                            >
                              <FiGrid />
                             Explore Services
                         </button>
@@ -143,7 +155,10 @@ export default function LandingPage() {
 WHY CHOOSE REALSMS
 ====================================== */}
 
-<section className="why-realsms">
+<section 
+     ref={whySectionRef}
+    className="why-realsms"
+    >
 
     <div className="why-header">
 
