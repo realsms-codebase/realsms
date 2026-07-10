@@ -151,6 +151,110 @@ select {
     box-shadow: var(--shadow);
 }
 
+/* ==========================
+MOBILE NAV
+========================== */
+
+.mobile-menu-btn{
+    display:none;
+    border:none;
+    background:none;
+    color:var(--text-color);
+    font-size:30px;
+    cursor:pointer;
+}
+
+.mobile-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:998;
+}
+
+.mobile-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.mobile-sidebar{
+    position:fixed;
+    top:0;
+    right:-320px;
+    width:300px;
+    height:100vh;
+    background:var(--card-bg);
+    padding:30px;
+    transition:.35s;
+    z-index:999;
+    display:flex;
+    flex-direction:column;
+}
+
+.mobile-sidebar.open{
+    right:0;
+}
+
+.mobile-close{
+    align-self:flex-end;
+    background:none;
+    border:none;
+    color:var(--text-color);
+    font-size:30px;
+    cursor:pointer;
+    margin-bottom:40px;
+}
+
+.mobile-nav-links{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    padding:0;
+    margin:0;
+}
+
+.mobile-nav-links li{
+    color:var(--text-color);
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.mobile-sidebar-buttons{
+    margin-top:auto;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.mobile-sidebar-buttons button{
+    width:100%;
+}
+
+/* ==========================
+RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+.nav-links,
+.nav-buttons{
+    display:none;
+}
+
+.mobile-menu-btn{
+    display:block;
+}
+
+.navbar{
+    justify-content:space-between;
+}
+
+}
+
 /* =====================================================
    HERO
 ===================================================== */
