@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     FiArrowRight,
     FiGlobe,
@@ -27,6 +28,8 @@ export default function LandingPage() {
     const footerRef = useRef(null);
 
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const navigate = useNavigate();
 
     return (
         <div className="landing">
@@ -92,11 +95,17 @@ export default function LandingPage() {
 
     <div className="nav-buttons">
 
-        <button className="landing-login-btn">
+        <button 
+            className="landing-login-btn"
+            onClick={() => navigate("/login")}
+            >
             Log in
         </button>
 
-        <button className="signup-btn">
+        <button 
+            className="signup-btn"
+            onClick={() => navigate("/register")}
+            >
             Sign up
         </button>
 
