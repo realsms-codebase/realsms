@@ -204,11 +204,17 @@ export default function LandingPage() {
 
 <div className="mobile-sidebar-buttons">
 
-    <button className="landing-login-btn">
+    <button 
+        className="landing-login-btn"
+        onClick={() => navigate("/login")}
+        >
         Log in
     </button>
 
-    <button className="signup-btn">
+    <button 
+        className="signup-btn"
+        onClick={() => navigate("/register")}
+        >
         Sign up
     </button>
 
@@ -247,7 +253,10 @@ export default function LandingPage() {
 
                     <div className="hero-buttons">
 
-                        <button className="primary-btn">
+                        <button 
+                            className="primary-btn"
+                            onClick={() => navigate("/register")}
+                            >
                             Get Started Now
                             <FiArrowRight />
                         </button>
