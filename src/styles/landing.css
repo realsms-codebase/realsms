@@ -224,7 +224,7 @@ MOBILE NAV
 }
 
 .mobile-sidebar-buttons{
-    margin-top:auto;
+    margin-top:60px;
     display:flex;
     flex-direction:column;
     gap:15px;
