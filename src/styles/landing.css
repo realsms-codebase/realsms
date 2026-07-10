@@ -36,7 +36,7 @@ select {
 }
 
 .landing {
-    padding-top: 0;
+    padding-top: -65px;
     width: 100%;
     background: var(--bg-color);
     color: var(--text-color);
