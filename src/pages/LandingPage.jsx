@@ -194,11 +194,11 @@ export default function LandingPage() {
 SERVICES
 ====================================== */}
 
-<section className="services-section">
+<section className="landing-services">
 
-    <div className="services-header">
+    <div className="landing-services-header">
 
-        <span className="services-badge">
+        <span className="landing-services-badge">
             Our Services
         </span>
 
@@ -215,19 +215,15 @@ SERVICES
 
     </div>
 
-    <div className="services-grid">
+    <div className="landing-services-grid">
 
-        {/* Virtual Numbers */}
+        <div className="landing-service-card">
 
-        <div className="service-card">
-
-            <div className="service-icon">
+            <div className="landing-service-icon">
                 <FiPhone />
             </div>
 
-            <h3>
-                Virtual Numbers
-            </h3>
+            <h3>Virtual Numbers</h3>
 
             <p>
                 Purchase virtual phone numbers from over 100 countries
@@ -238,17 +234,13 @@ SERVICES
 
         </div>
 
-        {/* Social Media Logs */}
+        <div className="landing-service-card">
 
-        <div className="service-card">
-
-            <div className="service-icon purple">
+            <div className="landing-service-icon landing-service-icon-purple">
                 <FiDatabase />
             </div>
 
-            <h3>
-                Social Media Logs
-            </h3>
+            <h3>Social Media Logs</h3>
 
             <p>
                 Browse a growing marketplace of premium social media
