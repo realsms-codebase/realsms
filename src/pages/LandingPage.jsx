@@ -205,7 +205,7 @@ export default function LandingPage() {
 <div className="mobile-sidebar-buttons">
 
     <button 
-        className="landing-login-btn"
+        className="landing-login-btn mobile-login-button"
         onClick={() => navigate("/login")}
         >
         Log in
