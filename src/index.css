@@ -10,19 +10,18 @@ body,
   font-family: "Manrope", sans-serif;
 }
 
-/* ======================= */
-/* BODY PADDING */
-/* ======================= */
 body {
-  padding-top: 50px;
   margin: 0;
-
+  font-family: "Manrope", sans-serif;
   background: var(--bg-color);
   color: var(--text-color);
 
   transition:
     background 0.3s ease,
     color 0.3s ease;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* =========================
@@ -95,29 +94,14 @@ body[data-theme="dark"] {
   --skeleton-shimmer: rgba(255,255,255,0.08);
 }
 
-/* =========================
-   GLOBAL BODY
-========================= */
-body {
-  margin: 0;
-  padding-top: 65px;
-
-  background: var(--bg-color);
-  color: var(--text-color);
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
-}
-
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
