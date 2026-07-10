@@ -399,7 +399,7 @@ FOOTER
                         <div className="logo">
                                 <img src={logo} alt="RealSMS" />
                             </div>
-                        </div>
+                       
 
                         <p>
 
