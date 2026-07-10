@@ -9,7 +9,6 @@
 }
 
 body {
-    padding-top: 0;
     background: var(--bg-color);
     color: var(--text-color);
     font-family: inherit;
@@ -37,6 +36,7 @@ select {
 }
 
 .landing {
+    padding-top: 0;
     width: 100%;
     background: var(--bg-color);
     color: var(--text-color);
