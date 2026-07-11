@@ -14,6 +14,7 @@ import {
     FiPhone,
     FiDatabase,
 } from "react-icons/fi";
+import { motion } from "framer-motion";
 import logo from "../assets/logo.png";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaGithub, } from "react-icons/fa";
 import "../styles/landing.css";
@@ -30,6 +31,49 @@ export default function LandingPage() {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const navigate = useNavigate();
+
+    const fadeUp = {
+    hidden: {
+        opacity: 0,
+        y: 60,
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.7,
+            ease: "easeOut",
+        },
+    },
+};
+
+const fadeLeft = {
+    hidden: {
+        opacity: 0,
+        x: -80,
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.7,
+        },
+    },
+};
+
+const fadeRight = {
+    hidden: {
+        opacity: 0,
+        x: 80,
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.7,
+        },
+    },
+};
 
     return (
         <div className="landing">
@@ -224,12 +268,22 @@ export default function LandingPage() {
 
             {/* HERO */}
 
-            <section
-                ref={heroRef}
-                className="hero"
-            >
+            <motion.section
+    ref={heroRef}
+    className="hero"
+    variants={fadeUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.25 }}
+>
 
-                <div className="hero-left">
+                <motion.div
+    className="hero-left"
+    variants={fadeLeft}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+>
 
                     <div className="hero-badge">
                         Virtual numbers & Social media logs
@@ -306,9 +360,15 @@ export default function LandingPage() {
 
                     </div>
 
-                </div>
+               </motion.div>
 
-                <div className="hero-right">
+                <motion.div
+    className="hero-right"
+    variants={fadeRight}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+>
 
                     <div className="dashboard-card">
 
@@ -319,18 +379,22 @@ export default function LandingPage() {
 
                     </div>
 
-                </div>
+               </motion.div>
 
-            </section>
+            </motion.section>
             
           {/* ======================================
 SERVICES
 ====================================== */}
 
-<section 
+<motion.section
     ref={servicesRef}
-    className="landing-services">
-
+    className="landing-services"
+    variants={fadeUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.2 }}
+>
     <div className="landing-services-header">
 
         <span className="landing-services-badge">
@@ -352,7 +416,14 @@ SERVICES
 
     <div className="landing-services-grid">
 
-        <div className="landing-service-card">
+        <motion.div
+    className="landing-service-card"
+    whileHover={{ y: -8 }}
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+>
 
             <div className="landing-service-icon">
                 <FiPhone />
@@ -367,9 +438,16 @@ SERVICES
                 instant SMS delivery.
             </p>
 
-        </div>
+      </motion.div>
 
-        <div className="landing-service-card">
+        <motion.div
+    className="landing-service-card"
+    whileHover={{ y: -8 }}
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+>
 
             <div className="landing-service-icon landing-service-icon-purple">
                 <FiDatabase />
@@ -383,11 +461,11 @@ SERVICES
                 instant delivery after every successful purchase.
             </p>
 
-        </div>
+         </motion.div>
 
     </div>
 
-</section>
+</motion.section>
             
             {/* ======================================
 WHY CHOOSE REALSMS
