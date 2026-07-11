@@ -847,9 +847,21 @@ WHY CHOOSE REALSMS
     CTA
 ============================ */}
 
-            <section className="cta">
+           <motion.section
+    className="cta"
+    initial={{ opacity: 0, scale: 0.95 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+>
 
-                <div className="cta-content">
+               <motion.div
+    className="cta-content"
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7 }}
+    viewport={{ once: true }}
+>
 
                     <span className="cta-badge">
                         Ready?
@@ -879,9 +891,19 @@ WHY CHOOSE REALSMS
 
                     </div>
 
-                </div>
+                </motion.div>
 
-                <div className="cta-decoration">
+                <motion.div
+    className="cta-decoration"
+    animate={{
+        rotate: [0, 3, -3, 0],
+    }}
+    transition={{
+        duration: 8,
+        repeat: Infinity,
+        ease: "linear",
+    }}
+>
 
                     <div className="circle one"></div>
 
@@ -889,22 +911,49 @@ WHY CHOOSE REALSMS
 
                     <div className="circle three"></div>
 
-                </div>
+                </motion.div>
 
-            </section>
+            </motion.section>
 
             {/* ===========================
 FOOTER
 =========================== */}
 
-            <footer
-                ref={footerRef}
-                className="footer"
-            >
+            <motion.footer
+    ref={footerRef}
+    className="footer"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+>
+                <motion.div
+    className="footer-grid"
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    variants={{
+        visible: {
+            transition: {
+                staggerChildren: 0.15,
+            },
+        },
+    }}
+>
 
-                <div className="footer-grid">
-
-                    <div className="footer-brand">
+                    <motion.div
+    className="footer-brand" // or just className="" for the other columns
+    variants={{
+        hidden: {
+            opacity: 0,
+            y: 30,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+        },
+    }}
+>
 
                         <div className="logo">
                             <img src={logo} alt="RealSMS" />
@@ -943,9 +992,21 @@ FOOTER
 
                         </div>
 
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div
+    className="" 
+    variants={{
+        hidden: {
+            opacity: 0,
+            y: 30,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+        },
+    }}
+>
 
                         <h4>Products</h4>
 
@@ -963,9 +1024,21 @@ FOOTER
 
                         </ul>
 
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div
+    className=""
+    variants={{
+        hidden: {
+            opacity: 0,
+            y: 30,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+        },
+    }}
+>
 
                         <h4>Resources</h4>
 
@@ -983,9 +1056,21 @@ FOOTER
 
                         </ul>
 
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div
+    className="" 
+    variants={{
+        hidden: {
+            opacity: 0,
+            y: 30,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+        },
+    }}
+>
 
                         <h4>Company</h4>
 
@@ -1003,9 +1088,21 @@ FOOTER
 
                         </ul>
 
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div
+    className="" 
+    variants={{
+        hidden: {
+            opacity: 0,
+            y: 30,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+        },
+    }}
+>
 
                         <h4>Newsletter</h4>
 
@@ -1031,11 +1128,17 @@ FOOTER
 
                         </div>
 
-                    </div>
+                    </motion.div>
 
-                </div>
+                </motion.div>
 
-                <div className="footer-bottom">
+               <motion.div
+    className="footer-bottom"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ delay: 0.5 }}
+    viewport={{ once: true }}
+>
 
                     <p>
 
@@ -1049,9 +1152,9 @@ FOOTER
 
                     </div>
 
-                </div>
+                </motion.div>
 
-            </footer>
+            </motion.footer>
         </div>
     );
 }
