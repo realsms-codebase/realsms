@@ -471,12 +471,22 @@ SERVICES
 WHY CHOOSE REALSMS
 ====================================== */}
 
-            <section
-                ref={whySectionRef}
-                className="why-realsms"
-            >
+            <motion.section
+    ref={whySectionRef}
+    className="why-realsms"
+    initial={{ opacity: 0, y: 60 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7 }}
+    viewport={{ once: true, amount: 0.2 }}
+>
 
-                <div className="why-header">
+                <motion.div
+    className="why-header"
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+>
 
                     <span className="why-badge">
                         Why Choose RealSMS
@@ -494,11 +504,42 @@ WHY CHOOSE REALSMS
                         access to social media logs.
                     </p>
 
-                </div>
+               </motion.div>
 
-                <div className="why-grid">
+                <motion.div
+    className="why-grid"
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    variants={{
+        visible: {
+            transition: {
+                staggerChildren: 0.15,
+            },
+        },
+    }}
+>
 
-                    <div className="why-card">
+                    <motion.div
+    className="why-card"
+    variants={{
+        hidden: {
+            opacity: 0,
+            y: 50,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+            },
+        },
+    }}
+    whileHover={{
+        y: -10,
+        scale: 1.03,
+    }}
+>
 
                         <div className="why-icon">
                             <FiZap />
@@ -511,9 +552,28 @@ WHY CHOOSE REALSMS
                             seconds after purchasing a virtual number.
                         </p>
 
-                    </div>
+                   </motion.div>
 
-                    <div className="why-card">
+                    <motion.div
+    className="why-card"
+    variants={{
+        hidden: {
+            opacity: 0,
+            y: 50,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+            },
+        },
+    }}
+    whileHover={{
+        y: -10,
+        scale: 1.03,
+    }}
+>
 
                         <div className="why-icon">
                             <FiGlobe />
@@ -526,9 +586,28 @@ WHY CHOOSE REALSMS
                             countries for registrations worldwide.
                         </p>
 
-                    </div>
+                    </motion.div>
 
-                    <div className="why-card">
+                   <motion.div
+    className="why-card"
+    variants={{
+        hidden: {
+            opacity: 0,
+            y: 50,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+            },
+        },
+    }}
+    whileHover={{
+        y: -10,
+        scale: 1.03,
+    }}
+>
 
                         <div className="why-icon">
                             <FiShield />
@@ -541,9 +620,28 @@ WHY CHOOSE REALSMS
                             and verifying online accounts.
                         </p>
 
-                    </div>
+                    </motion.div>
 
-                    <div className="why-card">
+                    <motion.div
+    className="why-card"
+    variants={{
+        hidden: {
+            opacity: 0,
+            y: 50,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+            },
+        },
+    }}
+    whileHover={{
+        y: -10,
+        scale: 1.03,
+    }}
+>
 
                         <div className="why-icon">
                             <FiSmartphone />
@@ -557,9 +655,28 @@ WHY CHOOSE REALSMS
                             many others.
                         </p>
 
-                    </div>
+                    </motion.div>
 
-                    <div className="why-card">
+                    <motion.div
+    className="why-card"
+    variants={{
+        hidden: {
+            opacity: 0,
+            y: 50,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+            },
+        },
+    }}
+    whileHover={{
+        y: -10,
+        scale: 1.03,
+    }}
+>
 
                         <div className="why-icon">
                             <FiTrendingUp />
@@ -572,9 +689,28 @@ WHY CHOOSE REALSMS
                             are updated in real time before you purchase.
                         </p>
 
-                    </div>
+                    </motion.div>
 
-                    <div className="why-card">
+                    <motion.div
+    className="why-card"
+    variants={{
+        hidden: {
+            opacity: 0,
+            y: 50,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+            },
+        },
+    }}
+    whileHover={{
+        y: -10,
+        scale: 1.03,
+    }}
+>
 
                         <div className="why-icon">
                             <FiMessageSquare />
@@ -587,22 +723,32 @@ WHY CHOOSE REALSMS
                             simple and easy-to-use marketplace.
                         </p>
 
-                    </div>
+                    </motion.div>
 
-                </div>
+               </motion.div>
 
-            </section>
+            </motion.section>
 
             {/* ============================
     HOW IT WORKS
 ============================ */}
 
-            <section
-                ref={howSectionRef}
-                className="how-section"
-            >
+            <motion.section
+    ref={howSectionRef}
+    className="how-section"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+>
 
-                <div className="section-title">
+                <motion.div
+    className="section-title"
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+>
 
                     <span>How it works</span>
 
@@ -617,11 +763,20 @@ WHY CHOOSE REALSMS
                         steps.
                     </p>
 
-                </div>
+                </motion.div>
 
                 <div className="steps">
 
-                    <div className="step">
+                    <motion.div
+    className="step"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+    whileHover={{
+        y: -8,
+    }}
+>
 
                         <div className="step-number">
                             01
@@ -633,11 +788,20 @@ WHY CHOOSE REALSMS
                             Register in seconds and verify your email to unlock the marketplace.
                         </p>
 
-                    </div>
+                    </motion.div>
 
                     <div className="step-line"></div>
 
-                    <div className="step">
+                    <motion.div
+    className="step"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+    whileHover={{
+        y: -8,
+    }}
+>
 
                         <div className="step-number">
                             02
@@ -649,12 +813,20 @@ WHY CHOOSE REALSMS
                             Choose from virtual numbers, SMS activations or social media logs.
                         </p>
 
-                    </div>
+                    </motion.div>
 
                     <div className="step-line"></div>
 
-                    <div className="step">
-
+                    <motion.div
+    className="step"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+    whileHover={{
+        y: -8,
+    }}
+>
                         <div className="step-number">
                             03
                         </div>
@@ -665,11 +837,11 @@ WHY CHOOSE REALSMS
                             Get OTPs, messages and account logs delivered instantly with zero delay.
                         </p>
 
-                    </div>
+                    </motion.div>
 
                 </div>
 
-            </section>
+            </motion.section>
 
             {/* ============================
     CTA
