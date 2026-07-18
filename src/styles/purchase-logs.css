@@ -1,57 +1,129 @@
-/* .coming-soon-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+.market-card{
+    background:var(--card-bg,#fff);
+    border:1px solid var(--border-color,#ececec);
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    transition:.25s;
 }
 
-.coming-soon-card {
-  text-align: center;
-  background: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
-  max-width: 420px;
-  width: 100%;
+.market-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
 }
 
-.coming-icon {
-  font-size: 55px;
-  color: #6366f1;
-  margin-bottom: 15px;
+.market-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
 }
 
-.coming-main {
-  font-weight: 600;
-  margin-bottom: 20px;
+.server-tag{
+    background:#fff4d8;
+    color:#b68a00;
+    font-size:11px;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:20px;
 }
 
-.coming-features {
-  text-align: left;
-  margin: 20px 0;
+.stock-tag{
+    background:#e8fff0;
+    color:#17a34a;
+    font-size:11px;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:20px;
 }
 
-.feature {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-  font-size: 14px;
+.stock-tag.low{
+    background:#ffe6e6;
+    color:#d63a3a;
 }
 
-.coming-subtext {
-  display: block;
-  font-size: 13px;
-  color: #6b7280;
-  margin-bottom: 20px;
+.market-icon{
+    width:60px;
+    height:60px;
+    border-radius:14px;
+    background:#f7f7f7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:18px;
 }
 
-.coming-btn {
-  background: #367e3a;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: not-allowed;
-  opacity: 0.8;
-} */
+.market-icon img{
+    width:34px;
+    height:34px;
+    object-fit:contain;
+}
+
+.market-card h3{
+    font-size:16px;
+    font-weight:700;
+    margin-bottom:8px;
+    color:var(--text-color);
+}
+
+.market-card p{
+    font-size:13px;
+    color:var(--secondary-text,#777);
+    min-height:40px;
+    margin-bottom:15px;
+}
+
+.market-price{
+    font-size:28px;
+    font-weight:800;
+    color:var(--text-color);
+    margin-bottom:15px;
+}
+
+.market-qty{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border:1px solid var(--border-color,#eee);
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:15px;
+}
+
+.market-qty button{
+    width:45px;
+    height:42px;
+    border:none;
+    background:none;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.market-qty span{
+    font-weight:700;
+}
+
+.market-buy{
+    height:48px;
+    border:none;
+    border-radius:12px;
+    background:#f59e0b;
+    color:#fff;
+    font-weight:700;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.market-buy:hover{
+    background:#ea9300;
+}
+
+.market-buy:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
