@@ -1,99 +1,207 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
-// Format price
+// // Format price
+// const formatNaira = (amount) => {
+//   if (amount === null || amount === undefined) return "Price N/A";
+//   return `₦${Number(amount).toLocaleString()}`;
+// };
+
+// const SocialServiceCard = ({ product, onBuy, disabled }) => {
+//   const [buying, setBuying] = useState(false);
+//   const [quantity, setQuantity] = useState(1);
+
+//   // Increase/decrease quantity (cannot exceed stock)
+//   const increase = () => {
+//     if (product.stock !== undefined && quantity < product.stock) {
+//       setQuantity((q) => q + 1);
+//     }
+//   };
+//   const decrease = () => {
+//     if (quantity > 1) setQuantity((q) => q - 1);
+//   };
+
+//   const handleBuyClick = () => {
+//     if (disabled || buying || product.price == null) return;
+
+//     setBuying(true);
+//     onBuy(product, () => setBuying(false), quantity); // pass quantity
+//   };
+
+//   const isDisabled = disabled || product.price == null || buying;
+
+//   return (
+//     <div className={`service-card ${isDisabled ? "disabled" : ""}`}>
+      
+//       {/* LEFT SIDE */}
+//       <div className="service-left">
+//         {product.icon && (
+//           <img
+//             src={product.icon}
+//             alt={product.name}
+//             className="service-icon"
+//           />
+//         )}
+
+//         <div className="service-info">
+//           <h4>{product.name}</h4>
+
+//           {/* ✅ Meta row */}
+//           <div className="meta-row">
+//             {product.type && <span className="type">{product.type}</span>}
+
+//             {product.stock !== undefined && (
+//               <span className={`stock ${product.stock < 5 ? "low" : ""}`}>
+//                 {product.stock} in stock
+//               </span>
+//             )}
+//           </div>
+
+//           {/* Quantity selector */}
+//           {product.stock > 0 && (
+//             <div className="quantity-selector">
+//               <button onClick={decrease} disabled={quantity <= 1}>
+//                 -
+//               </button>
+//               <input type="number" value={quantity} readOnly />
+//               <button
+//                 onClick={increase}
+//                 disabled={quantity >= product.stock}
+//               >
+//                 +
+//               </button>
+//             </div>
+//           )}
+//         </div>
+//       </div>
+
+//       {/* RIGHT SIDE */}
+//       <div className="service-right">
+//         <span className="price">{formatNaira(product.price)}</span>
+
+//         <button
+//           onClick={handleBuyClick}
+//           disabled={isDisabled}
+//           className={isDisabled ? "disabled-btn" : ""}
+//         >
+//           {buying ? (
+//             <div className="button-spinner"></div>
+//           ) : product.price == null ? (
+//             "Not Available"
+//           ) : isDisabled ? (
+//             "Unavailable"
+//           ) : (
+//             `Buy ${quantity}`
+//           )}
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SocialServiceCard;
+
+
+import React, { useState } from "react";
+import { FiZap } from "react-icons/fi";
+
 const formatNaira = (amount) => {
-  if (amount === null || amount === undefined) return "Price N/A";
+  if (amount == null) return "Price N/A";
   return `₦${Number(amount).toLocaleString()}`;
 };
 
 const SocialServiceCard = ({ product, onBuy, disabled }) => {
-  const [buying, setBuying] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [buying, setBuying] = useState(false);
 
-  // Increase/decrease quantity (cannot exceed stock)
   const increase = () => {
-    if (product.stock !== undefined && quantity < product.stock) {
+    if (quantity < product.stock) {
       setQuantity((q) => q + 1);
     }
   };
+
   const decrease = () => {
-    if (quantity > 1) setQuantity((q) => q - 1);
+    if (quantity > 1) {
+      setQuantity((q) => q - 1);
+    }
   };
 
-  const handleBuyClick = () => {
+  const handleBuy = () => {
     if (disabled || buying || product.price == null) return;
 
     setBuying(true);
-    onBuy(product, () => setBuying(false), quantity); // pass quantity
+
+    onBuy(product, () => setBuying(false), quantity);
   };
 
-  const isDisabled = disabled || product.price == null || buying;
-
   return (
-    <div className={`service-card ${isDisabled ? "disabled" : ""}`}>
-      
-      {/* LEFT SIDE */}
-      <div className="service-left">
-        {product.icon && (
-          <img
-            src={product.icon}
-            alt={product.name}
-            className="service-icon"
-          />
-        )}
+    <div className="market-card">
 
-        <div className="service-info">
-          <h4>{product.name}</h4>
+      <div className="market-top">
 
-          {/* ✅ Meta row */}
-          <div className="meta-row">
-            {product.type && <span className="type">{product.type}</span>}
+        <span className="server-tag">
+          PREMIUM
+        </span>
 
-            {product.stock !== undefined && (
-              <span className={`stock ${product.stock < 5 ? "low" : ""}`}>
-                {product.stock} in stock
-              </span>
-            )}
-          </div>
+        <span
+          className={`stock-tag ${
+            product.stock < 20 ? "low" : ""
+          }`}
+        >
+          {product.stock} left
+        </span>
 
-          {/* Quantity selector */}
-          {product.stock > 0 && (
-            <div className="quantity-selector">
-              <button onClick={decrease} disabled={quantity <= 1}>
-                -
-              </button>
-              <input type="number" value={quantity} readOnly />
-              <button
-                onClick={increase}
-                disabled={quantity >= product.stock}
-              >
-                +
-              </button>
-            </div>
-          )}
-        </div>
       </div>
 
-      {/* RIGHT SIDE */}
-      <div className="service-right">
-        <span className="price">{formatNaira(product.price)}</span>
+      <div className="market-icon">
+        <img
+          src={product.icon}
+          alt={product.name}
+        />
+      </div>
+
+      <h3>{product.name}</h3>
+
+      <p>{product.type}</p>
+
+      <div className="market-price">
+        {formatNaira(product.price)}
+      </div>
+
+      <div className="market-qty">
 
         <button
-          onClick={handleBuyClick}
-          disabled={isDisabled}
-          className={isDisabled ? "disabled-btn" : ""}
+          onClick={decrease}
+          disabled={quantity === 1}
         >
-          {buying ? (
-            <div className="button-spinner"></div>
-          ) : product.price == null ? (
-            "Not Available"
-          ) : isDisabled ? (
-            "Unavailable"
-          ) : (
-            `Buy ${quantity}`
-          )}
+          −
         </button>
+
+        <span>{quantity}</span>
+
+        <button
+          onClick={increase}
+          disabled={quantity >= product.stock}
+        >
+          +
+        </button>
+
       </div>
+
+      <button
+        className="market-buy"
+        onClick={handleBuy}
+        disabled={disabled || buying || product.price == null}
+      >
+        {buying ? (
+          <div className="button-spinner" />
+        ) : (
+          <>
+            <FiZap />
+            Buy Now
+          </>
+        )}
+      </button>
+
     </div>
   );
 };
