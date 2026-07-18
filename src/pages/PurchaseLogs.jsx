@@ -190,97 +190,158 @@ const PurchaseLogs = ({ darkMode }) => {
 
   return (
     <div className={`marketplace ${darkMode ? "dark" : ""}`}>
-      <div className="buy-number-card">
+  <div className="purchase-logs-card">
+
+    <div className="purchase-logs-header">
+
+      <div>
         <h2>Purchase Logs</h2>
+        <p>
+          Browse premium social media accounts with instant delivery.
+        </p>
+      </div>
 
-        {/* CATEGORY */}
-        <select
-          className="server-select"
-          value={selectedCategory?.id || ""}
-          onChange={handleCategoryChange}
+      {selectedCategory && (
+        <span className="purchase-logs-count">
+          {filteredProducts.length} Products
+        </span>
+      )}
+
+    </div>
+
+    {/* CATEGORY */}
+
+    <select
+      className="purchase-logs-select"
+      value={selectedCategory?.id || ""}
+      onChange={handleCategoryChange}
+    >
+      <option value="">Select Platform</option>
+
+      {categories.map((category) => (
+        <option
+          key={category.id}
+          value={category.id}
         >
-          <option value="">Select Platform</option>
-          {categories.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.name}
-            </option>
-          ))}
-        </select>
+          {category.name}
+        </option>
+      ))}
 
-        {/* SEARCH */}
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search accounts"
-            className="search-input"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            disabled={!selectedCategory || loading}
+    </select>
+
+    {/* SEARCH */}
+
+    <div className="purchase-logs-search">
+
+      <input
+        type="text"
+        className="purchase-logs-search-input"
+        placeholder="Search accounts..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        disabled={!selectedCategory || loading}
+      />
+
+      <FiSearch className="purchase-logs-search-icon" />
+
+    </div>
+
+    {/* PRODUCTS */}
+
+    {(selectedCategory || loading) && (
+
+      <div className="purchase-logs-services">
+
+        {loading ? (
+
+          <div className="purchase-logs-loading">
+
+            <div
+              className={`purchase-logs-spinner ${
+                darkMode ? "dark" : ""
+              }`}
+            />
+
+            <p>Loading products...</p>
+
+          </div>
+
+        ) : filteredProducts.length === 0 ? (
+
+          <p className="purchase-logs-empty">
+            No products available.
+          </p>
+
+        ) : (
+
+          <div className="purchase-logs-grid">
+
+            {filteredProducts.map((product) => (
+              <SocialServiceCard
+                key={product.id}
+                product={product}
+                onBuy={handleBuy}
+              />
+            ))}
+
+          </div>
+
+        )}
+
+      </div>
+
+    )}
+
+    {/* PURCHASE RESULT */}
+
+    {activeOrder && (
+
+      <div className="purchase-logs-order">
+
+        <FiX
+          className="purchase-logs-order-close"
+          onClick={() => setActiveOrder(null)}
+        />
+
+        <div className="purchase-logs-order-header">
+
+          <strong>Purchased Account</strong>
+
+          <FiCopy
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              navigator.clipboard.writeText(activeOrder.details);
+              setCopied(true);
+            }}
           />
-          <FiSearch className="search-icon" />
+
         </div>
 
-        {/* PRODUCTS */}
-        {(selectedCategory || loading) && (
-          <div className="services-container">
-            {loading ? (
-              <div className="loading-spinner">
-                <div className={`spinner ${darkMode ? "dark" : ""}`} />
-                <p>Loading products...</p>
-              </div>
-            ) : filteredProducts.length === 0 ? (
-              <p className="empty">No products available</p>
-            ) : (
-              <div className="services-grid">
-                {filteredProducts.map((product) => (
-                  <SocialServiceCard
-                    key={product.id}
-                    product={product}
-                    onBuy={handleBuy}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+        <pre className="purchase-logs-details">
+          {activeOrder.details}
+        </pre>
 
-        {/* ACTIVE ORDER */}
-        {activeOrder && (
-          <div className="otp-box">
-            <FiX className="otp-close" onClick={() => setActiveOrder(null)} />
+        <p className="purchase-logs-success">
+          Delivered {activeOrder.quantity} account(s) ✅{" "}
+          {copied && "(Copied!)"}
+        </p>
 
-            <div className="otp-header">
-              <p>
-                <strong>Accounts:</strong>
-                <pre className="details-block">{activeOrder.details}</pre>
+        <button
+          className="purchase-logs-copy-btn"
+          onClick={() => {
+            navigator.clipboard.writeText(activeOrder.details);
+            setCopied(true);
+          }}
+        >
+          Copy All Details
+        </button>
 
-                <FiCopy
-                  onClick={() => {
-                    navigator.clipboard.writeText(activeOrder.details);
-                    setCopied(true);
-                  }}
-                  style={{ cursor: "pointer", marginTop: 8 }}
-                />
-              </p>
-            </div>
-
-            <p className="success">
-              Delivered {activeOrder.quantity} account(s) ✅ {copied && "(Copied!)"}
-            </p>
-
-            <button
-              className="copy-btn"
-              onClick={() => {
-                navigator.clipboard.writeText(activeOrder.details);
-                setCopied(true);
-              }}
-            >
-              Copy All
-            </button>
-          </div>
-        )}
       </div>
-    </div>
+
+    )}
+
+  </div>
+</div>
   );
 };
 
