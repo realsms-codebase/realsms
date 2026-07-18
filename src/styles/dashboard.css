@@ -251,33 +251,17 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-
   width: 100%;
   padding: 14px 18px;
   margin-top: 12px;
-
   border-radius: 10px;
-  background: linear-gradient(135deg, #229ed9, #1b84b8);
+  background: linear-gradient(135deg, #25d366, #1ebe5d);
   color: #fff;
   text-decoration: none;
   font-size: 14px;
   font-weight: 700;
-
   box-shadow: 0 10px 24px rgba(34, 158, 217, 0.22);
   transition: all 0.25s ease;
-  
-  /* display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 14px;
-  padding: 12px 18px;
-  width: 100%;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #25d366, #1ebe5d);
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.25s ease; */
 }
 
 .notice-whatsapp-link:hover {
