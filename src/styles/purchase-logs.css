@@ -4,158 +4,550 @@
 .purchase-logs-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
+    border-radius: 14px;
     padding: 20px;
-    box-shadow: 0 8px 22px rgba(0, 0, 0, .06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
 }
 
-/* Header */
+/* ===========================
+   HEADER
+=========================== */
 .purchase-logs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
     margin-bottom: 18px;
-    gap: 14px;
 }
 
 .purchase-logs-header h2 {
     font-size: 24px;
+    font-weight: 800;
+    color: var(--text-color);
     margin-bottom: 4px;
 }
 
 .purchase-logs-header p {
-    font-size: 13px;
+    color: var(--secondary-text);
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 .purchase-logs-count {
+    background: linear-gradient(135deg, #6366f1, #7c3aed);
+    color: #fff;
     padding: 6px 12px;
-    font-size: 12px;
-}
-
-/* Inputs */
-.purchase-logs-select,
-.purchase-logs-search-input {
-    height: 48px;
-    border-radius: 10px;
-    font-size: 14px;
-}
-
-.purchase-logs-search {
-    margin-bottom: 18px;
-}
-
-.purchase-logs-search-icon {
-    right: 15px;
-    font-size: 18px;
-}
-
-/* Grid */
-.purchase-logs-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
-}
-
-/* Purchase Details */
-.purchase-logs-order {
-    margin-top: 24px;
-    border-radius: 14px;
-    padding: 18px;
-}
-
-.purchase-logs-details {
-    border-radius: 10px;
-    padding: 14px;
-    font-size: 13px;
-}
-
-.purchase-logs-copy-btn {
-    height: 42px;
-    padding: 0 18px;
-    border-radius: 10px;
-    font-size: 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
 /* ===========================
-   MARKET CARD
+   SELECT
 =========================== */
+.purchase-logs-select {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 13px;
+    margin-bottom: 14px;
+    outline: none;
+    transition: .25s;
+}
+
+.purchase-logs-select:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, .15);
+}
+
+/* ===========================
+   SEARCH
+=========================== */
+.purchase-logs-search {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.purchase-logs-search-input {
+    width: 100%;
+    height: 46px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    padding: 0 42px 0 14px;
+    font-size: 13px;
+    transition: .25s;
+}
+
+.purchase-logs-search-input:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, .15);
+}
+
+.purchase-logs-search-input::placeholder {
+    color: var(--secondary-text);
+    font-size: 12px;
+}
+
+.purchase-logs-search-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: var(--secondary-text);
+}
+
+/* ===========================
+   GRID
+=========================== */
+.purchase-logs-services {
+    margin-top: 8px;
+}
+
+.purchase-logs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    align-items: start;
+}
+
+/* ===========================
+   LOADING
+=========================== */
+.purchase-logs-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 60px 0;
+}
+
+.purchase-logs-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(99, 102, 241, .15);
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: purchaseLogsSpin .8s linear infinite;
+}
+
+@keyframes purchaseLogsSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.purchase-logs-loading p {
+    color: var(--secondary-text);
+    font-size: 13px;
+}
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+.purchase-logs-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--secondary-text);
+    font-size: 13px;
+}
+
+/* ==========================================
+   PURCHASE DETAILS
+========================================== */
+
+.purchase-logs-order {
+    margin-top: 24px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 18px;
+    position: relative;
+}
+
+.purchase-logs-order-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-size: 18px;
+    color: var(--secondary-text);
+    cursor: pointer;
+    transition: .25s;
+}
+
+.purchase-logs-order-close:hover {
+    color: #ef4444;
+}
+
+.purchase-logs-order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.purchase-logs-details {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px;
+    max-height: 220px;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: var(--text-color);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.purchase-logs-success {
+    margin-top: 14px;
+    color: #22c55e;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.purchase-logs-copy-btn {
+    margin-top: 16px;
+    height: 42px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6366f1, #7c3aed);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.purchase-logs-copy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(99, 102, 241, .22);
+}
+
+/* ==========================================
+   MARKET CARD
+========================================== */
 
 .market-card {
+    background: var(--card-bg, #fff);
+    border: 1px solid var(--border-color, #ececec);
     border-radius: 14px;
     padding: 14px;
+    display: flex;
+    flex-direction: column;
+    transition: .25s;
+}
+
+.market-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .08);
 }
 
 .market-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 14px;
 }
 
-.server-tag,
-.stock-tag {
+.server-tag {
+    background: #fff4d8;
+    color: #b68a00;
     font-size: 10px;
+    font-weight: 700;
     padding: 3px 8px;
+    border-radius: 14px;
+}
+
+.stock-tag {
+    background: #e8fff0;
+    color: #17a34a;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 14px;
+}
+
+.stock-tag.low {
+    background: #ffe6e6;
+    color: #d63a3a;
 }
 
 .market-icon {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     border-radius: 10px;
+    background: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 14px;
 }
 
 .market-icon img {
     width: 28px;
     height: 28px;
+    object-fit: contain;
 }
 
 .market-card h3 {
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 700;
     margin-bottom: 6px;
+    color: var(--text-color);
 }
 
 .market-card p {
     font-size: 12px;
+    color: var(--secondary-text, #777);
     min-height: 34px;
     margin-bottom: 12px;
+    line-height: 1.5;
 }
 
 .market-price {
     font-size: 22px;
+    font-weight: 800;
+    color: var(--text-color);
     margin-bottom: 12px;
 }
 
 .market-qty {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color, #eee);
     border-radius: 10px;
+    overflow: hidden;
     margin-bottom: 12px;
 }
 
 .market-qty button {
     width: 38px;
-    height: 38px;
-    font-size: 18px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: .2s;
+}
+
+.market-qty button:hover {
+    background: rgba(99, 102, 241, .08);
 }
 
 .market-qty span {
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-color);
 }
 
 .market-buy {
-    height: 42px;
+    height: 40px;
+    border: none;
     border-radius: 10px;
-    font-size: 14px;
+    background: #f59e0b;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 6px;
+    cursor: pointer;
+    transition: .2s;
 }
 
-/* Mobile */
-@media (max-width:768px) {
+.market-buy:hover {
+    background: #ea9300;
+}
+
+.market-buy:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
     .purchase-logs-card {
-        padding: 15px;
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .purchase-logs-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 16px;
     }
 
     .purchase-logs-header h2 {
         font-size: 20px;
     }
 
+    .purchase-logs-header p {
+        font-size: 12px;
+    }
+
+    .purchase-logs-count {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .purchase-logs-select,
+    .purchase-logs-search-input {
+        height: 42px;
+        font-size: 12px;
+        border-radius: 8px;
+        padding-left: 12px;
+    }
+
+    .purchase-logs-search-icon {
+        right: 12px;
+        font-size: 15px;
+    }
+
     .purchase-logs-grid {
+        grid-template-columns: 1fr;
         gap: 14px;
     }
 
+    .purchase-logs-loading {
+        padding: 50px 0;
+    }
+
+    .purchase-logs-spinner {
+        width: 32px;
+        height: 32px;
+    }
+
+    .purchase-logs-empty {
+        padding: 50px 16px;
+        font-size: 12px;
+    }
+
+    /* Purchase Details */
+
+    .purchase-logs-order {
+        margin-top: 18px;
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .purchase-logs-order-header {
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .purchase-logs-order-close {
+        top: 12px;
+        right: 12px;
+        font-size: 16px;
+    }
+
+    .purchase-logs-details {
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 11px;
+        max-height: 200px;
+    }
+
+    .purchase-logs-success {
+        font-size: 12px;
+        margin-top: 12px;
+    }
+
+    .purchase-logs-copy-btn {
+        width: 100%;
+        height: 40px;
+        border-radius: 8px;
+        font-size: 12px;
+        margin-top: 14px;
+    }
+
+    /* Market Card */
+
     .market-card {
         padding: 12px;
+        border-radius: 12px;
+    }
+
+    .market-top {
+        margin-bottom: 12px;
+    }
+
+    .server-tag,
+    .stock-tag {
+        font-size: 9px;
+        padding: 3px 7px;
+    }
+
+    .market-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+    }
+
+    .market-icon img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .market-card h3 {
+        font-size: 13px;
+    }
+
+    .market-card p {
+        font-size: 11px;
+        min-height: auto;
+        margin-bottom: 10px;
+    }
+
+    .market-price {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .market-qty {
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .market-qty button {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+    }
+
+    .market-qty span {
+        font-size: 12px;
+    }
+
+    .market-buy {
+        width: 100%;
+        height: 40px;
+        border-radius: 8px;
+        font-size: 12px;
+        gap: 5px;
     }
 }
