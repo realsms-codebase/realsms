@@ -13,7 +13,7 @@ import {
     FiZap,
 } from "react-icons/fi";
 import { FaWallet } from "react-icons/fa";
-import { FaTelegramPlane } from "react-icons/fa";
+import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { useBalance } from "../context/BalanceContext";
 import banner1 from "../assets/support-banner.png";
 import banner2 from "../assets/number-banner.png";
@@ -374,6 +374,7 @@ const Dashboard = ({ darkMode }) => {
   rel="noopener noreferrer"
   className="notice-whatsapp-link"
 >
+  <FaWhatsapp />        
   Message On Whatsapp
 </a>
 
