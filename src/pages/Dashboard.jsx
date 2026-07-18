@@ -375,7 +375,7 @@ const Dashboard = ({ darkMode }) => {
   className="notice-whatsapp-link"
 >
   <FaWhatsapp />        
-  Message On Whatsapp
+  <span>Message On Whatsapp</span>
 </a>
 
                         </div>
