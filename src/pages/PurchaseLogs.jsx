@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FiSearch, FiCopy, FiX } from "react-icons/fi";
 import SocialServiceCard from "../components/SocialServiceCard";
-import "../styles/buy-number.css";
+import "../styles/purchase-logs.css";
 
 // ICONS
 import instagramIcon from "../assets/instagram.png";
