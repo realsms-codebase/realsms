@@ -103,6 +103,7 @@
 
 import React, { useState } from "react";
 import { FiZap } from "react-icons/fi";
+import "../styles/dashboard.css";
 
 const formatNaira = (amount) => {
   if (amount == null) return "Price N/A";
