@@ -4,12 +4,8 @@ import SocialServiceCard from "../components/SocialServiceCard";
 import "../styles/purchase-logs.css";
 
 // ICONS
-import instagramIcon from "../assets/instagram.png";
 import facebookIcon from "../assets/facebook.png";
 import twitterIcon from "../assets/twitter.png";
-import tiktokIcon from "../assets/tiktok.png";
-import mailIcon from "../assets/mail.png";
-import googleVoiceIcon from "../assets/google-voice.png";
 import netflixIcon from "../assets/netflix.png";
 
 // NEW ICONS
@@ -22,13 +18,9 @@ const API = process.env.REACT_APP_API_URL;
 
 // Platform icons
 const platformIcons = {
-  Instagram: instagramIcon,
   Facebook: facebookIcon,
   Twitter: twitterIcon,
   "Twitter (X)": twitterIcon,
-  TikTok: tiktokIcon,
-  Mail: mailIcon,
-  "Google Voice": googleVoiceIcon,
   Netflix: netflixIcon,
   VPN: vpnIcon,
   "Texting Apps": textingIcon,
@@ -52,16 +44,12 @@ const PurchaseLogs = ({ darkMode }) => {
     document.title = "Purchase Logs - RealSMS";
 
     setCategories([
-      { id: 1, name: "Instagram" },
-      { id: 2, name: "Facebook" },
-      { id: 3, name: "Twitter (X)" },
-      { id: 4, name: "TikTok" },
-      { id: 5, name: "Mail" },
-      { id: 6, name: "Google Voice" },
-      { id: 7, name: "Netflix" },
-      { id: 8, name: "VPN" },
-      { id: 9, name: "Texting Apps" },
-    ]);
+  { id: 1, name: "Facebook" },
+  { id: 2, name: "Twitter (X)" },
+  { id: 3, name: "Netflix" },
+  { id: 4, name: "VPN" },
+  { id: 5, name: "Texting Apps" },
+]);
   }, []);
 
   // FETCH LOGS
@@ -96,7 +84,7 @@ const PurchaseLogs = ({ darkMode }) => {
           stock: log.stock,
           type: log.type,
           details: log.details,
-          icon: platformIcons[log.platform] || instagramIcon,
+          icon: platformIcons[log.platform] || facebookIcon,
         }));
 
         setProducts(formatted);
