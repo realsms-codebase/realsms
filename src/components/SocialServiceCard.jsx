@@ -31,13 +31,6 @@ const SocialServiceCard = ({ product, onBuy, disabled }) => {
     onBuy(product, () => setBuying(false), quantity);
   };
 
-      const truncate = (text, maxLength = 70) => {
-  if (!text) return "";
-  return text.length > maxLength
-    ? text.slice(0, maxLength) + "..."
-    : text;
-};
-
   return (
     <div className="market-card">
 
@@ -64,9 +57,7 @@ const SocialServiceCard = ({ product, onBuy, disabled }) => {
         />
       </div>
 
-      <h3 title={product.name}>
-  {truncate(product.name, 70)}
-</h3>
+      <h3>{product.name}</h3>
 
       <p>{product.type}</p>
 
