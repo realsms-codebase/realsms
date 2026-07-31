@@ -7,6 +7,7 @@ import "../styles/purchase-logs.css";
 import facebookIcon from "../assets/facebook.png";
 import twitterIcon from "../assets/twitter.png";
 import netflixIcon from "../assets/netflix.png";
+import instagramIcon from "../assets/instagram.png";
 
 // NEW ICONS
 import vpnIcon from "../assets/vpn.png";
@@ -18,6 +19,7 @@ const API = process.env.REACT_APP_API_URL;
 
 // Platform icons
 const platformIcons = {
+  Instagram: instagramIcon,
   Facebook: facebookIcon,
   Twitter: twitterIcon,
   "Twitter (X)": twitterIcon,
@@ -44,11 +46,12 @@ const PurchaseLogs = ({ darkMode }) => {
     document.title = "Purchase Logs - RealSMS";
 
     setCategories([
-  { id: 1, name: "Facebook" },
-  { id: 2, name: "Twitter (X)" },
-  { id: 3, name: "Netflix" },
-  { id: 4, name: "VPN" },
-  { id: 5, name: "Texting Apps" },
+  { id: 1, name: "Instagram" },
+  { id: 2, name: "Facebook" },
+  { id: 3, name: "Twitter (X)" }, 
+  { id: 4, name: "Netflix" },
+  { id: 5, name: "VPN" },
+  { id: 6, name: "Texting Apps" },
 ]);
   }, []);
 
