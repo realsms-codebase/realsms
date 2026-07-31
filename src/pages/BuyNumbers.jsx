@@ -515,7 +515,7 @@ useEffect(() => {
     // Refresh prices every 30 seconds
     const interval = setInterval(() => {
         fetchServices(false);
-    }, 30000);
+    }, 120000);
 
     return () => clearInterval(interval);
 
