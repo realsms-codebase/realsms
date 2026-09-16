@@ -82,6 +82,11 @@ const handlePayment = async () => {
         setLoading(false);
     }
 };
+
+    const disabledGateways = {
+    flutterwave: true,
+    korapay: false,
+};
    
     
     return (
@@ -152,7 +157,7 @@ const handlePayment = async () => {
 
                         {/* Flutterwave */}
 
-                        <div
+                        {/* <div
                             className={`payment-item ${
                                 payment === "flutterwave"
                                     ? "selected"
@@ -187,7 +192,52 @@ const handlePayment = async () => {
                                 }
                                 readOnly
                             />
-                        </div>
+                        </div> */}
+
+                        {/* Flutterwave */}
+
+<div
+    className={`payment-item ${
+        payment === "flutterwave" ? "selected" : ""
+    } ${disabledGateways.flutterwave ? "disabled" : ""}`}
+    onClick={() => {
+        if (!disabledGateways.flutterwave) {
+            setPayment("flutterwave");
+        }
+    }}
+>
+    <div className="payment-left">
+
+        <img
+            src={flutterwaveLogo}
+            alt="Flutterwave"
+            className="payment-logo"
+        />
+
+        <div>
+            <h4>
+                Flutterwave
+                {disabledGateways.flutterwave && (
+                    <span className="gateway-status">
+                        Temporarily unavailable
+                    </span>
+                )}
+            </h4>
+
+            <small>
+                Cards • Bank Transfer • USSD
+            </small>
+        </div>
+
+    </div>
+
+    <input
+        type="radio"
+        checked={payment === "flutterwave"}
+        readOnly
+        disabled={disabledGateways.flutterwave}
+    />
+</div>
 
                         {/* Korapay */}
 
