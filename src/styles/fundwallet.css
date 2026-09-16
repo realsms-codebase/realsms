@@ -184,6 +184,24 @@
   background: var(--primary-soft);
 }
 
+.payment-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.payment-item.disabled:hover {
+    border-color: var(--border-color);
+    background: var(--card-bg);
+}
+
+.gateway-status {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--secondary-text);
+}
+
 .summary-box{
   padding:16px;
   border:1px solid var(--border-color);
