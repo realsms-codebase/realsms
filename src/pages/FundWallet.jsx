@@ -13,7 +13,7 @@ const quickAmounts = [1000, 5000, 10000, 50000];
 
 const FundWallet = () => {
     const [amount, setAmount] = useState(5000);
-    const [payment, setPayment] = useState("flutterwave");
+    const [payment, setPayment] = useState("korapay");
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
