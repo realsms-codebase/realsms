@@ -13,7 +13,7 @@ const quickAmounts = [1000, 5000, 10000, 50000];
 
 const FundWallet = () => {
     const [amount, setAmount] = useState(5000);
-    const [payment, setPayment] = useState("korapay");
+    const [payment, setPayment] = useState("flutterwave");
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -84,7 +84,7 @@ const handlePayment = async () => {
 };
 
     const disabledGateways = {
-    flutterwave: true,
+    flutterwave: false,
     korapay: false,
 };
    
