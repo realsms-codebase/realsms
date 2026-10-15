@@ -23,6 +23,7 @@ import FundSuccess from "./pages/FundSuccess";
 import FundCancel from "./pages/FundCancel";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import VerifyEmail from "./pages/VerifyEmail";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Support from "./pages/Support";
@@ -62,6 +63,11 @@ function App() {
                         <Route
                             path="/reset-password/:token"
                             element={<ResetPassword />}
+                        />
+
+                        <Route 
+                            path="/verify-email" 
+                            element={<VerifyEmail />} 
                         />
 
                         {/* Protected Pages */}
