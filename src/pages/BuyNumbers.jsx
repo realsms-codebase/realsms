@@ -88,6 +88,21 @@ const BuyNumbers = ({ darkMode }) => {
         document.title = "Buy Numbers - RealSMS";
     }, []);
 
+    // ---------------- CLEAN UP OLD SERVICE CACHE ----------------
+useEffect(() => {
+    try {
+        const obsoleteKeys = Object.keys(localStorage).filter(
+            (key) => key.startsWith("realsms_services_")
+        );
+
+        obsoleteKeys.forEach((key) => {
+            localStorage.removeItem(key);
+        });
+    } catch (error) {
+        console.warn("Could not clean old service cache:", error);
+    }
+}, []);
+
     // ---------------- RESTORE ACTIVE ORDER ----------------
     useEffect(() => {
         if (!token) return;
@@ -371,7 +386,150 @@ const BuyNumbers = ({ darkMode }) => {
 //     API_URL
 // ]);
 
-// ---------------- FETCH SERVICES ----------------
+// // ---------------- FETCH SERVICES ----------------
+// useEffect(() => {
+//     if (!selectedCountry || !token) {
+//         setServices([]);
+//         setLoadingServices(false);
+//         return;
+//     }
+
+//     let cancelled = false;
+
+//     const countryId = String(selectedCountry.ID);
+//     const cacheKey = `realsms_services_${countryId}`;
+
+//     // Read cached services immediately
+//     let hasCachedServices = false;
+
+//     try {
+//         const cached = localStorage.getItem(cacheKey);
+
+//         if (cached) {
+//             const parsed = JSON.parse(cached);
+
+//             if (Array.isArray(parsed) && parsed.length > 0) {
+//                 setServices(parsed);
+//                 setLoadingServices(false);
+//                 hasCachedServices = true;
+//             }
+//         }
+//     } catch (err) {
+//         console.error("Services cache error:", err);
+//     }
+
+//     const fetchServices = async () => {
+//         // Only show the loader when there is no cached data
+//         if (!hasCachedServices && !cancelled) {
+//             setLoadingServices(true);
+//         }
+
+//         try {
+//             const res = await axios.get(
+//                 `${API_URL}/api/smspool/services`,
+//                 {
+//                     headers: {
+//                         Authorization: `Bearer ${token}`,
+//                     },
+//                     timeout: 20000,
+//                 }
+//             );
+
+//             if (cancelled) return;
+
+//             const data = Array.isArray(res.data)
+//                 ? res.data
+//                 : [];
+
+//             const withPrice = data
+//                 .map((service) => {
+//                     const countryPrices = (
+//                         service.pricing || []
+//                     )
+//                         .filter(
+//                             (price) =>
+//                                 String(price.countryID) === countryId &&
+//                                 price.priceNGN != null &&
+//                                 Number(price.priceNGN) > 0 &&
+//                                 price.pool != null
+//                         )
+//                         .sort(
+//                             (a, b) =>
+//                                 Number(a.priceNGN) -
+//                                 Number(b.priceNGN)
+//                         );
+
+//                     const cheapest = countryPrices[0];
+//                     const serviceName =
+//                         service.name?.toLowerCase().trim() || "";
+
+//                     return {
+//                         ...service,
+//                         price: cheapest
+//                             ? Number(cheapest.priceNGN)
+//                             : null,
+//                         pool: cheapest?.pool ?? null,
+
+//                         logo:
+//                             SERVICE_LOGOS[serviceName] ||
+//                             `https://img.logo.dev/search?query=${encodeURIComponent(
+//                                 service.name || ""
+//                             )}&token=${
+//                                 process.env.REACT_APP_LOGO_DEV_KEY || ""
+//                             }`,
+
+//                         popular: POPULAR_SERVICES.some(
+//                             (name) =>
+//                                 name.toLowerCase() === serviceName
+//                         ),
+//                     };
+//                 })
+//                 .sort((a, b) => {
+//                     // Popular services first
+//                     if (a.popular && !b.popular) return -1;
+//                     if (!a.popular && b.popular) return 1;
+
+//                     // Available services before unavailable ones
+//                     if (a.price && !b.price) return -1;
+//                     if (!a.price && b.price) return 1;
+
+//                     return 0;
+//                 });
+
+//             // Save all services for this country
+//             localStorage.setItem(
+//                 cacheKey,
+//                 JSON.stringify(withPrice)
+//             );
+
+//             setServices(withPrice);
+//         } catch (err) {
+//             console.error("Fetch services error:", err);
+
+//             // Keep cached services visible if the request fails
+//             if (!hasCachedServices && !cancelled) {
+//                 setServices([]);
+//             }
+//         } finally {
+//             if (!cancelled && !hasCachedServices) {
+//                 setLoadingServices(false);
+//             }
+//         }
+//     };
+
+//     fetchServices();
+
+//     // Refresh prices every 2 minutes without blocking the UI
+//     const interval = setInterval(fetchServices, 120000);
+
+//     return () => {
+//         cancelled = true;
+//         clearInterval(interval);
+//     };
+// }, [selectedCountry, token, API_URL]); 
+
+
+ // ---------------- FETCH SERVICES ----------------
 useEffect(() => {
     if (!selectedCountry || !token) {
         setServices([]);
@@ -380,32 +538,18 @@ useEffect(() => {
     }
 
     let cancelled = false;
+    let requestInProgress = false;
+    let isInitialLoad = true;
 
     const countryId = String(selectedCountry.ID);
-    const cacheKey = `realsms_services_${countryId}`;
-
-    // Read cached services immediately
-    let hasCachedServices = false;
-
-    try {
-        const cached = localStorage.getItem(cacheKey);
-
-        if (cached) {
-            const parsed = JSON.parse(cached);
-
-            if (Array.isArray(parsed) && parsed.length > 0) {
-                setServices(parsed);
-                setLoadingServices(false);
-                hasCachedServices = true;
-            }
-        }
-    } catch (err) {
-        console.error("Services cache error:", err);
-    }
 
     const fetchServices = async () => {
-        // Only show the loader when there is no cached data
-        if (!hasCachedServices && !cancelled) {
+        // Prevent overlapping refresh requests.
+        if (requestInProgress || cancelled) return;
+
+        requestInProgress = true;
+
+        if (isInitialLoad && !cancelled) {
             setLoadingServices(true);
         }
 
@@ -429,15 +573,19 @@ useEffect(() => {
             const withPrice = data
                 .map((service) => {
                     const countryPrices = (
-                        service.pricing || []
+                        Array.isArray(service.pricing)
+                            ? service.pricing
+                            : []
                     )
-                        .filter(
-                            (price) =>
+                        .filter((price) => {
+                            return (
                                 String(price.countryID) === countryId &&
                                 price.priceNGN != null &&
+                                Number.isFinite(Number(price.priceNGN)) &&
                                 Number(price.priceNGN) > 0 &&
                                 price.pool != null
-                        )
+                            );
+                        })
                         .sort(
                             (a, b) =>
                                 Number(a.priceNGN) -
@@ -445,14 +593,17 @@ useEffect(() => {
                         );
 
                     const cheapest = countryPrices[0];
+
                     const serviceName =
                         service.name?.toLowerCase().trim() || "";
 
                     return {
                         ...service,
+
                         price: cheapest
                             ? Number(cheapest.priceNGN)
                             : null,
+
                         pool: cheapest?.pool ?? null,
 
                         logo:
@@ -470,33 +621,41 @@ useEffect(() => {
                     };
                 })
                 .sort((a, b) => {
-                    // Popular services first
+                    // Popular services first.
                     if (a.popular && !b.popular) return -1;
                     if (!a.popular && b.popular) return 1;
 
-                    // Available services before unavailable ones
+                    // Services with available prices next.
                     if (a.price && !b.price) return -1;
                     if (!a.price && b.price) return 1;
+
+                    // Among priced services, show cheaper ones first.
+                    if (a.price && b.price) {
+                        return a.price - b.price;
+                    }
 
                     return 0;
                 });
 
-            // Save all services for this country
-            localStorage.setItem(
-                cacheKey,
-                JSON.stringify(withPrice)
-            );
+            if (!cancelled) {
+                // Keep data in React memory only.
+                // Do not save the full catalog to localStorage.
+                setServices(withPrice);
+            }
+        } catch (error) {
+            if (!cancelled) {
+                console.error(
+                    "Fetch services error:",
+                    error.response?.data || error.message || error
+                );
 
-            setServices(withPrice);
-        } catch (err) {
-            console.error("Fetch services error:", err);
-
-            // Keep cached services visible if the request fails
-            if (!hasCachedServices && !cancelled) {
-                setServices([]);
+                // Keep previously loaded services visible on refresh failure.
             }
         } finally {
-            if (!cancelled && !hasCachedServices) {
+            requestInProgress = false;
+            isInitialLoad = false;
+
+            if (!cancelled) {
                 setLoadingServices(false);
             }
         }
@@ -504,15 +663,16 @@ useEffect(() => {
 
     fetchServices();
 
-    // Refresh prices every 2 minutes without blocking the UI
+    // Refresh the catalog every 2 minutes.
     const interval = setInterval(fetchServices, 120000);
 
     return () => {
         cancelled = true;
         clearInterval(interval);
     };
-}, [selectedCountry, token, API_URL]); 
+}, [selectedCountry, token, API_URL]);
 
+    
     // ---------------- COUNTRY CHANGE ----------------
     const handleCountryChange = (e) => {
         const countryId = e.target.value;
