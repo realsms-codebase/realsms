@@ -56,7 +56,7 @@ const VerifyEmail = () => {
 
       // Do not automatically log in unless your backend
       // explicitly implements that flow.
-      navigate("/", {
+      navigate("/login", {
         replace: true,
         state: {
           verified: true,
