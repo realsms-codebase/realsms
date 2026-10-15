@@ -33,50 +33,109 @@ const Register = () => {
     });
   };
 
-  const handleRegister = async () => {
-    if (
-      !form.firstName ||
-      !form.lastName ||
-      !form.email ||
-      !form.password
-    ) {
-      alert("All fields are required");
-      return;
-    }
+  // const handleRegister = async () => {
+  //   if (
+  //     !form.firstName ||
+  //     !form.lastName ||
+  //     !form.email ||
+  //     !form.password
+  //   ) {
+  //     alert("All fields are required");
+  //     return;
+  //   }
 
-    // ✅ Email regex validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   // ✅ Email regex validation
+  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!emailRegex.test(form.email.trim())) {
-      alert("Please enter a valid email address");
-      return;
-    }
+  //   if (!emailRegex.test(form.email.trim())) {
+  //     alert("Please enter a valid email address");
+  //     return;
+  //   }
 
-    if (!form.agree) {
-      alert("You must accept the terms");
-      return;
-    }
+  //   if (!form.agree) {
+  //     alert("You must accept the terms");
+  //     return;
+  //   }
 
-    try {
-      setLoading(true);
+  //   try {
+  //     setLoading(true);
 
-      const res = await axios.post(`${API_URL}/api/auth/register`, {
+  //     const res = await axios.post(`${API_URL}/api/auth/register`, {
+  //       firstName: form.firstName.trim(),
+  //       lastName: form.lastName.trim(),
+  //       email: form.email.trim().toLowerCase(),
+  //       password: form.password,
+  //     });
+
+  //     alert(res.data.message || "Account created successfully");
+  //     navigate("/");
+  //   } catch (err) {
+  //     alert(
+  //       err.response?.data?.message || "Registration failed, try again"
+  //     );
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  
+const handleRegister = async (e) => {
+  e.preventDefault();
+
+  if (
+    !form.firstName.trim() ||
+    !form.lastName.trim() ||
+    !form.email.trim() ||
+    !form.password
+  ) {
+    alert("All fields are required");
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(form.email.trim())) {
+    alert("Please enter a valid email address");
+    return;
+  }
+
+  if (!form.agree) {
+    alert("You must accept the terms");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const email = form.email.trim().toLowerCase();
+
+    const res = await axios.post(
+      `${API_URL}/api/auth/register`,
+      {
         firstName: form.firstName.trim(),
         lastName: form.lastName.trim(),
-        email: form.email.trim().toLowerCase(),
+        email,
         password: form.password,
-      });
+      }
+    );
 
-      alert(res.data.message || "Account created successfully");
-      navigate("/");
-    } catch (err) {
-      alert(
-        err.response?.data?.message || "Registration failed, try again"
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
+    navigate("/verify-email", {
+      state: {
+        email,
+        message:
+          res.data.message ||
+          "Check your email for your verification code.",
+      },
+    });
+  } catch (err) {
+    alert(
+      err.response?.data?.message ||
+        "Registration failed. Please try again."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="register-wrapper">
@@ -91,7 +150,7 @@ const Register = () => {
 
         <h2>Sign up</h2>
 
-        <div className="register-form">
+        <form className="register-form" onSubmit={handleRegister}>
           <div className="name-row">
             <div>
               <label>First name</label>
@@ -163,7 +222,7 @@ const Register = () => {
           <p className="signin-text">
             I have an account? <Link to="/">Sign In</Link>
           </p>
-        </div>
+       </form>
       </div>
     </div>
   );
