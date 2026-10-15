@@ -1,0 +1,123 @@
+
+.verify-email-card {
+  max-width: 480px;
+}
+
+.verify-email-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+  border-radius: 16px;
+  background: rgba(108, 92, 231, 0.1);
+  color: var(--primary, #6c5ce7);
+}
+
+.verify-email-card h2 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.verify-email-description {
+  text-align: center;
+  color: var(--secondary-text, #777);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 6px;
+}
+
+.verify-email-address {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  margin: 0 0 24px;
+}
+
+.verification-code-input {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  letter-spacing: 10px;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 15px 12px;
+}
+
+.verification-code-input::placeholder {
+  letter-spacing: 8px;
+  opacity: 0.35;
+}
+
+.verification-help {
+  font-size: 12px;
+  color: var(--secondary-text, #777);
+  margin: 8px 0 18px;
+}
+
+.verify-message,
+.verify-error {
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  overflow-wrap: anywhere;
+}
+
+.verify-message {
+  color: #16803c;
+  background: #eaf8ef;
+  border: 1px solid #c8ebd3;
+}
+
+.verify-error {
+  color: #c62828;
+  background: #fff0f0;
+  border: 1px solid #f3cccc;
+}
+
+.resend-code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 22px;
+  font-size: 13px;
+  color: var(--secondary-text, #777);
+}
+
+.resend-code button {
+  background: none;
+  border: none;
+  padding: 4px;
+  color: var(--primary, #6c5ce7);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.resend-code button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.verify-email-card .signin-text {
+  text-align: center;
+  margin-top: 22px;
+}
+
+@media (max-width: 768px) {
+  .verify-email-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .verification-code-input {
+    font-size: 22px;
+    letter-spacing: 8px;
+  }
+}
