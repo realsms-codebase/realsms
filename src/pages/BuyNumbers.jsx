@@ -432,7 +432,7 @@ useEffect(() => {
 
         requestInProgress = true;
 
-        if (isInitialLoad) {
+        if (isInitialLoad && !cancelled) {
             setLoadingServices(true);
         }
 
@@ -453,88 +453,98 @@ useEffect(() => {
                 ? res.data
                 : [];
 
-            const withPrice = data.map((service) => {
-                const countryPrices = (
-                    Array.isArray(service.pricing)
-                        ? service.pricing
-                        : []
-                ).filter((price) => (
-                    String(price.countryID) === countryId &&
-                    price.priceNGN != null &&
-                    Number.isFinite(Number(price.priceNGN)) &&
-                    Number(price.priceNGN) > 0 &&
-                    price.pool != null
-                ));
+            const withPrice = data
+                .map((service) => {
+                    // Get all available pools for this country.
+                    const countryPrices = Array.isArray(service.pricing)
+                        ? service.pricing.filter((price) => (
+                            String(price.countryID) === countryId &&
+                            price.pool != null &&
+                            price.priceNGN != null &&
+                            Number.isFinite(Number(price.priceNGN)) &&
+                            Number(price.priceNGN) > 0
+                        ))
+                        : [];
 
-                // Get all three pools and their prices.
-                const poolMap = new Map();
+                    // Remove duplicate entries for the same pool.
+                    const poolMap = new Map();
 
-                countryPrices.forEach((item) => {
-                    const pool = String(item.pool);
-                    const price = Number(item.priceNGN);
+                    countryPrices.forEach((item) => {
+                        const poolKey = String(item.pool);
+                        const existing = poolMap.get(poolKey);
 
-                    // Keep the cheapest entry if a pool appears more than once.
-                    if (
-                        !poolMap.has(pool) ||
-                        price < poolMap.get(pool).price
-                    ) {
-                        poolMap.set(pool, {
-                            pool: item.pool,
-                            price,
-                        });
+                        if (
+                            !existing ||
+                            Number(item.priceNGN) < existing.price
+                        ) {
+                            poolMap.set(poolKey, {
+                                pool: item.pool,
+                                price: Number(item.priceNGN),
+                            });
+                        }
+                    });
+
+                    // Sort pools from cheapest to most expensive.
+                    const poolPrices = Array.from(
+                        poolMap.values()
+                    ).sort((a, b) => a.price - b.price);
+
+                    const cheapest = poolPrices[0];
+
+                    const serviceName =
+                        service.name?.toLowerCase().trim() || "";
+
+                    return {
+                        ...service,
+
+                        // All available pools.
+                        poolPrices,
+
+                        // Keep these for compatibility with existing UI.
+                        price: cheapest?.price ?? null,
+                        pool: cheapest?.pool ?? null,
+
+                        logo:
+                            SERVICE_LOGOS[serviceName] ||
+                            `https://img.logo.dev/search?query=${encodeURIComponent(
+                                service.name || ""
+                            )}&token=${
+                                process.env.REACT_APP_LOGO_DEV_KEY || ""
+                            }`,
+
+                        popular: POPULAR_SERVICES.some(
+                            (name) =>
+                                name.toLowerCase() === serviceName
+                        ),
+                    };
+                })
+                .sort((a, b) => {
+                    // Popular services first.
+                    if (a.popular && !b.popular) return -1;
+                    if (!a.popular && b.popular) return 1;
+
+                    // Available services before unavailable ones.
+                    if (a.price && !b.price) return -1;
+                    if (!a.price && b.price) return 1;
+
+                    // Cheapest services first.
+                    if (a.price && b.price) {
+                        return a.price - b.price;
                     }
+
+                    return 0;
                 });
-
-                const poolPrices = Array.from(poolMap.values())
-                    .sort((a, b) => a.price - b.price);
-
-                // Cheapest pool remains the default.
-                const cheapest = poolPrices[0] || null;
-
-                const serviceName =
-                    service.name?.toLowerCase().trim() || "";
-
-                return {
-                    ...service,
-
-                    poolPrices,
-
-                    price: cheapest?.price ?? null,
-                    pool: cheapest?.pool ?? null,
-
-                    logo:
-                        SERVICE_LOGOS[serviceName] ||
-                        `https://img.logo.dev/search?query=${encodeURIComponent(
-                            service.name || ""
-                        )}&token=${
-                            process.env.REACT_APP_LOGO_DEV_KEY || ""
-                        }`,
-
-                    popular: POPULAR_SERVICES.some(
-                        (name) =>
-                            name.toLowerCase() === serviceName
-                    ),
-                };
-            }).sort((a, b) => {
-                if (a.popular && !b.popular) return -1;
-                if (!a.popular && b.popular) return 1;
-
-                if (a.price && !b.price) return -1;
-                if (!a.price && b.price) return 1;
-
-                return (a.price || Infinity) -
-                    (b.price || Infinity);
-            });
 
             if (!cancelled) {
                 setServices(withPrice);
             }
-
         } catch (error) {
-            console.error(
-                "Fetch services error:",
-                error.response?.data || error.message
-            );
+            if (!cancelled) {
+                console.error(
+                    "Fetch services error:",
+                    error.response?.data || error.message || error
+                );
+            }
         } finally {
             requestInProgress = false;
             isInitialLoad = false;
@@ -547,15 +557,14 @@ useEffect(() => {
 
     fetchServices();
 
+    // Refresh prices every 2 minutes.
     const interval = setInterval(fetchServices, 120000);
 
     return () => {
         cancelled = true;
         clearInterval(interval);
     };
-
 }, [selectedCountry, token, API_URL]);
-
 
     
     // ---------------- COUNTRY CHANGE ----------------
@@ -794,20 +803,18 @@ const handleBuy = async (service, selectedPool) => {
         return alert("Please select a country first!");
     }
 
-    // Use the selected pool, or default to the cheapest pool.
-    const poolToBuy = selectedPool || service.poolPrices?.[0];
+    const selectedPoolId = selectedPool?.pool;
+    const selectedPrice = Number(selectedPool?.price);
 
-    if (!poolToBuy || !poolToBuy.pool) {
-        return alert("Service unavailable for this country!");
+    if (
+        selectedPoolId == null ||
+        !Number.isFinite(selectedPrice) ||
+        selectedPrice <= 0
+    ) {
+        return alert("Selected pool is unavailable.");
     }
 
-    const purchasePrice = Number(poolToBuy.price);
-
-    if (!Number.isFinite(purchasePrice) || purchasePrice <= 0) {
-        return alert("Invalid pool price!");
-    }
-
-    if (balance < purchasePrice) {
+    if (balance < selectedPrice) {
         return alert("Insufficient balance");
     }
 
@@ -820,21 +827,20 @@ const handleBuy = async (service, selectedPool) => {
     try {
         setActionLoading(true);
 
-        // Optimistically deduct selected pool price.
-        setBalance((prev) => prev - purchasePrice);
+        // Optimistic balance update using selected pool price.
+        setBalance((prev) => prev - selectedPrice);
 
         setOrderStatus("waiting");
         setOtp(null);
         setTimeLeft(600);
         setCopied(false);
 
-        // Purchase using the selected pool.
         const res = await axios.post(
             `${API_URL}/api/smspool/buy`,
             {
                 country: selectedCountry.ID,
                 service: service.ID,
-                pool: poolToBuy.pool,
+                pool: selectedPoolId,
             },
             {
                 headers: {
@@ -855,37 +861,29 @@ const handleBuy = async (service, selectedPool) => {
             pricePaid,
         } = res.data.data;
 
-        if (!number || !orderid) {
-            throw new Error("Invalid purchase response");
-        }
-
-        // Use the actual amount charged by the backend.
-        const actualPrice =
-            pricePaid != null
-                ? Number(pricePaid)
-                : purchasePrice;
+        // Use the actual backend charge when available.
+        const actualPrice = Number(
+            pricePaid ?? selectedPrice
+        );
 
         if (!Number.isFinite(actualPrice) || actualPrice <= 0) {
-            throw new Error("Invalid purchase amount returned");
+            throw new Error("Invalid purchase price returned.");
         }
 
-        // Correct wallet balance.
+        // Correct balance using actual purchase price.
         setBalance(previousBalance - actualPrice);
 
         const expiryTime = Date.now() + 600000;
 
         // Save active order.
-        const orderService = {
-            ...service,
-            price: actualPrice,
-            pool: poolToBuy.pool,
-            selectedPool: poolToBuy,
-        };
-
         localStorage.setItem(
             "activeOrder",
             JSON.stringify({
-                service: orderService,
+                service: {
+                    ...service,
+                    price: actualPrice,
+                    pool: selectedPoolId,
+                },
                 country: selectedCountry,
                 number,
                 orderid,
@@ -894,9 +892,11 @@ const handleBuy = async (service, selectedPool) => {
         );
 
         setActiveOrder({
-            ...orderService,
+            ...service,
             number,
             orderid,
+            price: actualPrice,
+            pool: selectedPoolId,
         });
 
         // Start OTP polling.
@@ -908,7 +908,9 @@ const handleBuy = async (service, selectedPool) => {
             try {
                 const otpRes = await axios.post(
                     `${API_URL}/api/smspool/otp`,
-                    { orderid },
+                    {
+                        orderid,
+                    },
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -921,7 +923,6 @@ const handleBuy = async (service, selectedPool) => {
                     setOrderStatus("received");
 
                     clearInterval(pollOtp.current);
-                    pollOtp.current = null;
 
                     localStorage.removeItem("activeOrder");
                 }
@@ -931,11 +932,10 @@ const handleBuy = async (service, selectedPool) => {
         }, 2000);
 
     } catch (err) {
-        // Restore wallet balance if purchase fails.
+        // Restore balance if purchase fails.
         setBalance(previousBalance);
 
         setOrderStatus("idle");
-        setOtp(null);
 
         fetchBalance();
 
@@ -949,7 +949,6 @@ const handleBuy = async (service, selectedPool) => {
         setActionLoading(false);
     }
 };
-
     // ---------------- COUNTDOWN ----------------
     useEffect(() => {
         if (orderStatus !== "waiting") return;
