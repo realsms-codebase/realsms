@@ -113,11 +113,14 @@
 
 
 
+
 import React, { useState } from "react";
 
 // Format price in Naira
 const formatNaira = (amount) => {
-    if (amount == null) return "N/A";
+    if (amount == null || !Number.isFinite(Number(amount))) {
+        return "N/A";
+    }
 
     return `₦${Number(amount).toLocaleString("en-NG")}`;
 };
@@ -129,22 +132,32 @@ const ServiceCard = ({
 }) => {
     const [buyingPool, setBuyingPool] = useState(null);
 
-    // Get available pools
+    // Get available pools and sort by price.
     const poolPrices = Array.isArray(service.poolPrices)
-        ? service.poolPrices
+        ? [...service.poolPrices]
+            .filter(
+                (item) =>
+                    item.pool != null &&
+                    Number.isFinite(Number(item.price)) &&
+                    Number(item.price) > 0
+            )
+            .sort((a, b) => Number(a.price) - Number(b.price))
         : [];
 
     const unavailable = poolPrices.length === 0;
 
-    const isDisabled = disabled || unavailable || buyingPool !== null;
+    const isDisabled =
+        disabled || unavailable || buyingPool !== null;
 
     const handleBuyClick = async (poolItem) => {
-        if (isDisabled) return;
+        if (isDisabled || !onBuy) return;
 
         setBuyingPool(String(poolItem.pool));
 
         try {
             await onBuy(service, poolItem);
+        } catch (error) {
+            console.error("Pool purchase error:", error);
         } finally {
             setBuyingPool(null);
         }
@@ -197,14 +210,18 @@ const ServiceCard = ({
                 {unavailable ? (
                     <div className="pool-unavailable">
                         <span>N/A</span>
-                        <button className="buy-btn" disabled>
+
+                        <button
+                            type="button"
+                            className="buy-btn"
+                            disabled
+                        >
                             N/A
                         </button>
                     </div>
                 ) : (
                     poolPrices.map((poolItem, index) => {
                         const poolKey = String(poolItem.pool);
-
                         const isBuying = buyingPool === poolKey;
 
                         return (
@@ -217,6 +234,7 @@ const ServiceCard = ({
                                 <div className="pool-details">
                                     <span className="pool-name">
                                         Pool {poolItem.pool}
+
                                         {index === 0 && (
                                             <span className="cheapest-label">
                                                 Cheapest
@@ -230,13 +248,12 @@ const ServiceCard = ({
                                 </div>
 
                                 <button
+                                    type="button"
                                     className="buy-btn"
                                     onClick={() => handleBuyClick(poolItem)}
                                     disabled={isDisabled}
                                 >
-                                    {isBuying
-                                        ? "Buying..."
-                                        : "Buy"}
+                                    {isBuying ? "Buying..." : "Buy"}
                                 </button>
                             </div>
                         );
