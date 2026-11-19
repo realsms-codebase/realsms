@@ -461,21 +461,21 @@
 }
 
 
-/* =========================================
-   MULTIPLE POOL PRICES - SERVICE CARD
-========================================= */
+
+/* MULTIPLE POOL PRICES - MOBILE & DESKTOP */
 
 .service-card {
-    display: grid;
-    grid-template-columns: 210px minmax(0, 1fr);
-    align-items: center;
-    gap: 18px;
-    padding: 15px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
     width: 100%;
+    min-width: 0;
+    padding: 14px;
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 13px;
     background: var(--card-bg);
-    transition: border-color 0.2s ease, background 0.2s ease;
+    transition: border-color 0.2s ease;
 }
 
 .service-card:hover {
@@ -487,194 +487,172 @@
     opacity: 0.7;
 }
 
-.service-left {
+/* Service header */
+.service-card > .service-left {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 11px;
+    width: 100%;
     min-width: 0;
-    flex: unset;
+    flex: none;
 }
 
-.service-icon,
-.service-icon-placeholder {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    border-radius: 10px;
+.service-card .service-icon,
+.service-card .service-icon-placeholder {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    flex-shrink: 0;
     object-fit: contain;
+    border-radius: 9px;
     background: var(--hover-bg);
 }
 
-.service-info {
+.service-card .service-info {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    justify-content: center;
+    gap: 4px;
     min-width: 0;
 }
 
-.service-info h4 {
+.service-card .service-info h4 {
     margin: 0;
+    color: var(--text-color);
     font-size: 14px;
     font-weight: 650;
-    color: var(--text-color);
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .pool-count {
-    font-size: 11px;
     color: var(--secondary-text);
+    font-size: 11px;
 }
 
-/* Pool list */
-.service-pools {
+/* Pool grid */
+.service-card > .service-pools {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 9px;
     width: 100%;
     min-width: 0;
 }
 
-/* Individual pool */
 .pool-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 7px;
     min-width: 0;
-    padding: 10px 11px;
+    min-height: 76px;
+    padding: 10px;
     border: 1px solid var(--border-color);
-    border-radius: 9px;
+    border-radius: 10px;
     background: var(--input-bg);
-    transition: border-color 0.2s ease, background 0.2s ease;
 }
 
-.pool-row:hover {
-    border-color: var(--primary);
-}
-
-.pool-details {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    min-width: 0;
-}
-
-.pool-name {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 5px;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--secondary-text);
-}
-
-.pool-row .price {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-color);
-    white-space: nowrap;
-}
-
-/* Cheapest pool */
 .pool-row.cheapest-pool {
     border-color: var(--primary);
     background: var(--primary-soft);
 }
 
-.cheapest-label {
-    display: inline-flex;
+.pool-details {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.pool-name {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    padding: 2px 6px;
+    gap: 5px;
+    color: var(--secondary-text);
+    font-size: 11px;
+}
+
+.pool-row .price {
+    color: var(--text-color);
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.cheapest-label {
+    padding: 3px 6px;
     border-radius: 20px;
     background: var(--primary-soft);
     color: var(--primary);
     font-size: 9px;
     font-weight: 700;
+    white-space: nowrap;
 }
 
-/* Pool purchase button */
 .service-card .buy-btn {
-    height: 32px;
+    height: 34px;
     min-width: 54px;
-    padding: 0 11px;
+    padding: 0 10px;
+    flex-shrink: 0;
     border: none;
-    border-radius: 7px;
+    border-radius: 8px;
     background: var(--primary);
     color: #fff;
     font-size: 11px;
     font-weight: 650;
     cursor: pointer;
-    flex-shrink: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.service-card .buy-btn:hover:not(:disabled) {
-    opacity: 0.9;
-    transform: translateY(-1px);
 }
 
 .service-card .buy-btn:disabled {
     opacity: 0.55;
     cursor: not-allowed;
-    transform: none;
 }
 
-/* Unavailable state */
 .pool-unavailable {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 12px;
+    grid-column: 1 / -1;
+    padding: 12px;
     border: 1px dashed var(--border-color);
     border-radius: 9px;
     color: var(--secondary-text);
     font-size: 12px;
 }
 
-.pool-unavailable .buy-btn {
-    background: var(--hover-bg);
-    color: var(--secondary-text);
-}
-
-/* =========================================
-   RESPONSIVE STYLING
-========================================= */
-
-@media (max-width: 900px) {
+/* Desktop */
+@media (min-width: 769px) {
     .service-card {
-        grid-template-columns: 180px minmax(0, 1fr);
-        gap: 12px;
-        padding: 13px;
+        padding: 16px;
     }
 
-    .service-pools {
-        grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+    .service-card > .service-pools {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
     .service-card {
-        grid-template-columns: 1fr;
         gap: 12px;
-        padding: 13px;
-        border-radius: 11px;
+        padding: 12px;
+        border-radius: 12px;
     }
 
-    .service-left {
-        width: 100%;
+    .service-card > .service-left {
+        gap: 10px;
     }
 
-    .service-icon,
-    .service-icon-placeholder {
-        width: 38px;
-        height: 38px;
-        min-width: 38px;
+    .service-card .service-icon,
+    .service-card .service-icon-placeholder {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
     }
 
-    .service-info h4 {
+    .service-card .service-info h4 {
         font-size: 13px;
     }
 
@@ -682,14 +660,15 @@
         font-size: 10px;
     }
 
-    .service-pools {
+    .service-card > .service-pools {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
     }
 
     .pool-row {
+        min-height: 70px;
         padding: 9px;
-        gap: 6px;
+        gap: 5px;
     }
 
     .pool-row .price {
@@ -701,19 +680,22 @@
     }
 
     .service-card .buy-btn {
-        height: 30px;
+        height: 32px;
         min-width: 48px;
-        padding: 0 9px;
+        padding: 0 8px;
         font-size: 10px;
     }
 }
 
-@media (max-width: 380px) {
-    .service-pools {
-        grid-template-columns: 1fr;
+@media (max-width: 360px) {
+    .pool-row {
+        flex-wrap: wrap;
+    }
+
+    .pool-row .buy-btn {
+        width: 100%;
     }
 }
-
 
 .buy-btn {
   height: 44px;
