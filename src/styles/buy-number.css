@@ -633,67 +633,146 @@
     }
 }
 
-/* Mobile */
+
+/* Mobile Responsive Fix */
 @media (max-width: 768px) {
+
     .service-card {
-        gap: 12px;
-        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        gap: 13px;
+        padding: 13px;
         border-radius: 12px;
+        overflow: hidden;
     }
 
     .service-card > .service-left {
-        gap: 10px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-width: 0;
+        gap: 11px;
     }
 
     .service-card .service-icon,
     .service-card .service-icon-placeholder {
-        width: 36px;
-        height: 36px;
-        min-width: 36px;
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+    }
+
+    .service-card .service-info {
+        flex: 1;
+        min-width: 0;
     }
 
     .service-card .service-info h4 {
-        font-size: 13px;
+        font-size: 14px;
     }
 
     .pool-count {
-        font-size: 10px;
+        font-size: 11px;
     }
 
+    /* Stack pools vertically on mobile */
     .service-card > .service-pools {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
         gap: 8px;
     }
 
+    /* Pool pricing row */
     .pool-row {
-        min-height: 70px;
-        padding: 9px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-width: 0;
+        min-height: 64px;
+        box-sizing: border-box;
+        padding: 10px 12px;
+        gap: 10px;
+        border-radius: 9px;
+        overflow: hidden;
+    }
+
+    .pool-details {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
         gap: 5px;
+    }
+
+    .pool-name {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+    }
+
+    .pool-row .price {
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .cheapest-label {
+        font-size: 9px;
+        padding: 3px 6px;
+    }
+
+    /* Buy button */
+    .service-card .buy-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 58px;
+        min-width: 58px;
+        height: 34px;
+        padding: 0 8px;
+        border-radius: 8px;
+        font-size: 11px;
+    }
+
+    .pool-unavailable {
+        width: 100%;
+        box-sizing: border-box;
+        grid-column: 1 / -1;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+
+    .service-card {
+        padding: 10px;
+    }
+
+    .pool-row {
+        padding: 9px;
+        gap: 7px;
+    }
+
+    .service-card .buy-btn {
+        width: 52px;
+        min-width: 52px;
+        font-size: 10px;
     }
 
     .pool-row .price {
         font-size: 12px;
-    }
-
-    .pool-name {
-        font-size: 10px;
-    }
-
-    .service-card .buy-btn {
-        height: 32px;
-        min-width: 48px;
-        padding: 0 8px;
-        font-size: 10px;
-    }
-}
-
-@media (max-width: 360px) {
-    .pool-row {
-        flex-wrap: wrap;
-    }
-
-    .pool-row .buy-btn {
-        width: 100%;
     }
 }
 
