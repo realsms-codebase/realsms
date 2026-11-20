@@ -59,11 +59,24 @@ const BuyNumbers = ({ darkMode }) => {
         "https://realsms-backend.vercel.app";
 
     const pollOtp = useRef(null);
+    const inboxRef = useRef(null);
 
     const formatNumber = (num) => {
         if (!num) return "";
         return String(num).startsWith("+") ? String(num) : `+${num}`;
     };
+
+    // ---------------- SCROLL TO INBOX ON MOBILE ----------------
+const scrollToInbox = () => {
+    if (window.innerWidth <= 768) {
+        setTimeout(() => {
+            inboxRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }, 300);
+    }
+};
 
     const handleCopyNumber = async () => {
         if (!activeOrder?.number) return;
@@ -268,150 +281,6 @@ useEffect(() => {
         fetchCountries();
     }, [token, API_URL]);
 
-
-//  // ---------------- FETCH SERVICES ----------------
-// useEffect(() => {
-//     if (!selectedCountry || !token) {
-//         setServices([]);
-//         setLoadingServices(false);
-//         return;
-//     }
-
-//     let cancelled = false;
-//     let requestInProgress = false;
-//     let isInitialLoad = true;
-
-//     const countryId = String(selectedCountry.ID);
-
-//     const fetchServices = async () => {
-//         // Prevent overlapping refresh requests.
-//         if (requestInProgress || cancelled) return;
-
-//         requestInProgress = true;
-
-//         if (isInitialLoad && !cancelled) {
-//             setLoadingServices(true);
-//         }
-
-//         try {
-//             const res = await axios.get(
-//                 `${API_URL}/api/smspool/services`,
-//                 {
-//                     headers: {
-//                         Authorization: `Bearer ${token}`,
-//                     },
-//                     timeout: 20000,
-//                 }
-//             );
-
-//             if (cancelled) return;
-
-//             const data = Array.isArray(res.data)
-//                 ? res.data
-//                 : [];
-
-//             const withPrice = data
-//                 .map((service) => {
-//                     const countryPrices = (
-//                         Array.isArray(service.pricing)
-//                             ? service.pricing
-//                             : []
-//                     )
-//                         .filter((price) => {
-//                             return (
-//                                 String(price.countryID) === countryId &&
-//                                 price.priceNGN != null &&
-//                                 Number.isFinite(Number(price.priceNGN)) &&
-//                                 Number(price.priceNGN) > 0 &&
-//                                 price.pool != null
-//                             );
-//                         })
-//                         .sort(
-//                             (a, b) =>
-//                                 Number(a.priceNGN) -
-//                                 Number(b.priceNGN)
-//                         );
-
-//                     const cheapest = countryPrices[0];
-
-//                     const serviceName =
-//                         service.name?.toLowerCase().trim() || "";
-
-//                     return {
-//                         ...service,
-
-//                         price: cheapest
-//                             ? Number(cheapest.priceNGN)
-//                             : null,
-
-//                         pool: cheapest?.pool ?? null,
-
-//                         logo:
-//                             SERVICE_LOGOS[serviceName] ||
-//                             `https://img.logo.dev/search?query=${encodeURIComponent(
-//                                 service.name || ""
-//                             )}&token=${
-//                                 process.env.REACT_APP_LOGO_DEV_KEY || ""
-//                             }`,
-
-//                         popular: POPULAR_SERVICES.some(
-//                             (name) =>
-//                                 name.toLowerCase() === serviceName
-//                         ),
-//                     };
-//                 })
-//                 .sort((a, b) => {
-//                     // Popular services first.
-//                     if (a.popular && !b.popular) return -1;
-//                     if (!a.popular && b.popular) return 1;
-
-//                     // Services with available prices next.
-//                     if (a.price && !b.price) return -1;
-//                     if (!a.price && b.price) return 1;
-
-//                     // Among priced services, show cheaper ones first.
-//                     if (a.price && b.price) {
-//                         return a.price - b.price;
-//                     }
-
-//                     return 0;
-//                 });
-
-//             if (!cancelled) {
-//                 // Keep data in React memory only.
-//                 // Do not save the full catalog to localStorage.
-//                 setServices(withPrice);
-//             }
-//         } catch (error) {
-//             if (!cancelled) {
-//                 console.error(
-//                     "Fetch services error:",
-//                     error.response?.data || error.message || error
-//                 );
-
-//                 // Keep previously loaded services visible on refresh failure.
-//             }
-//         } finally {
-//             requestInProgress = false;
-//             isInitialLoad = false;
-
-//             if (!cancelled) {
-//                 setLoadingServices(false);
-//             }
-//         }
-//     };
-
-//     fetchServices();
-
-//     // Refresh the catalog every 2 minutes.
-//     const interval = setInterval(fetchServices, 120000);
-
-//     return () => {
-//         cancelled = true;
-//         clearInterval(interval);
-//     };
-// }, [selectedCountry, token, API_URL]);
-
     
 // ---------------- FETCH SERVICES ----------------
 useEffect(() => {
@@ -604,198 +473,6 @@ useEffect(() => {
 
         setSearch("");
     };
-
-
-
-//     // ---------------- HANDLE BUY ----------------
-// const handleBuy = async (service) => {
-//     if (!selectedCountry) {
-//         return alert("Please select a country first!");
-//     }
-
-//     if (!service.price || !service.pool) {
-//         return alert(
-//             "Service unavailable for this country"
-//         );
-//     }
-
-//     if (balance < service.price) {
-//         return alert(
-//             "Insufficient balance"
-//         );
-//     }
-
-//     if (orderStatus === "waiting") {
-//         return alert(
-//             "You already have an active order!"
-//         );
-//     }
-
-//     const previousBalance = balance;
-
-//     try {
-//         setActionLoading(true);
-
-//         // Optimistic balance update
-//         setBalance(
-//             (prev) =>
-//                 prev - service.price
-//         );
-
-//         setOrderStatus("waiting");
-//         setOtp(null);
-//         setTimeLeft(600);
-//         setCopied(false);
-
-//         const res = await axios.post(
-//             `${API_URL}/api/smspool/buy`,
-//             {
-//                 country:
-//                     selectedCountry.ID,
-//                 service:
-//                     service.ID,
-//                 pool:
-//                     service.pool,
-//             },
-//             {
-//                 headers: {
-//                     Authorization: `Bearer ${token}`,
-//                 },
-//             }
-//         );
-
-//         if (
-//             !res.data ||
-//             res.data.success === 0
-//         ) {
-//             throw new Error(
-//                 res.data?.message ||
-//                 "Purchase failed"
-//             );
-//         }
-
-//         const {
-//             number,
-//             orderid,
-//             pricePaid,
-//         } = res.data.data;
-
-//         // Correct balance using actual charged amount
-//         setBalance(
-//             previousBalance -
-//             pricePaid
-//         );
-
-//         const expiryTime =
-//             Date.now() + 600000;
-
-//         localStorage.setItem(
-//             "activeOrder",
-//             JSON.stringify({
-//                 service: {
-//                     ...service,
-//                     price: pricePaid,
-//                 },
-
-//                 country:
-//                     selectedCountry,
-
-//                 number,
-//                 orderid,
-//                 expiryTime,
-//             })
-//         );
-
-//         setActiveOrder({
-//             ...service,
-//             number,
-//             orderid,
-//             price: pricePaid,
-//         });
-
-//         // Start OTP polling
-//         if (pollOtp.current) {
-//             clearInterval(
-//                 pollOtp.current
-//             );
-//         }
-
-//         pollOtp.current =
-//             setInterval(
-//                 async () => {
-//                     try {
-//                         const otpRes =
-//                             await axios.post(
-//                                 `${API_URL}/api/smspool/otp`,
-//                                 {
-//                                     orderid,
-//                                 },
-//                                 {
-//                                     headers: {
-//                                         Authorization:
-//                                             `Bearer ${token}`,
-//                                     },
-//                                 }
-//                             );
-
-//                         if (
-//                             otpRes.data
-//                                 ?.otp
-//                         ) {
-//                             setOtp(
-//                                 otpRes.data
-//                                     .otp
-//                             );
-
-//                             setOrderStatus(
-//                                 "received"
-//                             );
-
-//                             clearInterval(
-//                                 pollOtp.current
-//                             );
-
-//                             localStorage.removeItem(
-//                                 "activeOrder"
-//                             );
-//                         }
-//                     } catch (err) {
-//                         console.error(
-//                             err
-//                         );
-//                     }
-//                 },
-//                 2000
-//             );
-
-//     } catch (err) {
-
-//         // Restore balance if failed
-//         setBalance(
-//             previousBalance
-//         );
-
-//         setOrderStatus(
-//             "idle"
-//         );
-
-//         fetchBalance();
-
-//         alert(
-//             err.response?.data
-//                 ?.message ||
-//             err.message ||
-//             "Purchase failed"
-//         );
-
-//     } finally {
-//         setActionLoading(
-//             false
-//         );
-//     }
-// };
-
-
     
  // ---------------- HANDLE BUY ----------------
 const handleBuy = async (service, selectedPool) => {
@@ -898,6 +575,9 @@ const handleBuy = async (service, selectedPool) => {
             price: actualPrice,
             pool: selectedPoolId,
         });
+
+        // Automatically scroll to Inbox on mobile after successful purchase.
+scrollToInbox();
 
         // Start OTP polling.
         if (pollOtp.current) {
@@ -1134,8 +814,12 @@ const handleBuy = async (service, selectedPool) => {
                         </div>
                     )}
                 </div>
-                <div className="otp-panel">
-                    <h3>Inbox</h3>
+               <div
+    className="otp-panel"
+    id="inbox"
+    ref={inboxRef}
+>
+    <h3>Inbox</h3>
 
                     {!activeOrder ? (
                         <div className="otp-empty">
