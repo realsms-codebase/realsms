@@ -1116,3 +1116,13 @@
   font-size: 12px;
 }
 }
+
+/* ================================
+   MOBILE INBOX AUTO SCROLL
+================================ */
+
+@media (max-width: 768px) {
+    .otp-panel {
+        scroll-margin-top: 20px;
+    }
+}
