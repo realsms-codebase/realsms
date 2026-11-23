@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FiSearch, FiCopy, FiX } from "react-icons/fi";
 import SocialServiceCard from "../components/SocialServiceCard";
 import "../styles/purchase-logs.css";
@@ -38,6 +38,8 @@ const PurchaseLogs = ({ darkMode }) => {
   const [copied, setCopied] = useState(false);
 
   const { balance, debitWallet } = useBalance();
+
+  const purchasedAccountRef = useRef(null);
 
   const token = localStorage.getItem("token");
 
@@ -148,11 +150,14 @@ const PurchaseLogs = ({ darkMode }) => {
       await debitWallet(totalCost);
 
       setActiveOrder({
-        ...product,
-        quantity,
-        details: data.order?.details || "No details available",
-      });
+  ...product,
+  quantity,
+  details: data.order?.details || "No details available",
+});
 
+// Automatically scroll to purchased account.
+scrollToPurchasedAccount();
+      
       setProducts((prev) =>
         prev.map((p) =>
           p.id === product.id ? { ...p, stock: data.remainingStock } : p
@@ -166,6 +171,16 @@ const PurchaseLogs = ({ darkMode }) => {
       done();
     }
   };
+
+  // SCROLL TO PURCHASED ACCOUNT
+const scrollToPurchasedAccount = () => {
+  setTimeout(() => {
+    purchasedAccountRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }, 200);
+};
 
   // SEARCH FILTER
   const filteredProducts = products?.filter((p) =>
@@ -287,7 +302,11 @@ const PurchaseLogs = ({ darkMode }) => {
 
     {activeOrder && (
 
-      <div className="purchase-logs-order">
+     <div
+  className="purchase-logs-order"
+  ref={purchasedAccountRef}
+  id="purchased-account"
+>
 
         <FiX
           className="purchase-logs-order-close"
