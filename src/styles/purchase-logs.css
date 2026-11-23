@@ -172,6 +172,7 @@
     border-radius: 14px;
     padding: 18px;
     position: relative;
+    scroll-margin-top: 30px;
 }
 
 .purchase-logs-order-close {
